@@ -1,0 +1,121 @@
+.icon-header.data-v-f6e8b9c0 {
+  width: 100%;
+  height: 50rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.scroll_H.data-v-f6e8b9c0 {
+  width: 200%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+}
+.tuangou.data-v-f6e8b9c0 {
+  font-size: 34rpx;
+  color: #133423;
+  font-weight: 800;
+  margin: 2% 3%;
+}
+.tuangou text.data-v-f6e8b9c0 {
+  font-size: 24rpx;
+  color: #E84A4A;
+  font-weight: normal;
+  margin-left: 3%;
+  white-space: normal;
+}
+.gopintuan.data-v-f6e8b9c0 {
+  display: inline-block;
+  width: 100%;
+  margin-top: 10rpx;
+  height: 30rpx;
+}
+.gopintuan-list.data-v-f6e8b9c0 {
+  background: #E84A4A;
+  color: #ffffff;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 30rpx;
+  border-radius: 20rpx;
+  width: 60%;
+  margin: 0 20%;
+}
+.tuangou-right.data-v-f6e8b9c0 {
+  margin: 3% 3%;
+}
+.tuangou-right text.data-v-f6e8b9c0 {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #E84A4A;
+  font-weight: normal;
+  width: 100rpx;
+}
+.tuangou-right image.data-v-f6e8b9c0 {
+  width: 10rpx;
+  height: 16rpx;
+}
+.category-list.data-v-f6e8b9c0 {
+  width: 94%;
+  margin: 0 3%;
+  padding: 0 0 10rpx 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  margin-top: 30rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  background-image: url(https://jlzcpt.cn/file/gxs/goods/pintuan-bg.png);
+  background-repeat: no-repeat;
+  background-size: 14%;
+  background-position: 0% 0%;
+}
+.category.data-v-f6e8b9c0 {
+  width: 22%;
+  margin-top: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.category.data-v-f6e8b9c0:active {
+  opacity: 0.8;
+}
+.category .class_img.data-v-f6e8b9c0 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.category .class_img .imgs.data-v-f6e8b9c0 {
+  width: 16vw;
+  height: 10.6vw;
+}
+.text.data-v-f6e8b9c0 {
+  margin-top: 8rpx;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  font-size: 24rpx;
+  color: #C6C6C6;
+  font-weight: 500;
+}
+.text-price-icon.data-v-f6e8b9c0 {
+  color: #E84A4A;
+  font-weight: bold;
+}
+

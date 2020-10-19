@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "编辑收货地址",
+  "usingComponents": {
+    "setcity": "/pages/commponent/public/setCity/nyz_area_picker",
+    "loading": "/pages/commponent/public/loading"
+  }
+}

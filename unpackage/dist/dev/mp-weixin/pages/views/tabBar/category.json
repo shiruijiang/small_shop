@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "分类",
+  "usingComponents": {
+    "cartcontrol": "/components/cartcontrol",
+    "search": "/pages/commponent/public/search1"
+  }
+}

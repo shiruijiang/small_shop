@@ -1,0 +1,139 @@
+.twoline.data-v-014fd465 {
+  font-size: 28rpx;
+  margin-top: 14rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.category.data-v-014fd465 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: absolute;
+  top: 135rpx;
+  width: 100%;
+  overflow: hidden;
+}
+.search.data-v-014fd465 {
+  height: 80rpx;
+  padding: 10rpx 165rpx;
+  padding-left: 50rpx;
+  background-color: #ffffff;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 46rpx;
+}
+.search_box.data-v-014fd465 {
+  width: 90%;
+}
+.current.data-v-014fd465 {
+  position: relative;
+  z-index: 0;
+  color: #000;
+  font-weight: 700;
+  border-radius: 10% 0;
+  background: url(https://jlzcpt.cn/file/gxs/goods/tuoyuan.png) no-repeat;
+  background-size: 20%;
+  background-position: 10rpx 20rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+}
+.menu-wrapper.data-v-014fd465 {
+  text-align: center;
+  width: 22%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  background: #F8F8F8;
+}
+.menu-item.data-v-014fd465 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  height: 100rpx;
+  font-size: 30rpx;
+}
+.allcount.data-v-014fd465 {
+  position: absolute;
+  right: 12rpx;
+  top: 16rpx;
+  display: inline-block;
+  padding: 0 8rpx;
+  font-size: 18rpx;
+  line-height: 32rpx;
+  font-weight: 400;
+  border-radius: 50%;
+  background-color: #f01414;
+  color: #ffffff;
+}
+.foods-wrapper.data-v-014fd465 {
+  margin-left: 20rpx;
+  width: 78%;
+}
+.food.data-v-014fd465 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 30rpx;
+}
+.food-btm.data-v-014fd465,
+.content.data-v-014fd465 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+}
+.food-title.data-v-014fd465 {
+  padding: 4rpx 0;
+}
+.food-info.data-v-014fd465 {
+  margin-left: 20rpx;
+  margin-right: 32rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.food-btm.data-v-014fd465 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.food-price.data-v-014fd465 {
+  color: #f01414;
+  font-size: 32rpx;
+}
+

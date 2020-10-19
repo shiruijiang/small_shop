@@ -1,0 +1,1 @@
+<view class="data-v-685a15a4"><canvas class="mycanvas data-v-685a15a4" style="{{('width:'+(windowWidth-60)+'px;height:520px')}}" canvas-id="mycanvas"></canvas><view data-event-opts="{{[['tap',[['saveImg',['$event']]]]]}}" class="saveImg data-v-685a15a4" style="{{('background:'+colors)}}" bindtap="__e">保存图片</view></view>

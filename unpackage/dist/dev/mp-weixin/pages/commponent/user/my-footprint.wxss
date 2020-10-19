@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/*我的足迹*/
+.footprint.data-v-fdf1dd58 {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.footprint .nodata.data-v-fdf1dd58 {
+  padding: 48rpx 0;
+  text-align: center;
+}
+.footprint .nodata text.data-v-fdf1dd58 {
+  font-size: 40rpx;
+}
+.footprint .nodata .tips.data-v-fdf1dd58 {
+  font-size: 24rpx;
+  color: #999;
+  padding-top: 20rpx;
+}
+.footprint_scroll.data-v-fdf1dd58 {
+  background-color: #F8F8F8;
+  width: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.scroll_box.data-v-fdf1dd58 {
+  width: 152rpx;
+  background-color: #fff;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  display: inline-block;
+}
+.scroll_box.data-v-fdf1dd58:active {
+  opacity: 0.8;
+}
+.scroll_box image.data-v-fdf1dd58 {
+  width: 152rpx;
+  height: 152rpx;
+  display: block;
+}
+.scroll_box view.data-v-fdf1dd58 {
+  font-size: 24rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 40rpx;
+  padding: 10rpx 5rpx;
+}
+

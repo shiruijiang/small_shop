@@ -1,0 +1,68 @@
+
+.jieguo{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding: 0 8%;
+  overflow: hidden;
+}
+.place{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: -webkit-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.3), rgba(255,255,255,.5),#ffffff);
+	background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.3), rgba(255,255,255,.5),#ffffff);
+	z-index: 10;
+}
+.jieguo_box{
+  width: 88%;
+  background-color: #fff;
+  height: 90vw;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx #999;
+  padding: 20rpx;
+  z-index: 900;
+  position: absolute;
+  top: 150rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.success{
+  text-align: center;
+  margin-top: 50rpx;
+}
+.success text{
+  font-size: 140rpx;
+}
+.jieguo .texts, .moneys{
+  text-align: center;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  font-weight: bold;
+}
+.wancheng{
+  width: 80%;
+  height: 80rpx;
+  border: 2rpx solid #3E7E8B;
+  color: #3E7E8B;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  margin-top: 150rpx;
+  font-weight: bold;
+}
+.ewm{
+  margin-top: 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+

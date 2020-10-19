@@ -1,0 +1,130 @@
+.myaddress.data-v-1f6b3abe {
+  padding: 10rpx 4%;
+  padding-bottom: 140rpx;
+}
+.order_address.data-v-1f6b3abe {
+  height: 180rpx;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10rpx;
+  position: relative;
+  box-shadow: 0rpx 0rpx 10rpx #ddd;
+  margin-bottom: 20rpx;
+}
+.order_address image.data-v-1f6b3abe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.address_box.data-v-1f6b3abe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.weizhi_icon text.data-v-1f6b3abe {
+  font-size: 40rpx;
+  margin-left: 10rpx;
+}
+.address_box .center.data-v-1f6b3abe {
+  margin-left: 20rpx;
+}
+.address_box .center .name.data-v-1f6b3abe {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.address_box .center .name .text1.data-v-1f6b3abe {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  display: inline-block;
+  margin-right: 20rpx;
+}
+.phones.data-v-1f6b3abe {
+  font-size: 24rpx;
+  color: #999;
+  z-index: 0;
+}
+.address_box .address_name.data-v-1f6b3abe {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+}
+.noaddress.data-v-1f6b3abe {
+  margin-left: 40rpx;
+  font-weight: bold;
+  color: #333;
+  font-size: 26rpx;
+}
+.caozuo.data-v-1f6b3abe {
+  position: absolute;
+  right: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  top: 20rpx;
+}
+.caozuo view.data-v-1f6b3abe {
+  font-size: 24rpx;
+  color: #666;
+  margin-left: 30rpx;
+}
+.caozuo view text.data-v-1f6b3abe {
+  font-size: 24rpx;
+}
+.moren.data-v-1f6b3abe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.moren text.data-v-1f6b3abe {
+  font-size: 60rpx;
+}
+.save.data-v-1f6b3abe {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 120rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.save view.data-v-1f6b3abe {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.save .btn.data-v-1f6b3abe {
+  box-shadow: 0rpx 5rpx 10rpx rgba(0, 0, 0, 0.4);
+  width: 70%;
+  height: 80rpx;
+  border-radius: 80rpx;
+  background-color: #f23a3a;
+  color: #fff;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 30rpx;
+}
+

@@ -1,0 +1,42 @@
+page.data-v-1f2ddd16 {
+  background-color: #F5F5FA;
+}
+.mysubordinate.data-v-1f2ddd16 {
+  margin-top: 10rpx;
+}
+.mysubordinate_list.data-v-1f2ddd16 {
+  padding: 30rpx 4%;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+.mysubordinate_list image.data-v-1f2ddd16 {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.mysubordinate_list .name.data-v-1f2ddd16 {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+.mysubordinate_list .times.data-v-1f2ddd16 {
+  color: #999;
+  font-size: 24rpx;
+}
+.nodata.data-v-1f2ddd16 {
+  color: #ccc;
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+

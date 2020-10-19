@@ -1,0 +1,92 @@
+.coupon_box.data-v-ccf46804 {
+  margin: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0rpx 0rpx 10rpx #ddd;
+  position: relative;
+  border-radius: 10rpx;
+  padding-bottom: 10rpx;
+  overflow: hidden;
+}
+.coupon_box .left.data-v-ccf46804 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 20rpx;
+  position: relative;
+}
+.coupon_box .left .ylq.data-v-ccf46804 {
+  width: 60rpx;
+  height: 45rpx;
+  position: absolute;
+  top: 0;
+  right: 140rpx;
+}
+.coupon_box .left .hui.data-v-ccf46804 {
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background-color: rgba(255, 84, 110, 0.8);
+  border-radius: 8rpx;
+  line-height: 40rpx;
+  text-align: center;
+  display: inline-block;
+  -webkit-transform: translateY(-5rpx);
+          transform: translateY(-5rpx);
+}
+.coupon_box .left .left_top.data-v-ccf46804 {
+  width: 80vw;
+  display: block;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.left_top .hui_name.data-v-ccf46804 {
+  line-height: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+  display: inline-block;
+  font-size: 28rpx;
+}
+.left_bottom.data-v-ccf46804 {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #333;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.coupon_box .right.data-v-ccf46804 {
+  position: absolute;
+  right: 20rpx;
+  top: 25rpx;
+  text-align: center;
+}
+.coupon_box .right .money.data-v-ccf46804 {
+  font-size: 45rpx;
+  margin-bottom: 10rpx;
+}
+.coupon_box .right text.data-v-ccf46804 {
+  font-size: 24rpx;
+  color: #999;
+}
+.coupon_box .bottom.data-v-ccf46804 {
+  height: 60rpx;
+  line-height: 60rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-content: flex-start;
+          align-content: flex-start;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.coupon_box .bottom view.data-v-ccf46804 {
+  margin-right: 20rpx;
+  color: #888;
+}
+

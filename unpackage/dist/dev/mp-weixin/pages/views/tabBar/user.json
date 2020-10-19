@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "我的",
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "my-account": "/pages/commponent/user/my-account",
+    "list-cell": "/pages/commponent/user/list-cell",
+    "my-order": "/pages/commponent/user/my-order",
+    "my-footprint": "/pages/commponent/user/my-footprint",
+    "my-server": "/pages/commponent/user/my-server"
+  }
+}

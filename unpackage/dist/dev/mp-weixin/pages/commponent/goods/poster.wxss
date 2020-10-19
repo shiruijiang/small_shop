@@ -1,0 +1,31 @@
+
+.mycanvas.data-v-685a15a4 {
+	margin: 0 auto;
+	border-radius: 10rpx;
+	overflow: hidden;
+}
+.saveImg.data-v-685a15a4{
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #4DB8E4;
+  border-radius: 10rpx;
+  margin: 40rpx auto 20rpx;
+}
+.imgs.data-v-685a15a4{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	border-radius: 10rpx;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
+.tips.data-v-685a15a4{
+	text-align: center;
+	color: #fff;
+	font-size: 24rpx;
+	margin-top: 20rpx;
+}
+

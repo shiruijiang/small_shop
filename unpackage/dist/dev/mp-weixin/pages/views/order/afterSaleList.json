@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "退换/售后",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "tabs": "/pages/commponent/public/tabs",
+    "loading": "/pages/commponent/public/loading",
+    "nav-bar": "/pages/commponent/public/navBar"
+  }
+}

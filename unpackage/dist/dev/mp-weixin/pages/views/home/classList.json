@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "search": "/pages/commponent/public/search",
+    "recommend": "/pages/commponent/home/recommend",
+    "loading": "/pages/commponent/public/loading"
+  }
+}

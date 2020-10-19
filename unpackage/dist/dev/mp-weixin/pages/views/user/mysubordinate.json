@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的下级",
+  "usingComponents": {
+    "loading": "/pages/commponent/public/loading"
+  }
+}

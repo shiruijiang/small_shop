@@ -1,0 +1,43 @@
+.exchange.data-v-25514505 {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  padding: 20rpx 4%;
+}
+.ewm_box.data-v-25514505 {
+  width: 100%;
+  height: 100vw;
+  background-color: #fff;
+  margin-top: 140rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.ewm_box .titles.data-v-25514505 {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  background-color: #E8E8E8;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.ewm_img.data-v-25514505 {
+  margin-top: 50rpx;
+}
+.ewm_img image.data-v-25514505 {
+  width: 400rpx;
+  height: 400rpx;
+  display: block;
+  margin: 0 auto;
+}
+.jiefen.data-v-25514505 {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 100rpx;
+  border-top: 1rpx solid #eee;
+  font-weight: bold;
+}
+

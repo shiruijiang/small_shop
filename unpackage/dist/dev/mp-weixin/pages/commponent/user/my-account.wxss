@@ -1,0 +1,49 @@
+.my_money.data-v-5552767c {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 20rpx;
+}
+.menu_btns .p1.data-v-5552767c {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.address-flex.data-v-5552767c {
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.address-flex .address-with.data-v-5552767c {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000000;
+  padding: 30rpx 20rpx;
+}
+.address-flex .address-with-other.data-v-5552767c {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #E84A4A;
+  padding: 34rpx 20rpx;
+  font-weight: normal;
+}
+.address-flex .address-with-other image.data-v-5552767c {
+  width: 10rpx;
+  height: 15rpx;
+  margin-left: 5rpx;
+}
+.storeMsg.data-v-5552767c {
+  color: #3ABA78;
+  font-weight: bold;
+  font-size: 32rpx;
+  padding: 10rpx 20rpx;
+}
+.storeAddress.data-v-5552767c {
+  font-size: 26rpx;
+  color: #9a9a9a;
+  font-weight: 400;
+  padding: 15rpx 20rpx 30rpx;
+}
+

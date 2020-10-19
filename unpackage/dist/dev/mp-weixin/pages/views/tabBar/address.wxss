@@ -1,0 +1,107 @@
+.address.data-v-84d62a46 {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 20px 20px 0px 0px;
+}
+.address .address-ion.data-v-84d62a46 {
+  padding: 30rpx 20rpx;
+  color: #999999;
+  font-size: 30rpx;
+}
+.address .address-flex.data-v-84d62a46 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.address .address-flex .address-with.data-v-84d62a46 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+  padding: 0 20rpx;
+}
+.address .address-flex .address-with-other.data-v-84d62a46 {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #E84A4A;
+  padding: 0 20rpx;
+  font-weight: normal;
+}
+.address .address-flex .address-with-other image.data-v-84d62a46 {
+  width: 10rpx;
+  height: 15rpx;
+  margin-left: 5rpx;
+}
+.nearby.data-v-84d62a46 {
+  padding: 30rpx 20rpx;
+  color: #999999;
+  font-size: 30rpx;
+}
+.address-content.data-v-84d62a46 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 180rpx;
+}
+.address-content .address-img.data-v-84d62a46 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 20%;
+}
+.address-content .address-img image.data-v-84d62a46 {
+  height: 160rpx;
+  padding: 10rpx 10rpx;
+}
+.address-content .address-cont.data-v-84d62a46 {
+  -webkit-box-flex: 3;
+  -webkit-flex: 3;
+          flex: 3;
+  width: 50%;
+  padding: 20rpx 5%;
+}
+.address-content .address-cont .address-life.data-v-84d62a46 {
+  color: #000000;
+  font-size: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.address-content .address-cont .address-address.data-v-84d62a46 {
+  color: #999999;
+  font-weight: 400;
+  font-size: 26rpx;
+  margin-top: 12%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.address-content .address-right.data-v-84d62a46 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 20%;
+}
+.address-content .address-right text.data-v-84d62a46 {
+  margin-top: 20rpx;
+  display: inline-block;
+  background: #39B978;
+  border-radius: 25rpx;
+  color: #fff;
+  font-size: 24rpx;
+  width: 75rpx;
+  height: 45rpx;
+  text-align: center;
+  line-height: 45rpx;
+}
+.address-cont text.data-v-84d62a46:nth-child(1) {
+  color: #000000;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

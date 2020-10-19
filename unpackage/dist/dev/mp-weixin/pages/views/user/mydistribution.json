@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "联系我们",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "my-server": "/pages/commponent/user/my-server",
+    "loading": "/pages/commponent/public/loading"
+  }
+}

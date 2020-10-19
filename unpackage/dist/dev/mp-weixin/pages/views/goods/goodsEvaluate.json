@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "所有评价",
+  "usingComponents": {
+    "tabs": "/pages/commponent/public/tabs"
+  }
+}

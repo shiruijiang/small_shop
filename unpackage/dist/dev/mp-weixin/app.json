@@ -1,0 +1,85 @@
+{
+  "pages": [
+    "pages/views/tabBar/home",
+    "pages/views/tabBar/address",
+    "pages/login/login",
+    "pages/views/tabBar/category",
+    "pages/views/tabBar/cart",
+    "pages/views/tabBar/user",
+    "pages/views/setting/index",
+    "pages/views/home/classList",
+    "pages/views/goods/goodsDetails",
+    "pages/views/goods/goodsEvaluate",
+    "pages/views/order/evaluate",
+    "pages/views/order/confirmOrder",
+    "pages/views/order/success",
+    "pages/views/user/mycoupon",
+    "pages/views/user/mycollection",
+    "pages/views/user/myaddress",
+    "pages/views/user/address/edit",
+    "pages/views/user/mypoints",
+    "pages/views/user/exchange/exchange",
+    "pages/views/user/mydistribution",
+    "pages/views/order/orderlist",
+    "pages/views/order/orderdetails",
+    "pages/views/order/cancelorder",
+    "pages/views/order/afterSaleList",
+    "pages/views/order/afterSale",
+    "pages/views/withdrawal/withdrawal",
+    "pages/views/withdrawal/withdrawalrecord",
+    "pages/views/user/mysubordinate",
+    "pages/views/user/extension",
+    "pages/views/home/search",
+    "pages/views/home/h5map",
+    "pages/views/user/allFootprint"
+  ],
+  "subPackages": [],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "selectedColor": "#009a4b",
+    "color": "#8DD6AD",
+    "list": [
+      {
+        "pagePath": "pages/views/tabBar/home",
+        "iconPath": "/static/images/tabBar/home.png",
+        "selectedIconPath": "/static/images/tabBar/home-default.png",
+        "text": "供销中心"
+      },
+      {
+        "pagePath": "pages/views/tabBar/category",
+        "iconPath": "/static/images/tabBar/class.png",
+        "selectedIconPath": "/static/images/tabBar/class-default.png",
+        "text": "商超便利"
+      },
+      {
+        "pagePath": "pages/views/tabBar/cart",
+        "iconPath": "/static/images/tabBar/cart.png",
+        "selectedIconPath": "/static/images/tabBar/cart-default.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/views/tabBar/user",
+        "iconPath": "/static/images/tabBar/user.png",
+        "selectedIconPath": "/static/images/tabBar/user-default.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "plugins": {},
+  "usingComponents": {
+    "nodata": "/pages/commponent/public/nodata"
+  },
+  "sitemapLocation": "sitemap25.json"
+}

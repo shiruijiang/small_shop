@@ -1,0 +1,45 @@
+page.data-v-6374a696 {
+  background-color: #F7F4F8;
+}
+.withdrawalrecord.data-v-6374a696 {
+  margin-top: 10rpx;
+}
+.record_list.data-v-6374a696 {
+  padding: 30rpx 4%;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  border-bottom: 1rpx solid #eee;
+}
+.record_list .title.data-v-6374a696 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.record_list .time.data-v-6374a696 {
+  font-size: 24rpx;
+  color: #7C7C7C;
+}
+.record_list .right.data-v-6374a696 {
+  font-size: 36rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FF4643;
+}
+.nodata.data-v-6374a696 {
+  color: #ccc;
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
