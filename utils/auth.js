@@ -10,6 +10,10 @@ export function getToken() {
   let token = uni.getStorageSync('token');
   return token;
 }
+//存储userId
+export function setUserId(value) {
+	uni.setStorageSync('userId',value);
+}
 //存储商品编号
 export function setStoreNumber(value) {
   uni.setStorageSync('StoreNumber', value);
@@ -166,3 +170,23 @@ export function getCart() { //模拟获取购物车数据
 export function removeCart() { //模拟删除购物车数据
   uni.removeStorageSync('cart')
 }
+export function checkLogin (callBack) {
+	var isLogin = uni.getStorageSync('token')
+	if (isLogin) {
+		if(callBack) {
+			callBack()
+		}
+	} else {
+		uni.showModal({
+			title: '提示',
+			content: '您还没有登录,点击确认前往登录',
+			success: res => {
+				if (res.confirm) {
+					uni.navigateTo({
+						url: '/pages/views/tabBar/user'
+					})
+				}
+			}
+		})
+	}
+};

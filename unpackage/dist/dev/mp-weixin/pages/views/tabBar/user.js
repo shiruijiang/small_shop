@@ -235,7 +235,8 @@ var app = getApp();var myAccount = function myAccount() {__webpack_require__.e(/
       coverTransform: 'translateY(0px)', //元素的移动
       coverTransition: '0s', storeContent: {}, //动画效果
       orderText: [{ name: '全部订单', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon1.png', id: 0 }, { name: '待付款', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon2.png', id: 1 }, { name: '待提货', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon3.png', id: 2 }, { name: '已提货', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon4.png', id: 3 }], logList: [{ //足迹的数据应该由后台进行存储
-        name: '真巧 巧克力涂层甜甜圈 早餐蛋糕手撕面包休闲小零食办公室小吃零嘴下午茶点心 500g甜甜圈（拉花款）', img: "https://jlzcpt.cn/file/gxs/goods/one.jpg" }, { name: '巧妈妈 鸡蛋布甸 下午茶休闲零食儿童果冻布丁125g双层果酱味smzdm 4杯鸡蛋布甸（双层）', img: "https://jlzcpt.cn/file/gxs/goods/four.jpg" }], serverList: [{ name: '我的收藏', icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive1.png', url: '/pages/views/user/mycollection', id: 1, elseUrl: '' }, { name: '分享小程序', icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive2.png', url: '/pages/views/user/extension',
+        name: '真巧 巧克力涂层甜甜圈 早餐蛋糕手撕面包休闲小零食办公室小吃零嘴下午茶点心 500g甜甜圈（拉花款）', img: "https://jlzcpt.cn/file/gxs/goods/one.jpg" }, { name: '巧妈妈 鸡蛋布甸 下午茶休闲零食儿童果冻布丁125g双层果酱味smzdm 4杯鸡蛋布甸（双层）', img: "https://jlzcpt.cn/file/gxs/goods/four.jpg" }], serverList: [{ name: '我的收藏', icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive1.png', url: '/pages/views/user/mycollection', id: 1, elseUrl: '' }, { name: '分享小程序', icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive2.png',
+        url: '/pages/views/user/extension',
         id: 7,
         elseUrl: '' },
       {
@@ -386,7 +387,14 @@ var app = getApp();var myAccount = function myAccount() {__webpack_require__.e(/
 
       }
     },
+    //判断用户有没有登录
+    handleClick: function handleClick() {
+      (0, _auth.checkLogin)(function () {
+        uni.navigateTo({
+          url: 'xxx/xxx' });
 
+      });
+    },
     coverTouchEnd: function coverTouchEnd(e) {
       //滑动结束 回到原始位置
       if (this.moving == false) {

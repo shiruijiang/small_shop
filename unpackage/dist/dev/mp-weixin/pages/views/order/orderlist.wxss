@@ -39,9 +39,17 @@
           justify-content: space-between;
 }
 .type .order_id.data-v-32ea9621 {
+  display: block;
   font-weight: 600;
+  width: 75%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #999;
   font-size: 24rpx;
+}
+.type .order_type.data-v-32ea9621 {
+  display: block;
 }
 .lists .top.data-v-32ea9621 {
   display: -webkit-box;

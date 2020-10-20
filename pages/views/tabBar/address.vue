@@ -34,6 +34,7 @@
 		onLoad() {
 			this.getStoreNameList();
 			this.getAddressMsg();
+			uni.hideHomeButton();
 		},
 		methods: {
 			getAddressMsg() {
@@ -155,10 +156,11 @@
 				border-radius: 25upx;
 				color: #fff;
 				font-size: 24upx;
-				width: 75upx;
-				height: 45upx;
+				width: 80upx;
+				height: 50upx;
 				text-align: center;
-				line-height: 45upx;
+				line-height: 50upx;
+				cursor: pointer;
 			}
 		}
 	}

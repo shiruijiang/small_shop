@@ -1,11 +1,11 @@
 .category-list.data-v-26088b04 {
   background: #f8f8f8;
   width: 100%;
-  padding: 0 3% 30rpx 3%;
+  padding: 0 3% 10rpx 3%;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   border-radius: 10rpx;
 }
 .category.data-v-26088b04 {

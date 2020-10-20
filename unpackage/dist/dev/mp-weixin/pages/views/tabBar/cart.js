@@ -527,7 +527,10 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
 
     },
     getCarList: function getCarList() {var _this3 = this;
+      var userId = uni.getStorageSync('userId');
+      console.log(userId, '这是用户的id');
       var data = {
+        userId: userId,
         productId: '',
         productName: '',
         isSelected: '',

@@ -156,6 +156,11 @@ var _default =
       uni.navigateTo({
         url: '/pages/views/withdrawal/withdrawal' });
 
+    },
+    gotoAddress: function gotoAddress() {
+      uni.navigateTo({
+        url: '/pages/views/tabBar/address' });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

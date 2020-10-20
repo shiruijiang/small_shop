@@ -136,19 +136,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var app = getApp();var loading = function loading() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/loading */ "pages/commponent/public/loading").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/loading */ 398));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
     return {
-      share: {
-        title: 'ALAPI',
-        path: '/pages/index/index',
-        imageUrl: '',
-        desc: '',
-        content: '' } };
-
+      isShow: true,
+      colors: '',
+      windowHeight: '',
+      windowWidth: '',
+      imgUrl: '' };
 
   },
 
@@ -207,25 +220,71 @@ var app = getApp();var loading = function loading() {__webpack_require__.e(/*! r
                                                */
   onShareAppMessage: function onShareAppMessage() {},
   methods: {
-    onShareAppMessage: function onShareAppMessage(res) {
-      return {
-        title: this.share.title,
-        path: this.share.path,
-        imageUrl: this.share.imageUrl,
-        desc: this.share.desc,
-        content: this.share.content,
+    getSystem: function getSystem() {
+      var that = this;
+      uni.getSystemInfo({
         success: function success(res) {
-          uni.showToast({
-            title: '分享成功' });
+          that.setData({
+            windowHeight: res.windowHeight,
+            windowWidth: res.windowWidth });
 
-        },
-        fail: function fail(res) {
-          uni.showToast({
-            title: '分享失败',
-            icon: 'none' });
+          that.createPoster();
+        } });
 
-        } };
+    },
+    createPoster: function createPoster() {//生成海报
+      var ctx = uni.createCanvasContext('mycanvas', this);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, this.windowWidth - 30, 560);
+      //绘制背景图片
+      ctx.drawImage('/static/images/user/poster.jpg', 0, 0, this.windowWidth - 30, 560);
+      ctx.save();
+      // 绘制圆角二维码
+      var avatar_width = 60; //头像宽度
+      var avatar_height = 60; //头像高度
+      var avatar_x = 15; //头像的x坐标
+      var avatar_y = 15; //头像的y坐标
+      var radius = 8; //头像的圆角弧度
+      this.setRadius(ctx, avatar_width, avatar_height, avatar_x, avatar_y, radius);
 
+      setTimeout(function () {//必须延时执行 不然h5不显示
+        ctx.save();
+        ctx.draw();
+      }, 200);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    },
+    setRadius: function setRadius(ctx, avatar_width, avatar_height, avatar_x, avatar_y, radius) {
+      /**
+                                                                                                  * 绘制圆角
+                                                                                                  */
+      ctx.arc(avatar_x + radius, avatar_y + radius, radius, Math.PI, Math.PI * 3 / 2);
+      ctx.lineTo(avatar_width - radius + avatar_x, avatar_y);
+      ctx.arc(avatar_width - radius + avatar_x, radius + avatar_y, radius, Math.PI * 3 / 2, Math.PI * 2);
+      ctx.lineTo(avatar_width + avatar_x, avatar_height + avatar_y - radius);
+      ctx.arc(avatar_width - radius + avatar_x, avatar_height - radius + avatar_y, radius, 0, Math.PI * 1 / 2);
+      ctx.lineTo(radius + avatar_x, avatar_height + avatar_y);
+      ctx.arc(radius + avatar_x, avatar_height - radius + avatar_y, radius, Math.PI * 1 / 2, Math.PI);
+      // 开始填充
+      ctx.strokeStyle = "#fff";
+      ctx.fill(); //保证图片无bug填充
+      ctx.clip(); //画了圆 再剪切  原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内
+
+      ctx.drawImage('/static/images/ewm.png', avatar_x, avatar_y, avatar_width, avatar_height);
+      ctx.closePath();
+      ctx.restore();
     },
     saveImg: function saveImg() {
       //保存图片

@@ -200,7 +200,8 @@ var _auth = __webpack_require__(/*! @/utils/auth.js */ 8); //
 //
 //
 var app = getApp();var headers = function headers() {Promise.all(/*! require.ensure | pages/commponent/home/header */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/commponent/home/header")]).then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/header */ 284));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var classList = function classList() {__webpack_require__.e(/*! require.ensure | pages/commponent/home/classList */ "pages/commponent/home/classList").then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/classList */ 293));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var notice = function notice() {__webpack_require__.e(/*! require.ensure | pages/commponent/home/notice */ "pages/commponent/home/notice").then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/notice */ 300));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var column = function column() {__webpack_require__.e(/*! require.ensure | pages/commponent/home/column */ "pages/commponent/home/column").then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/column */ 307));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var hotstitle = function hotstitle() {__webpack_require__.e(/*! require.ensure | pages/commponent/home/hotstitle */ "pages/commponent/home/hotstitle").then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/hotstitle */ 314));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var recommend = function recommend() {Promise.all(/*! require.ensure | pages/commponent/home/recommend */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/commponent/home/recommend")]).then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/recommend */ 321));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var suspension = function suspension() {__webpack_require__.e(/*! require.ensure | pages/commponent/home/suspension */ "pages/commponent/home/suspension").then((function () {return resolve(__webpack_require__(/*! ../../commponent/home/suspension */ 328));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { colors: '', scrollShow: false, //是否显示悬浮菜单
-      categoryList: [], dataList: [], current: 1, pintuanList: [], tejiaList: [], pageSize: 10, isLoadMore: false, locations: {}, loading: true, swiperList: [{ img: 'https://jlzcpt.cn/file/gxs/home/banner1.png' }, { img: 'https://jlzcpt.cn/file/gxs/home/banner2.png' }, { img: 'https://jlzcpt.cn/file/gxs/home/banner1.png' }],
+      categoryList: [], dataList: [], current: 1, pintuanList: [], tejiaList: [], pageSize: 10, isLoadMore: false, titleClass: '', locations: {}, loading: true, swiperList: [{ img: 'https://jlzcpt.cn/file/gxs/home/banner1.png' }, { img: 'https://jlzcpt.cn/file/gxs/home/banner2.png' }, { img: 'https://jlzcpt.cn/file/gxs/home/banner1.png' }],
+
       noticeList: [{
         id: 1,
         title: '甜品港湾,恬美生活' },
@@ -230,6 +231,20 @@ var app = getApp();var headers = function headers() {Promise.all(/*! require.ens
     this.getDataList();
     this.getShopList();
     this.getTejiaList();
+    var telModel = uni.getSystemInfoSync().model;
+    console.log(telModel, '1231312');
+    if (telModel.indexOf('iPhone X') != -1) {
+      this.setData({ titleClass: 'title-ipX', bodyClass: 'content-body-ipX' });
+    } else if (telModel.indexOf('Nexus 5') != -1) {
+      this.setData({ titleClass: 'title-Ne5', bodyClass: 'content-body-nex5' });
+    } else if (telModel.indexOf('iPhone 6') != -1 || telModel.indexOf('iPhone 6 Plus') != -1 ||
+    telModel.indexOf('iPhone 7') != -1 || telModel.indexOf('iPhone 7 Plus') != -1 ||
+    telModel.indexOf('Nexus 5x') != -1 || telModel.indexOf('Nexus 6') != -1)
+    {
+      this.setData({ titleClass: 'title-IP6', bodyClass: 'content-body' });
+    } else {
+      this.setData({ titleClass: 'title', bodyClass: 'content-body-IP5' });
+    }
   },
 
   /**

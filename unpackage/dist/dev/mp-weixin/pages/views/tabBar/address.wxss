@@ -92,10 +92,11 @@
   border-radius: 25rpx;
   color: #fff;
   font-size: 24rpx;
-  width: 75rpx;
-  height: 45rpx;
+  width: 80rpx;
+  height: 50rpx;
   text-align: center;
-  line-height: 45rpx;
+  line-height: 50rpx;
+  cursor: pointer;
 }
 .address-cont text.data-v-84d62a46:nth-child(1) {
   color: #000000;

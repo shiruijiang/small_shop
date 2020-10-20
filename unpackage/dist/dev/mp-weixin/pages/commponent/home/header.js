@@ -152,6 +152,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../../utils/qqmap-wx-jssdk.min */ 289));
 
 var _keys = __webpack_require__(/*! ../../../utils/keys.js */ 290);
@@ -192,9 +194,9 @@ var _auth = __webpack_require__(/*! ../../../utils/auth */ 8);function _interopR
 //
 //
 //
-var search = function search() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/search */ "pages/commponent/public/search").then((function () {return resolve(__webpack_require__(/*! ../public/search */ 391));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { currentSwiper: 0, city: '西安', weatherData: [{ type: '阴', img: "/static/images/weather/yin.png" }, { type: '晴', img: "/static/images/weather/qing.png" }, { type: '多云', img: "/static/images/weather/duoyun.png" }, { type: '雨', img: "/static/images/weather/xiaoyu.png" }, { type: '小雨', img: "/static/images/weather/xiaoyu.png" }, { type: '中雨', img: "/static/images/weather/xiaoyu.png" }, { type: '大雨', img: "/static/images/weather/dayu.png" }, { type: '暴雨', img: "/static/images/weather/leiyu.png" }, { type: '雷阵雨', img: "/static/images/weather/leiyu.png" }, { type: '雨夹雪', img: "/static/images/weather/xiaoxue.png" }, { type: '雪',
-        img: "/static/images/weather/xue.png" },
-      {
+//
+//
+var search = function search() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/search */ "pages/commponent/public/search").then((function () {return resolve(__webpack_require__(/*! ../public/search */ 391));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { currentSwiper: 0, city: '西安', weatherData: [{ type: '阴', img: "/static/images/weather/yin.png" }, { type: '晴', img: "/static/images/weather/qing.png" }, { type: '多云', img: "/static/images/weather/duoyun.png" }, { type: '雨', img: "/static/images/weather/xiaoyu.png" }, { type: '小雨', img: "/static/images/weather/xiaoyu.png" }, { type: '中雨', img: "/static/images/weather/xiaoyu.png" }, { type: '大雨', img: "/static/images/weather/dayu.png" }, { type: '暴雨', img: "/static/images/weather/leiyu.png" }, { type: '雷阵雨', img: "/static/images/weather/leiyu.png" }, { type: '雨夹雪', img: "/static/images/weather/xiaoxue.png" }, { type: '雪', img: "/static/images/weather/xue.png" }, {
         type: '小雪',
         img: "/static/images/weather/xue.png" },
       {
@@ -208,7 +210,8 @@ var search = function search() {__webpack_require__.e(/*! require.ensure | pages
       weatherName: '',
       latitude: '',
       longitude: '',
-      todyWeather: {} };
+      todyWeather: {},
+      height: null };
 
   },
 
@@ -223,13 +226,17 @@ var search = function search() {__webpack_require__.e(/*! require.ensure | pages
       type: Object },
 
     swiperList: {
-      type: Array } },
+      type: Array },
+
+    titleClass: {
+      type: String } },
 
 
   created: function created() {
     console.log('key', _keys.hfKey, _keys.txMapKey);
 
     this.getUserPosition();
+    // this.getDomHeight();
 
 
 
@@ -248,6 +255,9 @@ var search = function search() {__webpack_require__.e(/*! require.ensure | pages
       this.getWeather(this.latitude, this.longitude);
     } },
 
+  mounted: function mounted() {
+    this.getDomHeight();
+  },
   methods: {
     getUserPosition: function getUserPosition() {
       /**
@@ -277,10 +287,15 @@ var search = function search() {__webpack_require__.e(/*! require.ensure | pages
         } });
 
     },
-
+    getDomHeight: function getDomHeight() {var _this2 = this;
+      var domClass = '.' + this.titleClass;
+      var query = uni.createSelectorQuery().in(this);
+      query.select("".concat(domClass)).boundingClientRect(function (data) {
+        _this2.height = data.height + 'px';
+      }).exec();
+    },
     getCity: function getCity() {
       var QQMapWX = new _qqmapWxJssdk.default({
-        //腾讯地图  需要用户自己去申请key
         key: _keys.txMapKey });
 
       var that = this;
@@ -290,17 +305,14 @@ var search = function search() {__webpack_require__.e(/*! require.ensure | pages
           longitude: that.longitude },
 
         success: function success(res) {
-          console.log('解析地址成功', res);
           var province = res.result.ad_info.province; // 市
           var city = res.result.formatted_addresses.recommend;
           (0, _auth.setAddressMsg)(city);
           that.setData({
             city: city });
 
-          console.log(111111111111111111);
-          console.log((0, _auth.getStoreNumber)());
           if (!(0, _auth.getStoreNumber)()) {
-            uni.navigateTo({
+            uni.redirectTo({
               url: '/pages/views/tabBar/address' });
 
           } else {

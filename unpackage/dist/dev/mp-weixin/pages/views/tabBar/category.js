@@ -305,9 +305,8 @@ var _default = {
       var that = this;
       var height = 0;
       var query = uni.createSelectorQuery();
-      // console.log('query',query);
       var foods = query.selectAll('.foods');
-      // console.log('foods', foods);
+      console.log('foods', foods);
 
       this.$nextTick(function () {
         foods.fields({
@@ -317,9 +316,12 @@ var _default = {
             that.foodSTop = 0;
           }
           for (var i = 0; i < index; i++) {
-
+            var heightS = 10;
             height += parseInt(data[i].height);
-            // console.log('fh', foods);
+            if (index > 1) {
+              height += heightS;
+            }
+            console.log('fh', height);
             that.foodSTop = height;
             // console.log(that.foodSTop)
           }

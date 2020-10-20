@@ -49,12 +49,13 @@
 
 <script>
 let app = getApp();
-import { getConfig, getUserInfo,getToken } from '@/utils/auth';
+import  { checkLogin, getConfig, getUserInfo,getToken } from '@/utils/auth';
 import myAccount from "../../commponent/user/my-account";
 import listCell from "../../commponent/user/list-cell";
 import myOrder from "../../commponent/user/my-order";
 import myFootprint from "../../commponent/user/my-footprint";
 import myServer from "../../commponent/user/my-server";
+
 
 export default {
   data() {
@@ -254,7 +255,14 @@ export default {
         });
       }
     },
-
+	//判断用户有没有登录
+	handleClick () {
+		checkLogin(() => {
+			uni.navigateTo({
+				url: 'xxx/xxx'
+			})
+		})
+	},
     coverTouchEnd(e) {
       //滑动结束 回到原始位置
       if (this.moving == false) {

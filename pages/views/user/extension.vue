@@ -1,6 +1,21 @@
 <template>
+	<!-- 推广海报 -->
 	<view>
-		分享
+		<view class="myextension">
+			<canvas class="mycanvas" canvas-id="mycanvas" :style="'width:' + (windowWidth-30) + 'px;height:560px'"></canvas>
+			<!-- #ifdef H5 -->
+			<block>
+				<image class="imgs" :style="'width:' + (windowWidth-30) + 'px;height:560px'" :src="imgUrl" mode=""></image>
+			</block>
+			<!-- #endif -->
+			<!-- #ifdef MP -->
+			<view class="saveImg" @tap="saveImg" :style="'background:' + colors">保存海报</view>
+			<!-- #endif -->
+			<!-- #ifdef H5 -->
+			<p class="tips">长按图片进行保存</p>
+			<!-- #endif -->
+		</view>
+		<loading v-if="isShow == true"></loading>
 	</view>
 </template>
 
@@ -10,13 +25,11 @@
 	export default {
 		data() {
 			return {
-				share:{
-				    title:'ALAPI',
-				    path:'/pages/index/index',
-				    imageUrl:'',
-				    desc:'',
-				    content:''
-				}
+				isShow: true,
+				colors: '',
+				windowHeight: '',
+				windowWidth: '',
+				imgUrl: ''
 			};
 		},
 
@@ -75,25 +88,71 @@
 		 */
 		onShareAppMessage: function() {},
 		methods: {
-			onShareAppMessage(res) {
-			        return {
-			            title:this.share.title,
-			            path:this.share.path,
-			            imageUrl:this.share.imageUrl,
-			            desc:this.share.desc,
-			            content:this.share.content,
-			            success(res){
-			                uni.showToast({
-			                    title:'分享成功'
-			                })
-			            },
-			            fail(res){
-			                uni.showToast({
-			                    title:'分享失败',
-			                    icon:'none'
-			                })
-			            }
+			getSystem() {
+				let that = this;
+				uni.getSystemInfo({
+					success: function(res) {
+						that.setData({
+							windowHeight: res.windowHeight,
+							windowWidth: res.windowWidth
+						});
+						that.createPoster()
 					}
+				});
+			},
+			createPoster() { //生成海报
+				var ctx = uni.createCanvasContext('mycanvas', this)
+				ctx.fillStyle = '#FFFFFF'
+				ctx.fillRect(0, 0, this.windowWidth - 30, 560)
+				//绘制背景图片
+				ctx.drawImage('/static/images/user/poster.jpg', 0, 0, this.windowWidth - 30, 560)
+				ctx.save()
+				// 绘制圆角二维码
+				let avatar_width = 60; //头像宽度
+				let avatar_height = 60; //头像高度
+				let avatar_x = 15; //头像的x坐标
+				let avatar_y = 15; //头像的y坐标
+				let radius = 8 //头像的圆角弧度
+				this.setRadius(ctx, avatar_width, avatar_height, avatar_x, avatar_y, radius)
+				// #ifdef MP
+				setTimeout(() => { //必须延时执行 不然h5不显示
+					ctx.save();
+					ctx.draw()
+				}, 200)
+				// #endif
+				// #ifdef H5
+				setTimeout(() => { //必须延时执行 不然h5不显示
+					ctx.save();
+					ctx.draw(true, () => {
+						uni.canvasToTempFilePath({
+							canvasId: 'mycanvas',
+							success: (res) => {
+								this.imgUrl = res.tempFilePath
+							}
+						})
+					})
+				}, 500)
+				// #endif
+			},
+			setRadius(ctx, avatar_width, avatar_height, avatar_x, avatar_y, radius) {
+				/**
+				 * 绘制圆角
+				 */
+				ctx.arc(avatar_x + radius, avatar_y + radius, radius, Math.PI, Math.PI * 3 / 2);
+				ctx.lineTo(avatar_width - radius + avatar_x, avatar_y);
+				ctx.arc(avatar_width - radius + avatar_x, radius + avatar_y, radius, Math.PI * 3 / 2, Math.PI * 2);
+				ctx.lineTo(avatar_width + avatar_x, avatar_height + avatar_y - radius);
+				ctx.arc(avatar_width - radius + avatar_x, avatar_height - radius + avatar_y, radius, 0, Math.PI * 1 / 2);
+				ctx.lineTo(radius + avatar_x, avatar_height + avatar_y);
+				ctx.arc(radius + avatar_x, avatar_height - radius + avatar_y, radius, Math.PI * 1 / 2, Math.PI);
+				// 开始填充
+				ctx.strokeStyle = "#fff";
+				ctx.fill() //保证图片无bug填充
+				ctx.clip(); //画了圆 再剪切  原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内
+
+				ctx.drawImage('/static/images/ewm.png', avatar_x, avatar_y, avatar_width, avatar_height);
+				ctx.closePath()
+				ctx.restore();
 			},
 			saveImg() {
 				//保存图片

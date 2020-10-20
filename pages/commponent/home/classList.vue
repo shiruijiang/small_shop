@@ -35,11 +35,11 @@ export default {
   background: #f8f8f8;
   width: 100%;
   // margin: 0 3%;
-  padding: 0 3% 30upx 3%;
+  padding: 0 3% 10upx 3%;
   display: flex; 
   // flex-wrap: wrap;
   // box-shadow: 0upx 0upx 10upx #eee;
-  margin-top: 20upx;
+  margin-top: 10upx;
   border-radius: 10upx;
 }
 .category {

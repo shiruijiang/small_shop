@@ -11,7 +11,7 @@
 			<scroll-view class="list_box" :scroll-y="true" @scrolltolower="ongetMoreList">
 				<view v-for="(item, index) in orderList" :key="index" class="lists">
 					<view class="type">
-						<text class="order_id">订单编号:{{item.id}}</text>
+						<text class="order_id">订单编号:{{item.orderNumber}}</text>
 						<text class="order_type" :style="'color:' + colors">
 							{{active | setStatus}}
 						</text>
@@ -180,9 +180,7 @@
 					this.getOrderList();
 				}else if(item.id==2){
 					this.data={
-						isPayment:2,
-						IsDelivery:2,
-						orderStatus:0
+						isDelivery:4,
 					}
 					this.getOrderList();
 				}else{
@@ -287,11 +285,18 @@
 	}
 
 	.type .order_id {
+		display: block;
 		font-weight: 600;
+		width: 75%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 		color: #999;
 		font-size: 24upx;
 	}
-
+	.type .order_type{
+		display: block;
+	}
 	.lists .top {
 		display: flex;
 		align-content: center;

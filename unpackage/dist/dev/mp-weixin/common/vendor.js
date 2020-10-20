@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8317,7 +8317,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8338,14 +8338,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8430,7 +8430,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -11373,7 +11373,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.setToken = setToken;exports.getToken = getToken;exports.setStoreNumber = setStoreNumber;exports.getStoreNumber = getStoreNumber;exports.setAddressMsg = setAddressMsg;exports.removeToken = removeToken;exports.setUserInfo = setUserInfo;exports.getUserInfo = getUserInfo;exports.setConfig = setConfig;exports.getConfig = getConfig;exports.setRecommend = setRecommend;exports.getRecommend = getRecommend;exports.setGoodsData = setGoodsData;exports.getGoodsData = getGoodsData;exports.setAddress = setAddress;exports.getAddress = getAddress;exports.removeAddress = removeAddress;exports.setTbIndex = setTbIndex;exports.getTbIndex = getTbIndex;exports.removeTbIndex = removeTbIndex;exports.setlocation = setlocation;exports.getlocation = getlocation;exports.setCart = setCart;exports.getCart = getCart;exports.removeCart = removeCart; // 该文件用来存储localStorage 本地缓存的方法
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.setToken = setToken;exports.getToken = getToken;exports.setUserId = setUserId;exports.setStoreNumber = setStoreNumber;exports.getStoreNumber = getStoreNumber;exports.setAddressMsg = setAddressMsg;exports.removeToken = removeToken;exports.setUserInfo = setUserInfo;exports.getUserInfo = getUserInfo;exports.setConfig = setConfig;exports.getConfig = getConfig;exports.setRecommend = setRecommend;exports.getRecommend = getRecommend;exports.setGoodsData = setGoodsData;exports.getGoodsData = getGoodsData;exports.setAddress = setAddress;exports.getAddress = getAddress;exports.removeAddress = removeAddress;exports.setTbIndex = setTbIndex;exports.getTbIndex = getTbIndex;exports.removeTbIndex = removeTbIndex;exports.setlocation = setlocation;exports.getlocation = getlocation;exports.setCart = setCart;exports.getCart = getCart;exports.removeCart = removeCart;exports.checkLogin = checkLogin; // 该文件用来存储localStorage 本地缓存的方法
 /**
  * 操作用户token
  */
@@ -11384,6 +11384,10 @@ function setToken(value) {
 function getToken() {
   var token = uni.getStorageSync('token');
   return token;
+}
+//存储userId
+function setUserId(value) {
+  uni.setStorageSync('userId', value);
 }
 //存储商品编号
 function setStoreNumber(value) {
@@ -11541,6 +11545,26 @@ function getCart() {//模拟获取购物车数据
 function removeCart() {//模拟删除购物车数据
   uni.removeStorageSync('cart');
 }
+function checkLogin(callBack) {
+  var isLogin = uni.getStorageSync('token');
+  if (isLogin) {
+    if (callBack) {
+      callBack();
+    }
+  } else {
+    uni.showModal({
+      title: '提示',
+      content: '您还没有登录,点击确认前往登录',
+      success: function success(res) {
+        if (res.confirm) {
+          uni.navigateTo({
+            url: '/pages/views/tabBar/user' });
+
+        }
+      } });
+
+  }
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

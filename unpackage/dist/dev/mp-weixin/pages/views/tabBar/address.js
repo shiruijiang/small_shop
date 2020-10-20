@@ -179,7 +179,8 @@ var _auth = __webpack_require__(/*! ../../../utils/auth.js */ 8); //
 //
 //
 //
-var _default = { data: function data() {return { storeNameList: [], addressMsg: '' };}, onLoad: function onLoad() {this.getStoreNameList();this.getAddressMsg();}, methods: { getAddressMsg: function getAddressMsg() {var AddressMsg = uni.getStorageSync('AddressMsg');console.log(AddressMsg);this.addressMsg = AddressMsg;}, getStoreNameList: function getStoreNameList() {var _this = this;var data = { storeName: '' };uni.showLoading({ mask: true });
+var _default = { data: function data() {return { storeNameList: [], addressMsg: '' };}, onLoad: function onLoad() {this.getStoreNameList();this.getAddressMsg();uni.hideHomeButton();}, methods: { getAddressMsg: function getAddressMsg() {var AddressMsg = uni.getStorageSync('AddressMsg');console.log(AddressMsg);this.addressMsg = AddressMsg;}, getStoreNameList: function getStoreNameList() {var _this = this;var data = { storeName: '' };uni.showLoading({ mask: true });
+
       this.$request('/store/page', data, 'POST').then(function (res) {
         uni.hideLoading();
         if (res.code == 1) {

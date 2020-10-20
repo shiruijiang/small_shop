@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { setUserInfo,setToken } from "../../utils/auth";
+import { setUserInfo,setToken,setUserId } from "../../utils/auth";
 export default {
   data() {
     return {
@@ -204,7 +204,8 @@ export default {
 	      console.log('这是用户的code', loginRes.code)
 		  let that=this
 		  uni.request({
-		  	url: 'https://gxs.jlzcpt.com/user/login',
+		  	// url: 'https://gxs.jlzcpt.com/user/login',
+			url:'http://10.0.0.42:9101/user/login',
 			data:{
 				code:loginRes.code,
 				avatarUrl:this.avatarUrl,
@@ -221,9 +222,10 @@ export default {
 			success(res) {
 				if(res.data.code==1){
 					that.userContent=res.data.obj;
+					console.log(res.data.obj,'token')
 					setToken(that.userContent.token)  //存储token
 					 //存储用户信息
-					
+					setUserId(that.userContent.id)
 					try {
 					  uni.setStorageSync('isCanUse', 1); //记录是否第一次授权  false:表示不是第一次授权
 					  uni.reLaunch({

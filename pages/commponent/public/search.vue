@@ -30,10 +30,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search{
-  z-index: 900;
+  z-index: 901;
 }
 .input-box {
-  width: 100%;
+  width: 94%;
+  margin: 0 3%;
   height: 60upx;
   background-color: #f5f5f5;
   position: relative;

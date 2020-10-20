@@ -369,7 +369,10 @@
 				});
 			},
 			getCarList() {
+				let userId=uni.getStorageSync('userId');
+				console.log(userId,'这是用户的id')
 				let data = {
+					userId:userId,
 					productId:'',
 					productName:'',
 					isSelected:'',

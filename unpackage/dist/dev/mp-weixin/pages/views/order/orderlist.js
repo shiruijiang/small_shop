@@ -322,9 +322,7 @@ var app = getApp();var tabs = function tabs() {__webpack_require__.e(/*! require
         this.getOrderList();
       } else if (item.id == 2) {
         this.data = {
-          isPayment: 2,
-          IsDelivery: 2,
-          orderStatus: 0 };
+          isDelivery: 4 };
 
         this.getOrderList();
       } else {

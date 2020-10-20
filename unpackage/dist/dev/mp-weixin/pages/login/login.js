@@ -336,7 +336,8 @@ var _default = { data: function data() {return { isCanUse: uni.getStorageSync('i
           console.log('这是用户的code', loginRes.code);
           var that = _this3;
           uni.request({
-            url: 'https://gxs.jlzcpt.com/user/login',
+            // url: 'https://gxs.jlzcpt.com/user/login',
+            url: 'http://10.0.0.42:9101/user/login',
             data: {
               code: loginRes.code,
               avatarUrl: _this3.avatarUrl,
@@ -353,9 +354,10 @@ var _default = { data: function data() {return { isCanUse: uni.getStorageSync('i
             success: function success(res) {
               if (res.data.code == 1) {
                 that.userContent = res.data.obj;
+                console.log(res.data.obj, 'token');
                 (0, _auth.setToken)(that.userContent.token); //存储token
                 //存储用户信息
-
+                (0, _auth.setUserId)(that.userContent.id);
                 try {
                   uni.setStorageSync('isCanUse', 1); //记录是否第一次授权  false:表示不是第一次授权
                   uni.reLaunch({

@@ -1,7 +1,7 @@
 <template>
 	<view class="home">
 		<!-- 顶部 -->
-		<headers :colors="colors" :locations="locations" :swiperList="swiperList"></headers>
+		<headers :colors="colors" :locations="locations" :titleClass='titleClass' :swiperList="swiperList"></headers>
 		<!-- 推荐分类菜单 与tab分类中不同 -->
 		<classList :categoryList="categoryList"></classList>
 		<!-- 公告 -->
@@ -47,6 +47,7 @@
 				tejiaList:[],
 				pageSize:10,
 				isLoadMore:false,
+				titleClass:'',
 				locations: {
 
 				},
@@ -87,6 +88,20 @@
 			this.getDataList();
 			this.getShopList();
 			this.getTejiaList();
+			let telModel = uni.getSystemInfoSync().model;
+			console.log(telModel,'1231312')
+			    if (telModel.indexOf('iPhone X') != -1) {
+			      this.setData({ titleClass: 'title-ipX', bodyClass: 'content-body-ipX' });
+			    } else if (telModel.indexOf('Nexus 5') != -1) {
+			      this.setData({ titleClass: 'title-Ne5', bodyClass: 'content-body-nex5' });
+			    } else if (telModel.indexOf('iPhone 6') != -1 || telModel.indexOf('iPhone 6 Plus') != -1 ||
+			      telModel.indexOf('iPhone 7') != -1 || telModel.indexOf('iPhone 7 Plus') != -1 ||
+			      telModel.indexOf('Nexus 5x') != -1 || telModel.indexOf('Nexus 6') != -1
+			    ) {
+			      this.setData({ titleClass: 'title-IP6', bodyClass: 'content-body' });
+			    } else {
+			      this.setData({ titleClass: 'title', bodyClass: 'content-body-IP5' });
+			    }
 		},
 
 		/**

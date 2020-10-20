@@ -2,7 +2,7 @@
 <view class="my_money">
     <view class="address-flex">
     	<view class="address-with">当前自提门店</view>
-    	<view class="address-with-other">更换自提门店<image src="https://jlzcpt.cn/file/gxs/home/to-right.png"></image></view>
+    	<view class="address-with-other" @click="gotoAddress">更换自提门店<image src="https://jlzcpt.cn/file/gxs/home/to-right.png"></image></view>
     </view>
     <view class="menu_btnbox">
        <view class="storeMsg">{{storeContent.storeName}}</view>
@@ -40,6 +40,11 @@ export default {
 	  uni.navigateTo({
 		url: '/pages/views/withdrawal/withdrawal'
 	  });
+	},
+	gotoAddress(){
+		uni.navigateTo({
+			url:'/pages/views/tabBar/address'
+		})
 	}
   }
 };

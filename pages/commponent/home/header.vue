@@ -8,28 +8,30 @@
 	</view>
 	<view v-if="currentSwiper == 2" class='place-swiper2'>
 	</view> -->
-   <view class="left-box">
-	   <view class="left" @tap="nearAddress">
-	     <image src="/static/images/home/weizhi.png"></image>
-	     <view>{{city || '请选择位置'}}</view>
+   <view :class='titleClass'>
+	   <view class="content-box">
+		   <view class="left" @tap="nearAddress">
+		     <image src="/static/images/home/weizhi.png"></image>
+		     <view>{{city || '请选择位置'}}</view>
+		   </view>
+		   <!-- <view class="right" v-if="weatherName && weatherName!==''">
+		   		 <image :src="todyWeather.img"></image>
+		     <text>{{ weatherName }} /{{ high }}℃</text>
+		   </view> -->
 	   </view>
-	   <!-- <view class="right" v-if="weatherName && weatherName!==''">
-		 <image :src="todyWeather.img"></image>
-	     <text>{{ weatherName }} /{{ high }}℃</text>
-	   </view> -->
 	   <search></search>
    </view>
     <!-- 搜索 -->
     
     <!-- 轮播图 -->
-    <view class="swiper">
+    <view class="swiper" :style="{marginTop: height}">
 			<view class="swiper-box">
 				<swiper circular="true" @change="swiperChange" >
 					<swiper-item v-for="(item, index) in swiperList" :key="index"><image :src="item.img" mode="aspectFill" :class="currentSwiper !== index ?'swiper-item-side':''" lazy-load="true" ></image></swiper-item>
 				</swiper>
 				<view class="indicator">
-          <view v-for="(item, index) in swiperList" :key="index" :class="currentSwiper >= index ? 'on' : 'dots'" :style="'width: ' + (currentSwiper >= index ? 100 / swiperList.length + '%' : '' )"></view>
-        </view>
+					<view v-for="(item, index) in swiperList" :key="index" :class="currentSwiper >= index ? 'on' : 'dots'" :style="'width: ' + (currentSwiper >= index ? 100 / swiperList.length + '%' : '' )"></view>
+				</view>
 			</view>
 		</view>
   </view>
@@ -92,7 +94,8 @@ export default {
       weatherName: '',
       latitude: '',
       longitude: '',
-      todyWeather: {}
+      todyWeather: {},
+	  height:null
     };
   },
 
@@ -108,12 +111,16 @@ export default {
 	},
 	swiperList:{
 		type:Array
+	},
+	titleClass:{
+		type:String
 	}
   },
   created() {
 	console.log('key',hfKey,txMapKey)
 	// #ifdef MP
 	this.getUserPosition();
+	// this.getDomHeight();
 	// #endif
 	// #ifdef H5
 	if(this.locations){
@@ -131,6 +138,9 @@ export default {
 		  this.city = this.locations.poiname
 		  this.getWeather(this.latitude, this.longitude);
 	  }
+  },
+  mounted() {
+	this.getDomHeight()
   },
   methods: {
     getUserPosition() {
@@ -161,10 +171,15 @@ export default {
         }
       });
     },
-
+	getDomHeight(){
+		let domClass='.'+this.titleClass;
+		const query = uni.createSelectorQuery().in(this);
+		query.select(`${domClass}`).boundingClientRect(data => {
+		  this.height=data.height+'px'
+		}).exec();
+	},
     getCity() {
       const QQMapWX = new qqmapsdk({
-        //腾讯地图  需要用户自己去申请key
         key: txMapKey
       });
       let that = this;
@@ -174,17 +189,14 @@ export default {
           longitude: that.longitude
         },
         success: function (res) {
-          console.log('解析地址成功',res);
           let province = res.result.ad_info.province; // 市
           let city = res.result.formatted_addresses.recommend;
 		  setAddressMsg(city)
           that.setData({
             city: city
           });
-		    console.log(111111111111111111)
-		  console.log(getStoreNumber())
 		  if(!getStoreNumber()){
-			 uni.navigateTo({
+			 uni.redirectTo({
 			 	url: '/pages/views/tabBar/address'
 			 });
 		  }else{
@@ -273,17 +285,26 @@ export default {
 </script>
 <style scoped lang="scss">
 	.header {
-	  padding: 0 3%;
 	  line-height: 80upx;
 	  overflow: hidden;
 	  color: #fff;
 	  position: relative;
 	}
 	.left-box{
-		
+		background: #009944;
+		position: fixed;
+		top: 0upx;
+		z-index: 999;
+		width: 100%;
+		height: 200upx;
+	}
+	.content-box{
+		width: 94%;
+		padding: 0 3%;
 	}
 	.place{
 		position: absolute;
+		background: #009944;
 		width: 100%;
 		height: 80%;
 		top: 0;
@@ -292,7 +313,6 @@ export default {
 		border-bottom-left-radius: 20%;
 	}
 	.left {
-	  margin-top: 45upx;
 	  font-size: 26upx;
 	  color: #333;
 	  float: left;
@@ -338,26 +358,30 @@ export default {
 	
 	.swiper {
 	  width: 100%;
-	  margin-top: 10upx;
 	  display: flex;
 	  justify-content: center;
+	  z-index: 901;
 	}
 	
 	.swiper-box {
 	  width: 100%;
-	  height: 36vw;
 	  overflow: hidden;
+	  height: 36vw;
+	  // height: 100%;
 	  /* border-radius: 15upx; */
 	  /* box-shadow: 0upx 8upx 25upx rgba(0, 0, 0, 0.2); */
 	  position: relative;
-	  z-index: 1;
+	  
 	}
 	
 	.swiper-box swiper {
-	  width: 100%;
+	  width: 94%;
+	  margin: 0 3%;
 	  height: 36vw;
+	  // padding-top: 50upx;
 	}
 	.swiper-box swiper swiper-item{
+		height: 36vw !important;
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
@@ -365,20 +389,18 @@ export default {
 	.swiper-box swiper swiper-item image {
 	  width: 100%;
 	  height: 36vw;
-	  margin: 0 auto;
 	  display: block;
 	  border-radius: 10px;
 	  transition: height .3s;
 	}
 	.swiper-item-side {
 	  width: 95%;
-	  height: 36vw!important;
 	  transition: height .3s;
 	}
 	.indicator {
 	  position: absolute;
-	  bottom: 20upx;
-	  left: 20upx;
+	  bottom: 12%;
+	  left: 42%;
 	  background-color: rgba(255, 255, 255, 0.4);
 	  width: 150upx;
 	  height: 5upx;

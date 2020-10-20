@@ -3,12 +3,13 @@
 		{
 			"path": "pages/views/tabBar/home",
 			"style": {
-				"navigationBarTitleText": "首页",
+				// "navigationBarTitleText": "",
 				"navigationBarBackgroundColor": "#009a4b",
 				"navigationBarTextStyle": "white",
 				"navigationStyle": "custom",
 				"app-plus":{
-					"titleNView":false
+					"titleNView":false,
+					"scrollIndicator":"none"
 				}
 			}
 		},
@@ -16,8 +17,8 @@
 		    "path" : "pages/views/tabBar/address",
 		    "style": {
 		    	"navigationBarTitleText": "选择附近门店",
-		    	"navigationBarBackgroundColor": "#f8f8f8",
-		    	"navigationBarTextStyle": "#000000",
+		    	"navigationBarBackgroundColor": "#009a4b",
+		    	"navigationBarTextStyle": "white",
 		    	"app-plus":{
 		    		"titleNView":false
 		    	}
