@@ -1,25 +1,42 @@
 <template>
-<view class="login" :style="'background: url(' + bgImg[imgIndex] + '); background-size: cover;background-repeat:no-repeat; background-position: center;'">
+<view class="login" :style="' background-size: cover;background-repeat:no-repeat; background-position: center;'">
   <view class="logo">
-    <image src="https://jlzcpt.cn/file/gxs/log.png"></image>
+    <image src="../../static/images/system/logo.png"></image>
+	<!-- <image :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'" mode=""></image> -->
   </view>
-  <view class="login_from">
+  <!-- <view class="login_from">
       <input placeholder="请输入手机号" v-model="tel" type="number" maxlength="11" placeholder-style="color: #333"></input>
       <view class="codes">
       	<input placeholder="请输入短信验证码" v-model="smscode"  maxlength="6" type="number" placeholder-style="color: #333"></input>
 		<view @click="getCode" :style="{opacity: isCode == true ? '1':'0.8'}">{{codeName}}</view>
       </view>
       <view class="login_btn" @click="onlogin">登录</view>
+  </view> -->
+  
+  <view class="login-list flex border-all">
+  	<view class="login-input">
+  		<input placeholder="请输入手机号" v-model="tel" type="number" maxlength="11" class="is-input1" />
+  	</view>
+  </view>
+  <view class="login-list flex border-all">
+  	<view class="login-input">
+  		<input type="number" maxlength="6" placeholder="请输入验证码" class="is-input1 " v-model="smscode" />
+  	</view>
+  	<view class="code-sx"></view>
+  	<view class="codeimg" @click="getCode" :style="{opacity: isCode == true ? '1':'0.8'}">{{codeName}}</view>
+  </view>
+  <view class="login-list login_btn" @click="onlogin">
+  	登录
   </view>
   <view class="wxLogin">
-      <view>—— 快速登录 ——</view>
-      <image src="https://jlzcpt.cn/file/gxs/wx.png" @getuserinfo="getUserInfo"></image>
-     <button open-type="getUserInfo" @getuserinfo="getUserInfo"></button>
-	  <!-- <button open-type="getUserInfo" @click="onAuthorize"></button> -->
+      <view>——— 快速登录 ———</view>
+      <!-- <image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/wx.png" @getuserinfo="getUserInfo"></image> -->
+	 <image src="../../static/images/system/wx.png" @getuserinfo="getUserInfo"></image>
+     <button open-type="getUserInfo" @getuserinfo="getUserInfo" ></button>
+	 <!-- <button open-type="getPhoneNumber" @click="getPhoneNumber" ></button> -->
   </view>
 </view>
 </template>
-
 <script>
 import { setUserInfo,setToken,setUserId } from "../../utils/auth";
 export default {
@@ -28,13 +45,12 @@ export default {
       isCanUse: uni.getStorageSync('isCanUse'),
       nickName: '',
       avatarUrl: '',
-      bgImg: ['https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_4.jpg', 'https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_1.jpg', 'https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_3.jpg', 'https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_2.jpg'],
       imgTime: '',
       imgIndex: 0,
-	  codeName: '验证码',
+	  codeName: '获取验证码',
       isCode: true,
-	  tel:'12345678912',
-	  smscode:'123456',
+	  tel:'',
+	  smscode:'',
 	  gender:null,
 	  phoneNumber:null,
 	  userContent:{}
@@ -113,7 +129,11 @@ export default {
 
       });
     },
-
+	// getPhoneNumber (e) {
+	//     console.log(e)
+	//     console.log(e.detail.iv)
+	//     console.log(e.detail.encryptedData)
+	// 	},
     setbImg() {
       clearInterval(this.imgTime);
       let that = this;
@@ -132,14 +152,14 @@ export default {
       });
     },
 	onlogin(){ //登录 模拟存储token
-		let date = new Date().getTime()
-		setToken(date)
-		let user = {  //模拟存储用户信息
-			avatarUrl: '/static/images/face.jpg',
-			nickName: 'test1'
-		}
-		setUserInfo(user)
-		
+		// let date = new Date().getTime()
+		// setToken(date)
+		// let user = {  //模拟存储用户信息
+		// 	avatarUrl: '/static/images/face.jpg',
+		// 	nickName: 'test1'
+		// }
+		// setUserInfo(user)
+		this.loginPhone(this.tel,this.smscode)
 		uni.showLoading({
 			title:'登录中...'
 		})
@@ -170,12 +190,31 @@ export default {
 				icon: 'none'
 			});
 			return false;
+		}else{
+			this.getPhoneCode()
+			this.loginToPhone(this.tel)
+			}
+	},
+	loginToPhone(phone){
+		let data = {
+			phoneNumber:phone,
 		}
-		this.getPhoneCode()
+		this.$request('/user/registered/getCode', data,'POST').then(res=>{
+			
+		})
+	},
+	loginPhone(phone,code){
+		let data={
+			phoneNumber:phone,
+			code:code
+		}
+		this.$request('/user/phoneLogin', data,'POST').then(res=>{
+			console.log(res,'手机号登录了')	
+		})
 	},
 	getPhoneCode() {
 		let timer = ''
-		let date = 120
+		let date = 60
 		let that = this
 		if (that.isCode == true) {
 			uni.showToast({
@@ -263,6 +302,10 @@ export default {
   left: 0;
   transition: all 0.6s ease-in-out;
   background-color: #333;
+  background: url(../../static/images/system/loginBg.jpg);
+  background-size: cover;
+  background-repeat:no-repeat; 
+  background-position: center;
 }
 .logo image{
   height: 160upx;
@@ -270,7 +313,8 @@ export default {
   display: block;
   border-radius: 50%;
   margin: 0 auto;
-  margin-top: 150upx;
+  margin-top: 250upx;
+  margin-bottom: 90upx;
 }
 .login_from{
   width: 80vw;
@@ -283,16 +327,55 @@ export default {
 	align-content: center;
 	justify-content: space-between;
 }
+.login-list {
+			margin: 60upx 80upx 60upx;
+			height: 100upx;
+			align-items: center;
+			padding: 0 60upx;
+			line-height: 100upx;
+			background: #FFFFFF;
+			opacity: 0.8;
+			border-radius: 50px;
+			&.border-all {
+				&:after {
+					border: 1px solid #D0D0D0;
+					border-radius: 100upx;
+				}
+			}
+
+			.login-input {
+				flex: 1;
+				input {
+					font-size: 28upx;
+					color: #333333;
+					padding-left: 20upx;
+				}
+			}
+
+			.code-sx {
+				content: '';
+				width: 2upx;
+				height: 25upx;
+				background: #D0D0D0;
+				margin-right: 18upx;
+			}
+
+			.codeimg {
+				font-size: 24upx;
+				color: #E84A4A;
+			}
+		}
 .login_from input{
-  height: 80upx;
-  line-height: 80upx;
+  height: 100upx;
+  line-height: 100upx;
   margin-bottom: 60upx;
-  background-color: rgba(255, 255, 255, 0.8);
+  background: #FFFFFF;
+  opacity: 0.8;
+  border-radius: 50px;
   box-sizing: border-box;
-  padding: 0 30upx;
-  border-radius: 10upx;
+  padding: 0 50upx;
   font-size: 24upx;
-  color: #333;
+  color: #000;
 }
 .codes input{
 	width: 75%;
@@ -309,15 +392,14 @@ export default {
 	border-radius: 10upx;
 }
 .login_btn{
-  width: 500upx;
-  height: 80upx;
-  margin: 0 auto;
-  background-color: rgba(70, 143, 152, 0.8);
-  margin-top: 40px;
-  text-align: center;
-  line-height: 80upx;
-  border-radius: 40upx;
-  color: #fff;
+	text-align: center;
+	background: #009944;
+	box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.13);
+	opacity: 0.9;
+	border-radius: 50px;
+	font-size: 34upx;
+	color: #fff;
+	margin-top: 100upx;
 }
 .login_btn:active{
   opacity: 0.9;
@@ -338,6 +420,7 @@ export default {
   color: #FFFFFF;
   font-size: 24upx;
   margin-bottom: 20upx;
+  opacity: 0.8;
 }
 .wxLogin image{
   height: 100upx;

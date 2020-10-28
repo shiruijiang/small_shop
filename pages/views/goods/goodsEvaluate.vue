@@ -40,7 +40,7 @@
 									<view class="video" v-for="(v, y) in row.video" :key="y">
 										<video :src="v" :controls="false" :show-center-play-btn="false"></video>
 										<view class="cover">
-											<image src="https://jlzcpt.cn/file/gxs/goods/bofang.png" mode="" @click="playVideo(v)"></image>
+											<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/bofang.png" mode="" @click="playVideo(v)"></image>
 										</view>
 									</view>
 								</view>

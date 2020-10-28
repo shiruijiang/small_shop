@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "购物车",
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "购物车111",
   "usingComponents": {}
 }

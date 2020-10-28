@@ -66,7 +66,7 @@
 	}
 
 	.input-box .inputs {
-		padding-left: 70upx;
+		padding-left: 120upx;
 		height: 28upx;
 		font-size: 28upx;
 	}

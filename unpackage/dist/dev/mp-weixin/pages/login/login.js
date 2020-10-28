@@ -153,6 +153,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _auth = __webpack_require__(/*! ../../utils/auth */ 8); //
 //
 //
@@ -175,37 +192,36 @@ var _auth = __webpack_require__(/*! ../../utils/auth */ 8); //
 //
 //
 //
-var _default = { data: function data() {return { isCanUse: uni.getStorageSync('isCanUse'), nickName: '', avatarUrl: '', bgImg: ['https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_4.jpg', 'https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_1.jpg', 'https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_3.jpg', 'https://6d61-matchbox-79a395-1302390714.tcb.qcloud.la/matchbox/img_flower_2.jpg'], imgTime: '', imgIndex: 0, codeName: '验证码', isCode: true, tel: '12345678912', smscode: '123456', gender: null, phoneNumber: null, userContent: {} };}, props: {}, /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * 生命周期函数--监听页面加载
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */onLoad: function onLoad(options) {
-
-    // this.wxlogin(); //小程序获取用户code
-
-  },
-
-  /**
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { isCanUse: uni.getStorageSync('isCanUse'), nickName: '', avatarUrl: '', imgTime: '', imgIndex: 0, codeName: '获取验证码', isCode: true, tel: '', smscode: '', gender: null, phoneNumber: null, userContent: {} };}, props: {}, /**
+                                                                                                                                                                                                                                                                           * 生命周期函数--监听页面加载
+                                                                                                                                                                                                                                                                           */onLoad: function onLoad(options) {// this.wxlogin(); //小程序获取用户code
+  }, /**
       * 生命周期函数--监听页面初次渲染完成
-      */
-  onReady: function onReady() {},
-
-  /**
-                                   * 生命周期函数--监听页面显示
-                                   */
-  onShow: function onShow() {
-    this.setbImg(); //动态切换背景
-  },
-
-  /**
+      */onReady: function onReady() {}, /**
+                                         * 生命周期函数--监听页面显示
+                                         */onShow: function onShow() {this.setbImg(); //动态切换背景
+  }, /**
       * 生命周期函数--监听页面隐藏
-      */
-  onHide: function onHide() {
-    clearInterval(this.imgTime);
-  },
-
-  /**
-      * 生命周期函数--监听页面卸载
-      */
-  onUnload: function onUnload() {
+      */onHide: function onHide() {clearInterval(this.imgTime);}, /**
+                                                                   * 生命周期函数--监听页面卸载
+                                                                   */onUnload: function onUnload() {
     clearInterval(this.imgTime);
   },
 
@@ -245,7 +261,11 @@ var _default = { data: function data() {return { isCanUse: uni.getStorageSync('i
 
 
     },
-
+    // getPhoneNumber (e) {
+    //     console.log(e)
+    //     console.log(e.detail.iv)
+    //     console.log(e.detail.encryptedData)
+    // 	},
     setbImg: function setbImg() {
       clearInterval(this.imgTime);
       var that = this;
@@ -264,14 +284,14 @@ var _default = { data: function data() {return { isCanUse: uni.getStorageSync('i
 
     },
     onlogin: function onlogin() {//登录 模拟存储token
-      var date = new Date().getTime();
-      (0, _auth.setToken)(date);
-      var user = { //模拟存储用户信息
-        avatarUrl: '/static/images/face.jpg',
-        nickName: 'test1' };
-
-      (0, _auth.setUserInfo)(user);
-
+      // let date = new Date().getTime()
+      // setToken(date)
+      // let user = {  //模拟存储用户信息
+      // 	avatarUrl: '/static/images/face.jpg',
+      // 	nickName: 'test1'
+      // }
+      // setUserInfo(user)
+      this.loginPhone(this.tel, this.smscode);
       uni.showLoading({
         title: '登录中...' });
 
@@ -302,12 +322,31 @@ var _default = { data: function data() {return { isCanUse: uni.getStorageSync('i
           icon: 'none' });
 
         return false;
+      } else {
+        this.getPhoneCode();
+        this.loginToPhone(this.tel);
       }
-      this.getPhoneCode();
+    },
+    loginToPhone: function loginToPhone(phone) {
+      var data = {
+        phoneNumber: phone };
+
+      this.$request('/user/registered/getCode', data, 'POST').then(function (res) {
+
+      });
+    },
+    loginPhone: function loginPhone(phone, code) {
+      var data = {
+        phoneNumber: phone,
+        code: code };
+
+      this.$request('/user/phoneLogin', data, 'POST').then(function (res) {
+        console.log(res, '手机号登录了');
+      });
     },
     getPhoneCode: function getPhoneCode() {
       var timer = '';
-      var date = 120;
+      var date = 60;
       var that = this;
       if (that.isCode == true) {
         uni.showToast({

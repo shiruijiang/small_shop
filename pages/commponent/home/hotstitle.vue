@@ -7,13 +7,13 @@
 	 	</view>
 		<view class="tuangou-right">
 			<text>更多团购</text>
-			<image src="https://jlzcpt.cn/file/gxs/home/to-right.png" mode=""></image>
+			<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/to-right.png" mode=""></image>
 		</view>
 	 </view>
 	 <scroll-view scroll-x="true" style="width: 100%;overflow: hidden;white-space: nowrap;height: 240upx;">
 		<view class="scroll_H" :style="{width:scrollWidth}">
 		<view v-for="(nav, index) in pintuanList" :key="index" class="category" @tap="jumpList(nav)">
-			<view class="class_img"><image :src="'https://jlzcpt.cn/file/gxs'+nav.productPicture" class="imgs"></image></view>
+			<view class="class_img"><image :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+nav.productPicture" class="imgs"></image></view>
 			<view class="text text-price-icon">￥{{ nav.productPrice}}</view>
 			<view class="text" style="text-decoration: line-through;font-size: 20upx;padding-left: 10upx;">￥{{ nav.originalPrice}}</view>
 			<view class="gopintuan">
@@ -43,8 +43,9 @@ export default {
  },
   methods: {
     jumpList(item) {
+		console.log(item,'这是值')
       uni.navigateTo({
-        url: '/pages/views/home/classList?classId=' + item.id
+        url: '/pages/views/home/classList?item='+encodeURIComponent(JSON.stringify(item))
       });
     }
   }
@@ -67,6 +68,7 @@ export default {
 		color: #133423;
 		font-weight: 800;
 		margin: 2% 3%;
+		width: 70%;
 		text{
 			font-size: 24upx;
 			color: #E84A4A;
@@ -114,7 +116,7 @@ export default {
   margin-top: 30upx;
   background: #ffffff;
   border-radius: 20upx;
-  background-image: url(https://jlzcpt.cn/file/gxs/goods/pintuan-bg.png);
+  background-image: url(https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/pintuan-bg.png);
   background-repeat: no-repeat;
   background-size: 14%;
   background-position: 0% 0%;

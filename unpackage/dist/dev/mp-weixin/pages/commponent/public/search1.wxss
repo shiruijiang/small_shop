@@ -36,7 +36,7 @@
   height: 40rpx;
 }
 .input-box .inputs.data-v-100bd961 {
-  padding-left: 70rpx;
+  padding-left: 120rpx;
   height: 28rpx;
   font-size: 28rpx;
 }

@@ -2,6 +2,8 @@
 @import "./colorui/icon.css";
 page {
   background-color: #fff;
+  height: 100%;
+  background: #f8f8f8;
 }
 
 .container {
@@ -41,6 +43,7 @@ page {
 
 .icon-shoucang1:before {
   content: "\e620";
+  color: #e84a4a;
 }
 
 .icon-fanhui:before {

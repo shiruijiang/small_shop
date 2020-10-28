@@ -215,7 +215,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-var app = getApp();var tabs = function tabs() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/tabs */ "pages/commponent/public/tabs").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/tabs.vue */ 442));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var app = getApp();var tabs = function tabs() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/tabs */ "pages/commponent/public/tabs").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/tabs.vue */ 419));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   components: {

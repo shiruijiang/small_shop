@@ -169,14 +169,14 @@ var app = getApp();var _default =
       goodData: {},
       colors: '',
       stars: [
-      { id: 1, types: true, img: 'https://jlzcpt.cn/file/gxs/home/stars.png' },
-      { id: 2, types: true, img: 'https://jlzcpt.cn/file/gxs/home/stars.png' },
-      { id: 3, types: true, img: 'https://jlzcpt.cn/file/gxs/home/stars.png' },
-      { id: 4, types: true, img: 'https://jlzcpt.cn/file/gxs/home/stars.png' },
-      { id: 5, types: true, img: 'https://jlzcpt.cn/file/gxs/home/stars.png' }],
+      { id: 1, types: true, img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/stars.png' },
+      { id: 2, types: true, img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/stars.png' },
+      { id: 3, types: true, img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/stars.png' },
+      { id: 4, types: true, img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/stars.png' },
+      { id: 5, types: true, img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/stars.png' }],
 
-      starNoImg: 'https://jlzcpt.cn/file/gxs/home/star-no.png',
-      starImg: 'https://jlzcpt.cn/file/gxs/home/stars.png',
+      starNoImg: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/star-no.png',
+      starImg: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/stars.png',
       starValue: 5 };
 
   },

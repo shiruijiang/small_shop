@@ -7,26 +7,26 @@
 				<view class="input"><input placeholder="请输入收件人姓名" @blur="setName" type="text"></input></view>
 			</view>
 			<view class="row">
-				<view class="nominal">电话号码</view>
-				<view class="input"><input placeholder="请输入收件人电话号码" @blur="setPhone" type="number" maxlength="11"></input></view>
+				<view class="nominal">联系电话</view>
+				<view class="input"><input placeholder="请输入联系电话" @blur="setPhone" type="number" maxlength="11"></input></view>
 			</view>
-			<view class="row">
+			<!-- <view class="row">
 				<view class="nominal">所在地区</view>
 				<view class="input selectcity" @tap="openPicker">
           <input placeholder="请选择省市区" disabled type="text" :value="address"></input>
           <image src="/static/images/home/right.png" class="rights"></image>
         </view>
-			</view>
-			<view class="row">
+			</view> -->
+			<!-- <view class="row">
 				<view class="nominal">详细地址</view>
 				<view class="input"><textarea style="font-size: 28upx;" @blur="setAddres" auto-height="true" placeholder="输入详细地址" v-if="show == false"></textarea></view>
-			</view>
+			</view> -->
 			<view class="row">
 				<view class="nominal" style="color: #999;margin-top: 10upx;">设为默认地址</view>
 				<view class="input switch"><switch :color="colors" style="transform:scale(0.8)" @change="switchChange" :checked="checked"></switch></view>
 			</view>
 		</view>
-		<view class="save"><view class="btn" :style="'background:' + colors">保存地址</view></view>
+		<view class="save"><view class="btn">保存地址</view></view>
     <!-- 省市区选择 -->
     <setcity :show="show" @sureSelectArea="onsetCity" @hideShow="onhideShow"></setcity>
 	</view>
@@ -159,7 +159,7 @@ export default {
 <style lang="scss" scoped>
 .save {
   position: fixed;
-  bottom: 0;
+  bottom: 80upx;
   width: 100%;
   height: 120upx;
   display: flex;
@@ -176,7 +176,7 @@ export default {
   width: 70%;
   height: 80upx;
   border-radius: 80upx;
-  background-color: #f23a3a;
+  background: #39B978;
   color: #fff;
   justify-content: center;
   align-items: center;
@@ -213,19 +213,20 @@ export default {
   font-size: 28upx;
   font-family: Droid Sans Fallback;
   font-weight: 400;
-  color: rgba(51, 51, 51, 1);
+  color: #999;
   align-items: center;
 }
 
 .content .row .input {
-  width: 70%;
-  padding: 20upx 0;
+	width: 70%;
+  padding: 20upx 20upx;
   align-items: center;
-  font-size: 28upx;
-
+  font-size: 28upx; 
+  text-align:right
 }
 
 .content .row .input input {
+	  width: 100%;
   font-size: 28upx;
   color: #333333;
 }

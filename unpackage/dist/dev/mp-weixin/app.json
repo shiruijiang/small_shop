@@ -80,5 +80,6 @@
   "plugins": {},
   "usingComponents": {
     "nodata": "/pages/commponent/public/nodata"
-  }
+  },
+  "sitemapLocation": "sitemap90.json"
 }

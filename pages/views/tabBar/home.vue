@@ -53,11 +53,11 @@
 				},
 				loading: true,
 				swiperList: [{
-					img: 'https://jlzcpt.cn/file/gxs/home/banner1.png'
+					img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/banner1.png'
 				}, {
-					img: 'https://jlzcpt.cn/file/gxs/home/banner2.png'
+					img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/banner2.png'
 				}, {
-					img: 'https://jlzcpt.cn/file/gxs/home/banner1.png'
+					img: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/banner1.png'
 				}],
 				noticeList: [{
 						id: 1,
@@ -89,7 +89,6 @@
 			this.getShopList();
 			this.getTejiaList();
 			let telModel = uni.getSystemInfoSync().model;
-			console.log(telModel,'1231312')
 			    if (telModel.indexOf('iPhone X') != -1) {
 			      this.setData({ titleClass: 'title-ipX', bodyClass: 'content-body-ipX' });
 			    } else if (telModel.indexOf('Nexus 5') != -1) {

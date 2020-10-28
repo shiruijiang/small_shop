@@ -2,7 +2,7 @@
 <view class="my_money">
     <view class="address-flex">
     	<view class="address-with">当前自提门店</view>
-    	<view class="address-with-other" @click="gotoAddress">更换自提门店<image src="https://jlzcpt.cn/file/gxs/home/to-right.png"></image></view>
+    	<view class="address-with-other" v-show="isShow" @click="gotoAddress">更换自提门店<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/to-right.png"></image></view>
     </view>
     <view class="menu_btnbox">
        <view class="storeMsg">{{storeContent.storeName}}</view>
@@ -23,7 +23,10 @@ export default {
     storeContent: {
       //余额
       type: Object,
-    }
+    },
+	isShow:{
+		type:Boolean
+	}
   },
   methods: {
     mycoupon() {

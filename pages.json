@@ -48,7 +48,8 @@
 		{
 			"path": "pages/views/tabBar/cart",
 			"style": {
-				"navigationBarTitleText": "购物车",
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "购物车111",
 				"app-plus":{
 					"titleNView":false
 				}
@@ -75,8 +76,7 @@
 		{
 			"path": "pages/views/home/classList",
 			"style": {
-				"navigationBarTitleText": "商品列表",
-				"navigationStyle": "custom",
+				"navigationBarTitleText": "商品详情",
 				"app-plus":{
 					"titleNView":false
 				}
@@ -104,7 +104,7 @@
 		{
 			"path": "pages/views/order/confirmOrder",
 			"style": {
-				"navigationBarTitleText": "确认订单"
+				"navigationBarTitleText": "订单结算"
 			}
 		},
 		{
@@ -136,13 +136,13 @@
 		{
 			"path": "pages/views/user/myaddress",
 			"style": {
-				"navigationBarTitleText": "收货地址"
+				"navigationBarTitleText": "收件人信息"
 			}
 		},
 		{
 			"path": "pages/views/user/address/edit",
 			"style": {
-				"navigationBarTitleText": "编辑收货地址"
+				"navigationBarTitleText": "收件人信息"
 			}
 		},
 		{
@@ -168,8 +168,8 @@
 		{
 			"path": "pages/views/order/orderlist",
 			"style": {
-				"navigationBarTitleText": "我的订单",
-				"navigationStyle": "custom",
+				"navigationBarTitleText": "订单列表",
+				// "navigationStyle": "custom",
 				"app-plus":{
 					"titleNView":false
 				}

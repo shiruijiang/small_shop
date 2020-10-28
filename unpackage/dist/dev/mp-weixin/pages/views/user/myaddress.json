@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "收货地址",
+  "navigationBarTitleText": "收件人信息",
   "usingComponents": {
     "loading": "/pages/commponent/public/loading"
   }

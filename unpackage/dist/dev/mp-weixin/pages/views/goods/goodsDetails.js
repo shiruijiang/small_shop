@@ -92,11 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components = {
-  uniPopup: function() {
-    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 405))
-  }
-}
+var components
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -263,90 +259,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.ensure | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 405));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navBar = function navBar() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/navBar */ "pages/commponent/public/navBar").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/navBar */ 414));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var sku = function sku() {Promise.all(/*! require.ensure | pages/commponent/public/sku */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/commponent/public/sku")]).then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/sku */ 421));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var coupon = function coupon() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/coupon */ "pages/commponent/public/coupon").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/coupon */ 428));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loading = function loading() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/loading */ "pages/commponent/public/loading").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/loading */ 398));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var poster = function poster() {__webpack_require__.e(/*! require.ensure | pages/commponent/goods/poster */ "pages/commponent/goods/poster").then((function () {return resolve(__webpack_require__(/*! ../../commponent/goods/poster.vue */ 435));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
+var app = getApp();var navBar = function navBar() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/navBar */ "pages/commponent/public/navBar").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/navBar */ 391));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var sku = function sku() {Promise.all(/*! require.ensure | pages/commponent/public/sku */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/commponent/public/sku")]).then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/sku */ 398));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var coupon = function coupon() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/coupon */ "pages/commponent/public/coupon").then((function () {return resolve(__webpack_require__(/*! ../../commponent/public/coupon */ 405));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var poster = function poster() {__webpack_require__.e(/*! require.ensure | pages/commponent/goods/poster */ "pages/commponent/goods/poster").then((function () {return resolve(__webpack_require__(/*! ../../commponent/goods/poster.vue */ 412));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -364,52 +278,8 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
       latitude: '',
       longitude: '',
       nowList: {},
-      goodsData: {
-        title: 'DUNKINDONUTS唐恩都乐美国甜甜圈6个礼盒装 随机搭配6款',
-        type: 1,
-        goods_id: 201,
-        money: '35.90',
-        number: 1,
-        hmoney: '45.90',
-        img: '/static/images/goods/one.jpg',
-        youhui: true,
-        baoyou: false,
-        status: 1, //商品过期状态  0正常  1已失效
-        stock: 600,
-        videos: 'https://fzdz.soft.haoyangsoft.com/uploads/system/videos/20200813/6c819d24ee6868aee33e150c4333329b.mp4',
-        imgList: ['/static/images/goods/one.jpg', 'http://img10.360buyimg.com/n1/jfs/t1/86401/35/12206/357766/5e43b59cE5a7aa4dd/0753be765166c195.jpg', 'http://img11.360buyimg.com/n1/jfs/t1/74434/3/6892/331750/5d512febE54e891c4/0096ad20c3c20d23.jpg'],
-        sku: [{
-          sku_id: 1,
-          skuname: '口味',
-          child: [{
-            tagname: '醇黑巧克力【20枚】',
-            id: 2011,
-            imgs: 'http://img10.360buyimg.com/n1/jfs/t1/86401/35/12206/357766/5e43b59cE5a7aa4dd/0753be765166c195.jpg',
-            money: '175.78' },
-
-          {
-            tagname: '草莓味【8枚】',
-            id: 2012,
-            imgs: 'http://img11.360buyimg.com/n1/jfs/t1/74434/3/6892/331750/5d512febE54e891c4/0096ad20c3c20d23.jpg',
-            money: '35.90' }] }],
-
-
-
-        skuArr: [{
-          goods_sku_arr: ['2011'],
-          goods_sku_text: '醇黑巧克力【20枚】',
-          img: 'http://img10.360buyimg.com/n1/jfs/t1/86401/35/12206/357766/5e43b59cE5a7aa4dd/0753be765166c195.jpg',
-          money: '175.78',
-          stock: 345 },
-
-        {
-          goods_sku_arr: ['2012'],
-          goods_sku_text: '草莓味【8枚】',
-          img: 'http://img11.360buyimg.com/n1/jfs/t1/74434/3/6892/331750/5d512febE54e891c4/0096ad20c3c20d23.jpg',
-          money: '35.90',
-          stock: 255 }] },
-
-
+      goodList: {},
+      goodsData: {},
 
       showModal: false,
       couponshow: false,
@@ -417,51 +287,7 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
       voice: false,
       showVideo: false,
       isShow: true,
-      couponList: [//优惠券列表
-      {
-        money: 100,
-        reduce: 10,
-        date: '2020-02-09 2020-10-02',
-        id: 1,
-        status: 0,
-        condition: ['新人专享', '仅在支付时使用', '可与其他产品共享'] },
-      {
-        money: 100,
-        reduce: 20,
-        date: '2020-02-09 2020-10-02',
-        id: 2,
-        status: 0,
-        condition: ['新人专享'] },
-      {
-        money: 100,
-        reduce: 30,
-        date: '2020-02-09 2020-10-02',
-        id: 3,
-        status: 0,
-        condition: ['仅在支付时使用', '可与其他产品共享'] },
-      {
-        money: 100,
-        reduce: 40,
-        date: '2020-02-09 2020-10-02',
-        id: 4,
-        status: 0,
-        condition: ['新人专享', '可与其他产品共享'] },
-      {
-        money: 100,
-        reduce: 50,
-        date: '2020-02-09 2020-10-02',
-        id: 5,
-        status: 0,
-        condition: ['新人专享', '仅在支付时使用'] }],
-
-
-      htmlNode: '',
       // 商品详情
-      descriptionStr: '<div id="commDesc" hasdata="1" style="line-height: 2; transform-origin: 0px 0px; font-size: 30px;width:100%;"><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/99519/11/4669/136444/5de8bbdbE0cba049d/517f1fb75b582456.jpg!q70.dpg.webp" loaded="17"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/92267/13/4771/160442/5de8bbdbE50655175/7dd51e0b966aba15.jpg!q70.dpg.webp" loaded="16"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/93624/28/4672/131382/5de8bbdbE65d14e5d/81bc1227ec775788.jpg!q70.dpg.webp" loaded="15"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/97366/21/4817/101042/5de8bbdbE8854b673/7c4ce7faa45a418b.jpg!q70.dpg.webp" loaded="14"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/98311/21/4778/122770/5de8bbdcE13375754/f4324ca9294eef4c.jpg!q70.dpg.webp" loaded="13"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/103373/15/4747/118973/5de8bbdcE2058ee8e/d921d5f1a4aa5c89.jpg!q70.dpg.webp" loaded="12"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/88841/34/4711/84977/5de8bbdeE0b691b9a/e69796d32a63bbaa.jpg!q70.dpg.webp" loaded="11"><div class="for_separator"></div><img style="max-width:640px;" src="//img30.360buyimg.com/popWaterMark/jfs/t1/95248/2/4771/99041/5de8bbdfE06b41b3b/3c4a2b1cb97a5262.jpg!q70.dpg.webp" loaded="10"></div>',
-      goodsEva: [//评价列表
-      { headimg: '/static/images/face.jpg', nickname: '反转', create_time: '2020-09-10 15:36', goods_name: '醇黑巧克力【20枚】', score: 5, comment: '产品很不错,赞', images: ['/static/images/goods/two.jpg', '/static/images/goods/one.jpg'], reply: '感谢您的支持', tags: ['价格合理', '味道好', '价格优惠', '态度好'] },
-      { headimg: '/static/images/face.jpg', nickname: '清风', create_time: '2020-09-10 13:36', goods_name: '草莓味【8枚】', score: 4, comment: '味道还不错~', images: [], reply: '', tags: [] }],
-
       scrollShow: false };
 
   },
@@ -470,45 +296,37 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
     navBar: navBar,
     sku: sku,
     coupon: coupon,
-    loading: loading,
-    poster: poster,
-    uniPopup: uniPopup },
+    poster: poster },
 
   props: {},
 
   /**
               * 生命周期函数--监听页面加载
               */
-  onLoad: function onLoad(options) {var _this2 = this;
-    this.setData({ //设置主题颜色
-      colors: app.globalData.newColor });
+  onLoad: function onLoad(options) {
+    var item = JSON.parse(decodeURIComponent(options.item));
+    console.log(item, '传过来的参数');
+    this.setData({
+      goodList: item });
 
-    this.getLocation(); //获取位置信息
-    this.setFrom(this.descriptionStr); //处理商品详情
-    setTimeout(function () {
-      _this2.setData({
-        isShow: false });
-
-    }, 600);
+    this.setFrom(this.descriptionStr);
   },
 
   /**
       * 生命周期函数--监听页面初次渲染完成
       */
   onReady: function onReady() {
-    this.videoContext = uni.createVideoContext('myVideo');
-    this.nowVideo = uni.createVideoContext('nowVideo');
-    console.log(this.videoContext);
   },
 
   /**
       * 生命周期函数--监听页面显示
       */
-  onShow: function onShow() {},
+  onShow: function onShow() {
+  },
 
   /**
-                                 * 生命周期函数--监听页面隐藏
-                                 */
+      * 生命周期函数--监听页面隐藏
+      */
   onHide: function onHide() {},
 
   /**
@@ -553,37 +371,7 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
 
   },
   methods: {
-    getLocation: function getLocation() {
-      var that = this;
-      uni.getLocation({
-        type: 'wgs84',
-        geocode: true,
-        success: function success(res) {
-          console.log('获取经纬度成功', res);
-          that.setData({
-            latitude: res.latitude,
-            longitude: res.longitude });
-
-        },
-        fail: function fail() {
-          console.log('获取经纬度失败');
-          that.setData({
-            latitude: '',
-            longitude: '' });
-
-        },
-        complete: function complete() {// 解析地址
-        } });
-
-    },
-    setFrom: function setFrom(html) {
-      //处理富文本 让图片居中适应
-      var newContent = html.replace(/\<img/gi, '<img class="rich-img" ');
-      this.setData({
-        htmlNode: newContent });
-
-    },
-    openPoster: function openPoster() {var _this3 = this; //生成海报
+    openPoster: function openPoster() {var _this2 = this; //生成海报
       this.shows = false;
       uni.showLoading({
         title: '海报绘制中..' });
@@ -591,7 +379,7 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
       this.$refs.popup.open();
       setTimeout(function () {
         uni.hideLoading();
-        _this3.shows = true;
+        _this2.shows = true;
       }, 600);
     },
     setisColl: function setisColl() {
@@ -636,8 +424,10 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
       this.showModal = false;
     },
     openSku: function openSku() {
-      this.nowList = this.goodsData;
+      console.log('1111111111111');
+      this.nowList = this.goodList;
       this.showModal = true;
+      console.log(this.showModal, '状态');
     },
     opencoupon: function opencoupon() {
       this.couponshow = true;
@@ -658,19 +448,6 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
     },
 
     // 轮播图视频播放
-    onplay: function onplay() {
-      this.setData({
-        isshowVideo: false });
-
-      this.videoContext.play();
-    },
-    setvoice: function setvoice() {
-      //静音
-      var voice = !this.voice;
-      this.setData({
-        voice: voice });
-
-    },
     swiperchange: function swiperchange(e) {
       if (this.videoContext) {
         if (e.detail.current != 0) {
@@ -684,26 +461,6 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
         }
       }
     },
-    openvideo: function openvideo() {var _this4 = this; //预览视频
-
-      this.setData({
-        showVideo: true });
-
-      setTimeout(function () {
-        _this4.videoContext.pause();
-        _this4.nowVideo.play();
-      }, 200);
-
-    },
-    closeVideo: function closeVideo() {var _this5 = this; //关闭视频
-      this.setData({
-        showVideo: false });
-
-      setTimeout(function () {
-        _this5.nowVideo.stop();
-        _this5.videoContext.play();
-      }, 300);
-    },
     preview: function preview(imgs, index) {//预览图片
       uni.previewImage({
         current: index,
@@ -714,18 +471,6 @@ var app = getApp();var uniPopup = function uniPopup() {Promise.all(/*! require.e
       uni.pageScrollTo({
         scrollTop: 0 });
 
-    },
-    onReceive: function onReceive(item, index) {//领取优惠券
-      console.log(item, index);
-      if (item.status == 1) {
-        return;
-      } else {
-        this.couponList[index].status = 1; //领取成功
-        uni.showToast({
-          title: '领取成功',
-          icon: 'none' });
-
-      }
     },
     seeAll: function seeAll() {//查看全部评论
       uni.navigateTo({

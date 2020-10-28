@@ -9,11 +9,9 @@
 .list_box.data-v-32ea9621 {
   padding: 0 3%;
   box-sizing: border-box;
-  height: calc(100vh - 160rpx);
+  height: calc(100vh - 60rpx);
   overflow: hidden;
-  padding-bottom: 50rpx;
   width: 100%;
-  padding-top: 20rpx;
 }
 .lists.data-v-32ea9621 {
   margin: 0 auto;
@@ -40,12 +38,11 @@
 }
 .type .order_id.data-v-32ea9621 {
   display: block;
-  font-weight: 600;
   width: 75%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #999;
+  color: #E84A4A;
   font-size: 24rpx;
 }
 .type .order_type.data-v-32ea9621 {

@@ -1,10 +1,10 @@
 <template>
-<view style="background: #F8F8F8;overflow: hidden;">
+<view style="background: #F8F8F8;">
  <!-- 宫格类样式 -->
 <view class="recommend_goods" v-if="modes == true">
   <view v-for="(item, index) in dataList" :key="index" class="goods">
       <view class="top" @tap="jumpDetails(item)" >
-        <image class="cover" lazy-load="true" :src="'https://jlzcpt.cn/file/gxs'+item.productPicture" mode="aspectFill"></image>
+        <image class="cover" lazy-load="true" :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+item.productPicture" mode="aspectFit"></image>
         <!-- <image class="tags" lazy-load="true" v-if="item.baoyou" :src="tagImg[0]"></image> -->
       </view>
       <view class="bottom">
@@ -17,46 +17,14 @@
 		  <text class="text2">{{item.paymentNumber}}人付款</text>
           <!-- <text class="text2">￥ {{item.hmoney}}</text> -->
         </view>
-        <!-- <view class="goumai">
-          <view class="g_left">
-          <text v-if="item.youhui == true" >优惠券</text>
-          <text v-if="item.baoyou == true" >包邮</text>
-          </view>
-          <view class="g_right" @tap="addCart(item)">
-            <text class="iconfont icon-gouwuche"></text>
-          </view>
-        </view> -->
       </view>
   </view>
   <view class="place">
   </view>
 </view>
-<!-- 列表类样式 -->
-<!-- <view class="list_mode" v-if="modes == false">
-  <view class="goods_list" v-if="newList.length !== 0">
-   <view v-for="(item, index) in newList" :key="index" class="goods_item">
-     <image :src="item.img" lazy-load="true" @tap="jumpDetails(item)"></image>
-      <image class="tags" :src="tagImg[item.type-1]"></image>
-     <view class="goods_right">
-       <view class="goods_name" @tap="jumpDetails(item)">{{item.title}}</view>
-       <view class="numbers">
-         <text v-if="item.youhui == true" >优惠券</text>
-         <text v-if="item.baoyou == true" >包邮</text>
-       </view>
-       <view class="price">
-         <text class="money">￥{{item.money}}</text>
-         <text class="hx_money">￥{{item.hmoney}}</text>
-         <text class="iconfont icon-gouwuche gouwuche" @tap="addCart(item)"></text>
-       </view>
-     </view>
-   </view>
-  </view>
-</view> -->
 <nodata :colors="colors" title="暂无分类商品" v-if="dataList.length == 0"></nodata>
 <view class="loading" v-if="loading == true">加载中...</view>
 <view class="loading" v-if="loading == false">—— 到底啦 ——</view>
-<!-- 选择规格 -->
-<sku :skuList="nowList" :showModal="showModal" :colors="colors" @onhide="onhide" :bottoms="bottoms"></sku>
 </view>
 </template>
 
@@ -139,7 +107,7 @@ export default {
     },
     jumpDetails(e) {
       uni.navigateTo({
-        url: '/pages/views/goods/goodsDetails'
+		url:'/pages/views/goods/goodsDetails?item='+encodeURIComponent(JSON.stringify(e))
       });
     }
   }
@@ -148,9 +116,11 @@ export default {
 <style scoped lang="scss">
 
 .recommend_goods {
-  padding: 20upx;
-  column-count: 2;  
-  column-gap: 20upx;
+	width: 100%;
+	height: 100%;
+    display: flex;
+    padding: 20upx;
+	flex-wrap: wrap;
 }
 .loading{
 	  height: 80upx;
@@ -162,10 +132,11 @@ export default {
 	  margin-bottom: 20upx;
   }
 .goods {
+	flex: 1;
+	width: 46%;
   height: 100%;
-  overflow: auto;
-  margin-bottom: 20upx;
-  break-inside: avoid; /*用于瀑布流*/
+  margin-bottom: 2%;
+  margin-left: 2%;
   border-radius: 10upx;
   box-sizing: content-box;
   &:first-child{
@@ -174,7 +145,6 @@ export default {
 }
 .goods .top {
   height: 45vw;
-  overflow: hidden;
   position: relative;
   background-color: #ffffff;
 }
@@ -197,14 +167,11 @@ export default {
 .bottom {
   padding: 15upx;
   background-color: #ffffff;
-  overflow: hidden;
 }
 
 .goods_name {
   /* height: 66upx; */
   font-size: 24upx;
-  word-break: break-all;
-  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;

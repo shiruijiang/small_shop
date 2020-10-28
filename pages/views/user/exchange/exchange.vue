@@ -5,7 +5,7 @@
       核销二维码
     </view>
     <view class="ewm_img">
-      <image src="../https://jlzcpt.cn/file/gxs/ewm.png"></image>
+      <image src="../https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/ewm.png"></image>
     </view>
     <view class="jiefen">我的剩余积分：<text :style="'color:' + colors">1120</text></view>
   </view>

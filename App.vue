@@ -71,15 +71,25 @@ export default {
 	/**
 	 * 模拟获取购物车的数量 getCart
 	 */
-	let cart = getCart()
-	let length = ''
+	let cart = uni.getStorageSync('cart')
 	if(cart && getToken()){
-		length = cart.length
-		uni.setTabBarBadge({
+		let numberLength=0
+		cart.reduce((a,b)=>{
+			return numberLength+=b.productNum
+		},0)
+		if(numberLength>0){
+			uni.setTabBarBadge({
 		  //给tabBar添加角标
 		  index: 2,
-		  text: String(length)
+		  text: String(numberLength)
 		});
+		}else{
+			uni.removeTabBarBadge({
+				index: 2,
+				text: String(numberLength)
+			})
+		}
+		
 	}
   },
   globalData: {

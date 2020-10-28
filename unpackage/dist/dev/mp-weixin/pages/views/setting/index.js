@@ -271,6 +271,14 @@ var app = getApp();var itemCell = function itemCell() {__webpack_require__.e(/*!
         success: function success(res) {
           if (res.confirm) {
             (0, _auth.removeToken)();
+            uni.removeStorageSync('userId');
+            uni.removeStorageSync('userinfo');
+            uni.openSetting({
+              success: function success(res) {
+                console.log(res, '121212');
+              } });
+
+            // UMWXHandler.setRefreshTokenAvailable(false);
             uni.showToast({
               title: '退出成功',
               icon: 'none' });
@@ -279,7 +287,7 @@ var app = getApp();var itemCell = function itemCell() {__webpack_require__.e(/*!
               uni.switchTab({
                 url: '../tabBar/home' });
 
-            }, 1500);
+            }, 1000);
           }
         } });
 

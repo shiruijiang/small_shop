@@ -1,31 +1,45 @@
 <template>
 <view class="order">
   <!-- 收货地址 -->
-  <view class="order_address" v-if="tapIndex == 0">
-    <image src="/static/images/home/bottom.png"></image>
+  <view class="order_address">
+	  <image src="/static/images/home/bottom.png" mode=""></image>
     <view class="address_box" @tap="setAddress">
-        <view class="weizhi_icon">
-          <text class="iconfont icon-dizhi" :style="'color:' + colors"></text>
-        </view>
       <block v-if="address.name && address.name !== ''">
         <view class="center">
           <view class="name">
+            <text class="phones">收件人</text>
             <text class="text1">{{address.name}}</text>
-            <text class="phones">{{address.phone}}</text>
            </view>
-            <view class="address_name">{{address.address_name}}</view>
+            <view class="name">
+				
+				<text class="phones">联系电话</text>
+				<text class="text1">{{address.phone}}</text>
+			</view>
         </view>
+		<view class="right-box">
+			<image src="/static/images/home/right.png" mode="aspectFit"></image>
+		</view>
       </block>
       <view class="noaddress" v-else>
       请添加收货地址
       </view>
     </view>
   </view>
+  <view class="my_money">
+      <view class="address-flex">
+      	<view class="address-with">当前自提门店</view>
+      	<view class="address-with-other" @click="gotoAddress">10月24日 16:00 提货</view>
+      </view>
+      <view class="menu_btnbox">
+         <view class="storeMsg">{{storeContent.storeName}}</view>
+  	   <view class="storeAddress">地址：{{storeContent.address}}</view>
+        </view>
+      </view>
   <!-- 商品详情 -->
   <view v-for="(item, index) in goodsList" :key="index" class="goods">
     <view class="goods_data">
-	  <image :src="'https://jlzcpt.cn/file/gxs'+item.productPicture" mode="widthFix" v-if="item.productName"></image>
-      <image :src="item.img" mode="widthFix" v-else></image>
+	  <image class="goods_dataImg" :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+item.productPicture" mode="widthFix" v-if="item.productName"></image>
+      <image class="goods_dataImg" :src="item.img" mode="widthFix" v-else></image>
       <view class="goods_title">
         <view class="g_name">
           {{item.productName}}
@@ -38,9 +52,21 @@
             <!-- <view class="t2">
               <text>￥{{item.productPrice}}</text>
             </view> -->
-            <view class="t3">
+<!--            <view class="t3">
               x{{item.productNum}}
-            </view>
+            </view> -->
+			<view class="storeNumber">
+			<view class="food-control">
+				<view class="cont" style="margin:8upx 5upx;">
+					<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/system/des.png" mode="" style="width: 20px;height: 20px;" @click="decreaseCart(item)"></image>
+				</view>
+				<text style="padding:0 8px;display: inline-block;width: 30upx;text-align: center;">{{item.productNum}}</text>
+			</view>
+			
+			<view style="margin:8upx 5upx; " class="cont" @click="addCart(item)">
+				<image  src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/system/add2.png" style="width: 20px;height: 20px;color: #ccc;"></image>
+			</view>
+			</view>
           </view>
       </view>
     </view>
@@ -56,8 +82,14 @@
   </view>
   <!-- 订单详情 -->
   <view class="order_more">
+	  <view class="morelist">
+	    <text class="titles">商品数量</text>
+	    <view class="right_title">
+	      {{storeNum}}
+	    </view>
+	  </view>
     <view class="morelist">
-      <text class="title">商品总价</text>
+      <text class="titles">订单总额</text>
       <view class="right_title">
         ￥{{sumprice}}
       </view>
@@ -78,26 +110,24 @@
       </view>
     </view> -->
     <view class="tips">
-      <view class="tips_name">备注信息</view>
-      <view class="textarea_box">
-        <textarea placeholder="请输入备注信息" placeholder-class="font-size: 24upx" maxlength="-1" v-if="couponshow == false"></textarea>
-      </view>
+		<view></view>
+      <view class="tips_name">应付金额： <text>￥{{sumprice}}</text></view>
     </view>
   </view>
   <view class="bottom_btn">
     <view class="moneys">
-    合计: <text :style="'color:' + colors + ';'">￥{{sumprice}}</text>
+    合计：<text style="color: #E84A4A;font-weight: bold;font-size: 32upx;margin-left: 15upx;">￥{{sumprice}}</text>
     </view>
-    <view class="btns" :style="'background:' + colors + ';'" @tap="submit">
+    <view class="btns" @tap="submit">
     提交订单
     </view>
   </view>
   <!-- 优惠券弹出层 -->
   <view class="mask" catchtouchmove="preventTouchMove" v-if="couponshow == true" @tap="hidecoupon"></view>
   <view class="coupon" :style="'bottom:' + (couponshow == true ? '0upx':'')">
-    <view class="buyong" @click="notUsed()">不使用优惠券</view>
+    <!-- <view class="buyong" @click="notUsed()">不使用优惠券</view> -->
     <scroll-view class="scrolls" scroll-y>
-     <coupon :couponList="couponList" @onReceive="onReceive"></coupon>
+     <!-- <coupon :couponList="couponList" @onReceive="onReceive"></coupon> -->
     </scroll-view>
   </view>
 </view>
@@ -106,6 +136,7 @@
 <script>
 var app = getApp();
 import coupon from "../../commponent/public/coupon";
+import myAccount from "../../commponent/user/my-account.vue";
 import {getGoodsData,getAddress,removeAddress} from '@/utils/auth.js'
 export default {
   data() {
@@ -118,10 +149,12 @@ export default {
 	  couponIndex: 0,
 	  nowprice: 0, //临时存储总金额的变量 用于计算优惠券
 	  sumprice: 0,
+	  storeContent:{},
+	  storeNum:null,
 	  address:{
-		  name:'反转',
-		  phone: 12345678915,
-		  address_name:'北京市海淀区苏家坨乡前沙涧村15号'
+		  name:'石瑞江',
+		  phone: 13588888888,
+		  address_name:'西安市未央区文景路starway酒店fiveFloor'
 	  },
 	  couponList: [ //优惠券列表
 	  	{
@@ -152,13 +185,12 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-	removeAddress() //清空存储的地址
+	// removeAddress() //清空存储的地址
 	// 计算所有的商品总价
-    this.setData({
-      colors: app.globalData.newColor
-    });
-	this.getCarList();
-	this.getSumPrice()
+	this.goodsList=JSON.parse(uni.getStorageSync('goodsdata')) 
+	this.getSumPrice();
+	this.getStoreNumber();
+	this.storeNumber();
   },
 
   /**
@@ -174,13 +206,14 @@ export default {
 	  if(address && address.name){
 		  this.address = address
 	  }
+	  this.goodsList=JSON.parse(uni.getStorageSync('goodsdata')) 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-	  
+	  this.goodsList=JSON.parse(uni.getStorageSync('goodsdata')) 
   },
 
   /**
@@ -204,13 +237,111 @@ export default {
   onShareAppMessage: function () {},
   methods: {
 	getSumPrice(){
-		let sumprice = 0
-		this.goodsList.forEach(e=>{
-			sumprice = (sumprice+Number(e.productPrice)).toFixed(2)
-		})
-		this.sumprice = sumprice
-		this.nowprice = sumprice 
+		let sumprice = 0;
+		console.log(this.goodsList,'00000')
+		this.goodsList.reduce((a,b)=>{
+			sumprice+=Number(b.productNum)*Number(b.productPrice);
+		},0)
+		this.sumprice=sumprice
 	},
+	getStoreNumber() {
+	  let StoreNumber = uni.getStorageSync('StoreNumber');
+	  if(StoreNumber){
+		  this.storeContent=StoreNumber
+	  }
+	},
+	storeNumber(){
+		let storeNum=0
+		this.goodsList.reduce((a,b)=>{
+			console.log(b,'shangpin shuliang ')
+			storeNum+=b.productNum
+		},0)
+		this.storeNum=storeNum
+		console.log(this.storeNum,'shangpin shuliang ')
+	},
+	addCart: function(item) {
+			   let adrObj = {
+			      'productId': item.productId,
+			      'productName': item.productName,
+			      'productPicture': item.productPicture,
+			      'productPrice': item.productPrice,
+			      "productNum":item.productNum+1
+			     };   
+			     let arrhost = uni.getStorageSync('cart')
+			     if(arrhost.length>0){
+			      let state = false
+			      arrhost.forEach((key,index)=>{
+			       if(key.productId == item.productId) {
+			        arrhost[index].productNum++;
+					this.storeNumber();
+					this.getSumPrice();
+			        state = true
+			       }
+			      })
+			      if(!state){
+			       arrhost.push(adrObj)
+			      }
+				  arrhost.forEach(item=>{
+					this.goodsList.forEach(ite=>{
+						if(item.productId==ite.productId){
+							ite.productNum=item.productNum
+							this.storeNumber();
+							this.getSumPrice();
+						}
+					})  
+				  })
+				  uni.setStorageSync('goodsdata',this.goodsList)
+				  this.getSumPrice()
+			      uni.setStorageSync('cart',arrhost)
+			     }else{
+			      uni.setStorageSync('cart',[adrObj])
+			     }
+	   },
+	decreaseCart(item) {
+			let adrObj = {
+			   'productId': item.productId,
+			   'productName': item.productName,
+			   'productPicture': item.productPicture,
+			   'productPrice': item.productPrice,
+			   "productNum":item.productNum+1
+			  };   
+			  
+			  let arrhost = uni.getStorageSync('cart')
+			  if(arrhost.length>0){
+			   let state = false
+			   arrhost.forEach((key,index)=>{
+			    if(key.productId == item.productId) {
+			     arrhost[index].productNum--
+				 this.storeNumber();
+				 this.getSumPrice();
+				 arrhost.forEach(item=>{
+				 	this.goodsList.forEach(ite=>{
+				 		if(item.productId==ite.productId){
+				 			ite.productNum=item.productNum
+							this.storeNumber();
+							this.getSumPrice();
+				 		}
+				 	})  
+				 })
+				 uni.setStorageSync('goodsdata',this.goodsList)
+				 if(arrhost[index].productNum==1){
+				 	arrhost[index].productNum=1
+				 }
+			     state = true
+			    }
+			   })
+			   if(!state){
+			    adrObj.productNum--
+			    arrhost.push(adrObj)
+			   }
+			 
+			   uni.setStorageSync('cart',arrhost)
+			  }else{
+			   uni.setStorageSync('cart',[adrObj])
+			  }
+			  console.log(arrhost,'存的数据');
+			this.$emit('dec', item)
+		},
     openCoupon(index) {
       this.setData({
         couponshow: true,
@@ -231,72 +362,101 @@ export default {
       });
     },
 
-    selectMode() {
-      let that = this;
-	  let list = ['物流寄送', '到店自提']
-      uni.showActionSheet({
-        itemList: list,
-        success: function (res) {
-			that.setData({
-			  modes: list[res.tapIndex],
-			  tapIndex: res.tapIndex
-			});
-        }
-      });
-    },
+   //  selectMode() {
+   //    let that = this;
+	  // let list = ['物流寄送', '到店自提']
+   //    uni.showActionSheet({
+   //      itemList: list,
+   //      success: function (res) {
+			// that.setData({
+			//   modes: list[res.tapIndex],
+			//   tapIndex: res.tapIndex
+			// });
+   //      }
+   //    });
+   //  },
 	
     setAddress() {
       uni.navigateTo({
         url: '/pages/views/user/myaddress'
       });
     },
-	onReceive(item, index){ //选择优惠券
-		this.couponshow = false
-		/**
-		 * 自定义变量 到goodsList中 用户计算合计金额与优惠券
-		 */
-		this.goodsList[this.couponIndex].couponName = '满'+item.money+'减'+item.reduce
-		this.goodsList[this.couponIndex].couponReduce = item.reduce //优惠券金额
-		this.sumprice = this.sumprice - item.reduce
-	},
-	notUsed(){ //不使用优惠券 重置金额
-		this.couponshow = false
-		this.goodsList[this.couponIndex].couponName = ''
-		this.sumprice = this.sumprice + Number(this.goodsList[this.couponIndex].couponReduce)
-	},
-	getCarList() {
-		let data = {
-			productId:'',
-			productName:'',
-			isSelected:'',
-			productPrice:'',
-			type:''
-		}
-		uni.showLoading({
-			mask: true
-		})
-		let res = this.$request('/shoppingCart/page', data,'POST').then(res=>{
-			uni.hideLoading()
-			if (res.code == 1) {
-				console.log(res,'支付页')
-				this.goodsList=res.obj.list
-			} else {
-				uni.showToast({
-					title: res.msg,
-					icon: 'none'
-				})
-			}
-		})
-	},
+	// onReceive(item, index){ //选择优惠券
+	// 	this.couponshow = false
+	// 	/**
+	// 	 * 自定义变量 到goodsList中 用户计算合计金额与优惠券
+	// 	 */
+	// 	this.goodsList[this.couponIndex].couponName = '满'+item.money+'减'+item.reduce
+	// 	this.goodsList[this.couponIndex].couponReduce = item.reduce //优惠券金额
+	// 	this.sumprice = this.sumprice - item.reduce
+	// },
+	// notUsed(){ //不使用优惠券 重置金额
+	// 	this.couponshow = false
+	// 	this.goodsList[this.couponIndex].couponName = ''
+	// 	this.sumprice = this.sumprice + Number(this.goodsList[this.couponIndex].couponReduce)
+	// },
   }
 };
 </script>
 <style lang="scss" scoped>
 page {
-  background-color: #FFFFFF;
+  background-color: #F8F8F8;
 }
-
+.food-control {
+		display: -webkit-box
+	}
+.storeNumber{
+	width: 200upx;
+	display: flex;
+	margin-right: -20upx;
+}
+.my_money {
+  background-color: #fff;
+  margin-bottom: 20upx;
+  margin-top: 20upx;
+  border-radius: 20upx;
+}
+.menu_btns .p1{
+  font-size: 30upx;
+  font-weight: bold;
+}
+.address-flex{
+			height: 80upx;
+			display: flex;
+			justify-content: space-between;
+			.address-with{
+				font-size: 30upx;
+				font-weight: bold;
+				color: #000000;
+				padding: 30upx 20upx;
+			}
+			.address-with-other{
+				font-size: 24upx;
+				font-weight: bold;
+				color: #E84A4A;
+				padding: 34upx 30upx;
+				font-weight: normal;
+				image{
+					width: 10upx;
+					height: 15upx;
+					margin-left: 5upx;
+				}
+			}
+		}
+		.storeMsg{
+			color: #3ABA78;
+			font-weight: bold;
+			font-size: 32upx;
+			padding: 10upx 20upx;
+		}
+		.storeAddress{
+			font-size: 26upx;
+			color: #9a9a9a;
+			font-weight: 400;
+			padding: 15upx 20upx 30upx;
+		}
 .order {
+	background: #f8f8f8;
   padding: 20upx 4%;
 }
 .mode{
@@ -309,7 +469,6 @@ page {
   border-radius: 10upx;
   align-items: center;
   margin-bottom: 20upx;
-  box-shadow: 0upx 0upx 10upx #ddd;
 }
 .mode:active{
   background-color: #f5f5f5;
@@ -337,18 +496,19 @@ page {
   border-radius: 10upx;
   overflow: hidden;
   position: relative;
-  box-shadow: 0upx 0upx 10upx #ddd;
+  display: flex;
+   justify-content: space-between;
 }
 
-.order_address image {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
+// .order_address image {
+//   width: 100%;
+//   height: 100%;
+//   display: block;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   z-index: 10;
+// }
 
 .address_box {
   width: 100%;
@@ -361,9 +521,19 @@ page {
   box-sizing: border-box;
   padding: 20upx;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
-
+.address_box .right-box{
+	width: 100upx;
+	height: 150upx;
+	text-align: right;
+	line-height: 160upx;
+}
+.address_box image{
+	width: 30upx;
+	height: 30upx;
+}
 .weizhi_icon text {
   font-size: 40upx;
   margin-left: 10upx;
@@ -379,15 +549,17 @@ page {
 }
 
 .address_box .center .name .text1 {
-  font-size: 26upx;
-  font-weight: bold;
-  color: #333;
+  font-size: 30upx;
+  color: #000;
   display: inline-block;
-  margin-right: 20upx;
+  margin-left: 20upx;
 }
-
+.address_box .center .name text{
+	display: inline-block;
+	width: 130upx;
+}
 .phones {
-  font-size: 24upx;
+  font-size: 28upx;
   color: #999;
   z-index: 0;
 }
@@ -408,7 +580,6 @@ page {
 .goods {
   background-color: #fff;
   margin-top: 20upx;
-  box-shadow: 0upx 0upx 10upx #ddd;
   border-radius: 10upx;
   padding: 20upx;
   padding-bottom: 10upx;
@@ -420,7 +591,7 @@ page {
   margin-bottom: 15upx;
 }
 
-.goods_data image {
+.goods_data .goods_dataImg {
   min-width: 150upx;
   max-width: 150upx;
   height: 150upx;
@@ -436,15 +607,16 @@ page {
 .goods_title .price{
   width: 100%;
   display: flex;
-  height: 40upx;
-  line-height: 40upx;
-  margin-top: 20upx;
+  height: 90upx;
+  line-height: 150upx;
+  justify-content: space-between;
   position: relative;
 }
 .goods_title .price .t1{
   font-size: 30upx;
   font-weight: bold;
   display: block;
+  color: #E84A4A;
 }
 .goods_title .price .t2{
   font-size: 24upx;
@@ -464,10 +636,11 @@ page {
 }
 .goods_title .g_name {
   font-size: 26upx;
-  font-weight: bold;
   max-height: 80upx;
+  margin-top: 4upx;
   overflow: hidden;
   display: -webkit-box;
+  color: #000;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
@@ -491,22 +664,24 @@ page {
 .order_more{
   padding: 0 2%;
   margin-top: 20upx;
+  background: #fff;
+  border-radius: 20upx;
 }
 .morelist{
-  height: 80upx;
-  line-height: 80upx;
+  height: 70upx;
+  line-height: 70upx;
   display: flex;
+  padding: 10upx 20upx;
   justify-content: space-between;
-  border-bottom: 1upx dashed #eee;
 }
-.morelist .title{
+.morelist .titles{
   color: #333;
   font-size: 26upx;
   font-weight: bold;
   display: flex;
   align-items: center;
 }
-.morelist .title .quan{
+.morelist .titles .quan{
   font-size: 20upx;
   width: 35upx;
   height: 35upx;
@@ -521,12 +696,17 @@ page {
   color: #999;
 }
 .tips{
-  padding: 10upx 0;
-  margin-bottom: 120upx;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20upx;
+}
+.tips text{
+	font-weight: bold;
+	font-size: 30upx;
+	margin-left: 10upx;
 }
 .tips .tips_name{
   font-size: 26upx;
-  font-weight: bold;
   line-height: 60upx;
 }
 .textarea_box{
@@ -541,34 +721,33 @@ page {
   height: 150upx;
 }
 .bottom_btn{
-  height: 100upx;
+  height: 120upx;
   width: 100vw;
   background-color: #fff;
   position: fixed;
   left: 0;
   bottom: 0;
-  line-height: 100upx;
+  line-height: 120upx;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 30upx;
   z-index: 100;
   font-weight: bold;
 }
 .bottom_btn .moneys{
   font-size: 28upx;
-  font-weight: bold;
-  margin-right: 100upx;
 }
 .bottom_btn .btns{
   font-size: 28upx;
   color: #fff;
-  height: 60upx;
-  line-height: 60upx;
-  padding: 0 25upx;
+  height: 70upx;
+  line-height: 70upx;
+  padding: 0 35upx;
   text-align: center;
+  font-weight: normal;
   border-radius: 40upx;
-  margin-top: 20upx;
-  font-weight: bold;
+  margin-top: 28upx;
+  background: #E84A4A;;
 }
 /* 优惠券 */
 .coupon{

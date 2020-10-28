@@ -1,9 +1,6 @@
 <template>
 	<view>
 		<view class="order_list">
-			<view style="background-color: #FFFFFF;">
-				<navBar :showLeft="true" navTitle="订单列表" textcolor="#000" :leftBg="false"></navBar>
-			</view>
 			<!-- 顶部tab -->
 			<view class="nav_top" style="border-bottom: 1upx solid #F8F8F8;">
 				<tabs :colors="colors" :tabList="tabList" :active="active" @setTabs="setTabs"></tabs>
@@ -11,13 +8,23 @@
 			<scroll-view class="list_box" :scroll-y="true" @scrolltolower="ongetMoreList">
 				<view v-for="(item, index) in orderList" :key="index" class="lists">
 					<view class="type">
-						<text class="order_id">订单编号:{{item.orderNumber}}</text>
-						<text class="order_type" :style="'color:' + colors">
-							{{active | setStatus}}
+						<text class="order_id">每日提货时间:17:00-19:00</text>
+						<!-- <text class="order_id">订单编号:{{item.orderNumber}}</text> -->
+						<text class="order_type" style="color:#E84A4A;font-weight: 600;" v-if="item.isPayment==1">
+							待付款
+						</text>
+						<text class="order_type" style="color:#E84A4A;font-weight: 600;" v-else-if="item.isDelivery==4">
+							待提货
+						</text>
+						<text class="order_type" style="color:#000000;font-weight: 400;" v-else-if="item.isDelivery==3">
+							已提货
+						</text>
+						<text class="order_type" style="color:#E84A4A;font-weight: 600;" v-else>
+							退货
 						</text>
 					</view>
 					<view  class="top" @tap="jumpDetails(item)">
-						<image :src="'https://jlzcpt.cn/file/gxs'+item.productPicture" mode="aspectFill"></image>
+						<image :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+item.productPicture" mode="aspectFill"></image>
 						<view class="top_right">
 							<view class="order_name">{{item.productName}}</view>
 							<!-- <view class="sku">规格：{{item.goods_sku_text || '暂无规格'}}</view> -->
@@ -29,27 +36,28 @@
 							</view>
 						</view>
 					</view>
-					<!-- <view class="bottom">
-						<view class="address">店铺地址：北京市海淀区苏家坨乡前沙涧村</view>
+					<view class="bottom">
+						<!-- <view class="address">店铺地址：{{addressMsg}}</view> -->
 						<view class="btns">
-							<block v-if="active == 0">
+							<!-- <block v-if="item.isPayment==1">
 								<view class="pay" :style="'color:#fff;background:' + colors+ ';border-color:' + colors" @tap="jumpDetails(item)">去付款</view>
 								<view class="pay shouhou" :style="'color:' + colors + ';border-color:' + colors" @tap="cencalOrder(item)">取消订单</view>	
+							</block> -->
+							<block v-if="item.isPayment==1">
+								<view class="pay" :style="'color:#fff;background:' + colors+ ';border-color:' + colors">去付款</view>
+								<view class="pay shouhou" @tap="onRefund(item)">取消订单</view>
 							</block>
-							<block v-if="active == 1">
-								<view class="pay shouhou"  @tap="onRefund(item)">申请退款</view>
+							<block v-else-if="item.isDelivery==4">
+								<view class="pay" :style="'color:#fff;background:' + colors+ ';border-color:' + colors">确认提货</view>
+								<view class="pay shouhou" @tap="onRefund(item)">申请退货</view>
 							</block>
-							<block v-if="active == 2">
-								<view class="pay" :style="'color:#fff;background:' + colors+ ';border-color:' + colors">确认收货</view>
-								<view class="pay shouhou" @tap="onRefund(item)">申请退款</view>
+							<block v-else-if="item.isDelivery==3">
+								<view class="pay shouhou" :style="'color:' + colors + ';border-color:' + colors" @tap="jumpDetails(item)">申请退货</view>
+								<view class="pay shouhou" @tap="jumpDetails(item)">再次购买</view>
 							</block>
-							<block v-if="active == 3">
-								<view class="pay shouhou" :style="'color:' + colors + ';border-color:' + colors" @tap="jumpDetails(item)">订单评价</view>
-								<view class="pay shouhou" @tap="jumpDetails(item)">申请售后</view>
-							</block>
-							<view class="pay shouhou" v-if="active == 4">删除订单</view>
+							<view class="pay shouhou" v-else>查看详情</view>
 						</view>
-					</view> -->
+					</view>
 				</view>
 				<view class="nodata" v-if="orderList.length >= 3">—— 到底啦 ——</view>
 				<nodata :colors="colors" title="暂无订单信息" v-if="orderList.length == 0"></nodata>
@@ -69,27 +77,34 @@
 			return {
 				statusBarHeight: app.globalData.statusHeight + 'px',
 				toBarHeight: app.globalData.toBar + 'px',
-				data:{},
+				userId:null,
+				data:{
+					userId:uni.getStorageSync('userId')
+				},
 				tabList: [{
-					name: '全部订单',
+					name: '全部',
 					id: 0
 				}, {
 					name: '待付款',
 					id: 1
-				},{
+				}, {
 					name: '待提货',
 					id: 2
+				},{
+					name: '已提货',
+					id: 3
 				},
 				{
-					name: '已完成',
-					id: 3
+					name: '退货',
+					id: 4
 				}],
 				active: 0,
 				orderList: [
 					
 				],
 				isShow: true,
-				colors: ""
+				colors: "",
+				addressMsg:''
 			};
 		},
 		filters: {
@@ -101,7 +116,9 @@
 				} else if (value == 2) {
 					return '待提货'
 				} else if (value == 3) {
-					return '已完成'
+					return '已提货'
+				}else{
+					return '退货'
 				}
 			}
 		},
@@ -115,8 +132,9 @@
 		/**
 		 * 生命周期函数--监听页面加载
 		 */
-		onLoad: function(options) {
-			if (options.tabIndex) {
+		onLoad (options) {
+			if (options) {
+				console.log(options,'zheshi')
 				this.setData({
 					active: Number(options.tabIndex)
 				});
@@ -129,7 +147,11 @@
 					isShow: false
 				});
 			}, 600);
-			this.getOrderList()
+			let userId=uni.getStorageSync('userId')
+			this.userId=userId
+			this.getOrderList();
+			let addressMsg=uni.getStorageSync('AddressMsg')
+			this.addressMsg=addressMsg
 		},
 
 		/**
@@ -169,23 +191,33 @@
 		methods: {
 			setTabs(item, index) {
 				if(item.id==0){
-					this.data={};
+					this.data={
+						userId:this.userId
+					};
 					this.getOrderList();
 				}
 				else if(item.id==1){
 					this.data={
+						userId:this.userId,
 						isPayment:1,
-						orderStatus:0
 					}
 					this.getOrderList();
 				}else if(item.id==2){
 					this.data={
+						userId:this.userId,
 						isDelivery:4,
 					}
 					this.getOrderList();
-				}else{
+				}else if(item.id==3){
 					this.data={
-						orderStatus:1
+						userId:this.userId,
+						isDelivery:3,
+					}
+					this.getOrderList();
+				}else {
+					this.data={
+						userId:this.userId,
+						orderStatus:2,
 					}
 					this.getOrderList();
 				}
@@ -195,9 +227,10 @@
 				});
 			},
 
-			jumpDetails() { //模拟跳转商品详情
+			jumpDetails(e) { //模拟跳转商品详情
+			console.log(e,'sdsdsdsdsdsdsdsdsd')
 				uni.navigateTo({
-					url: '/pages/views/order/orderdetails?status=' + this.active
+					url: '/pages/views/order/orderdetails?item='+encodeURIComponent(JSON.stringify(e)),
 				});
 			},
 			cencalOrder(item) {
@@ -225,6 +258,7 @@
 					uni.showLoading({
 						mask: true
 					})
+					console.log(this.data,'请求')
 					let res = this.$request('/productOrder/page', this.data,'POST').then(res=>{
 						uni.hideLoading()
 						console.log(res,'购物车数据')
@@ -254,13 +288,13 @@
 	.list_box {
 		padding: 0 3%;
 		box-sizing: border-box;
-		height: calc(100vh - 160upx);
+		height: calc(100vh - 60upx);
 		overflow: hidden;
 		/* #ifdef MP */
-		padding-bottom: 50upx;
+		// padding-bottom: 50upx;
 		/* #endif */
 		width: 100%;
-		padding-top: 20upx;
+		// padding-top: 20upx;
 	}
 
 	.lists {
@@ -286,12 +320,11 @@
 
 	.type .order_id {
 		display: block;
-		font-weight: 600;
 		width: 75%;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		color: #999;
+		color: #E84A4A;
 		font-size: 24upx;
 	}
 	.type .order_type{

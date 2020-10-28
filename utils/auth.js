@@ -183,7 +183,7 @@ export function checkLogin (callBack) {
 			success: res => {
 				if (res.confirm) {
 					uni.navigateTo({
-						url: '/pages/views/tabBar/user'
+						url: '/pages/login/login'
 					})
 				}
 			}

@@ -3,19 +3,18 @@
 		<view class="myaddress">
 			<view v-for="(item, index) in addressList" :key="index" class="order_address">
 				<view class="address_box">
-					<view class="weizhi_icon">
-						<text class="iconfont icon-dizhi" :style="'color:' + colors"></text>
-					</view>
 					<view @click="onsetAddress(item)">
 						<view class="center">
-							<view class="moren" v-if="item.isdefult == 0">
-								<text class="iconfont icon-moren" :style="'color:' + colors"></text>
+							<view v-if="item.isdefult == 0" class="moren">
+								<image src="../../../static/images/system/moren.png" mode="aspectFit"></image>
 							</view>
+							<!-- <view class="moren"> 
+							</view> -->
 							<view class="name">
-								<text class="text1">{{item.name}}</text>
-								<text class="phones">{{item.phone}}</text>
+								收件人：<text class="text1">{{item.name}}</text>
+								
 							</view>
-							<view class="address_name">{{item.address_name}}</view>
+							<view class="address_name">联系电话：<text class="phones">{{item.phone}}</text></view>
 						</view>
 					</view>
 					<view class="caozuo">
@@ -34,7 +33,7 @@
 		<nodata :colors="colors" title="暂无收货地址" v-if="addressList.length == 0"></nodata>
 	</view>
 	<view class="save">
-		<view class="btn" :style="'background:' + colors" @tap="addAddress">添加收货地址</view>
+		<view class="btn" @tap="addAddress">添加收件人</view>
 	</view>
 	<loading v-if="isShow == true"></loading>
 	</view>
@@ -51,15 +50,15 @@
 			return {
 				colors: '',
 				addressList: [{
-					name: '张三',
-					phone: '12345678915',
-					address_name: '北京市海淀区苏家坨乡前沙涧村15号',
+					name: '石瑞江',
+					phone: '13588888888',
+					address_name: '西安市未央区文景路starway酒店fiveFloor',
 					isdefult: 0,
 					id: 1
 				}, {
-					name: '李四',
-					phone: '12345678915',
-					address_name: '北京市海淀区苏家坨乡前沙涧村15号',
+					name: '张伟',
+					phone: '13566666666',
+					address_name: '西安市未央区文景路starway酒店fiveFloor',
 					isdefult: 1,
 					id: 2
 				}],
@@ -210,14 +209,14 @@
 	}
 
 	.address_box .center .name {
+		color: #999;
 		height: 60upx;
 		line-height: 60upx;
 	}
 
 	.address_box .center .name .text1 {
 		font-size: 26upx;
-		font-weight: bold;
-		color: #333;
+		color: #000;
 		display: inline-block;
 		margin-right: 20upx;
 	}
@@ -230,10 +229,11 @@
 
 	.address_box .address_name {
 		font-size: 26upx;
-		font-weight: bold;
-		color: #333;
+		color: #999;
 	}
-
+	.address_box .address_name text{
+		color: #000;
+	}
 	.noaddress {
 		margin-left: 40upx;
 		font-weight: bold;
@@ -259,9 +259,10 @@
 	}
 
 	.moren {
-		position: absolute;
-		top: 0;
-		left: 0;
+		image{
+			width: 65upx;
+			height: 65upx;
+		}
 	}
 
 	.moren text {
@@ -270,7 +271,7 @@
 
 	.save {
 		position: fixed;
-		bottom: 0;
+		bottom: 80upx;
 		width: 100%;
 		height: 120upx;
 		display: flex;
@@ -283,11 +284,10 @@
 	}
 
 	.save .btn {
-		box-shadow: 0upx 5upx 10upx rgba(0, 0, 0, 0.4);
 		width: 70%;
 		height: 80upx;
 		border-radius: 80upx;
-		background-color: #f23a3a;
+		background: #39B978;
 		color: #fff;
 		justify-content: center;
 		align-items: center;

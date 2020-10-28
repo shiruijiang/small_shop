@@ -50,7 +50,7 @@
                 "ad" : {},
                 "oauth" : {
                     "weixin" : {
-                        "appid" : "wx45de63d256406445",
+                        "appid" : "wx76d4ce1862697240",
                         "appsecret" : "036afc6142755c4dc55a61961c9a0d21",
                         "UniversalLinks" : ""
                     }
@@ -60,7 +60,7 @@
     },
     "quickapp" : {},
     "mp-weixin" : {
-        "appid" : "wx45de63d256406445",
+        "appid" : "wx76d4ce1862697240",
         "setting" : {
             "urlCheck" : false
         },

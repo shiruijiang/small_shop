@@ -1,6 +1,6 @@
 <template>
  <view class="my_order">
-    <list-cell icons="icon-order" linkUrl="/pages/views/order/orderlist" :colors="colors">我的订单</list-cell>
+    <list-cell icons="icon-order" @tap='gotoOrderList' :colors="colors">我的订单</list-cell>
     <view class="order_btnbox">
       <view v-for="(item, index) in orderText" :key="index" class="order_btns" @tap="jumpOrder(item,index)">
         <view class="orderText">
@@ -31,6 +31,11 @@ export default {
     }
   },
   methods: {
+	  gotoOrderList(){
+		  uni.navigateTo({
+		  	url:"/pages/views/order/orderlist"
+		  })
+	  },
     jumpOrder(item,index) {
 		  uni.navigateTo({
 		    url: '/pages/views/order/orderlist?tabIndex=' + item.id

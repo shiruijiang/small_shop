@@ -3,42 +3,41 @@
 <view class="order">
   <!-- 收货地址 -->
   <view class="order_address">
-    <image src="/static/images/home/bottom.png"></image>
     <view class="address_box">
         <view class="weizhi_icon">
-          <text class="iconfont icon-dizhi" :style="'color:' + colors"></text>
+          <image :src="userMsg.avatarUrl" mode="aspectFit"></image>
         </view>
       <block>
         <view class="center">
           <view class="name">
-            <text class="text1">张飞</text>
-            <text class="phones">1829445646451</text>
+            <text class="text1">{{userMsg.nickName}}</text>
+            <text class="phones">13588888888</text>
            </view>
-            <view class="address_name">北京市海淀区苏家坨乡前沙涧村15号</view>
+            <!-- <view class="address_name">北京市海淀区苏家坨乡前沙涧村15号</view> -->
         </view>
       </block>
     </view>
   </view>
   <!-- 商品详情 -->
-  <view v-for="(item, index) in orderList.goods" :key="index" class="goods">
+  <view class="goods">
     <view class="goods_data">
-      <image :src="item.img"></image>
+      <image :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+order_list.productPicture" mode="aspectFit"></image>
       <view class="goods_title">
         <view class="g_name">
-          {{item.title}} 
+          {{order_list.productName}} 
         </view>
         <view class="goods_sku">
-        规格: {{item.goods_sku_text}}
+        规格: 3斤/件
         </view>
           <view class="price">
-            <view class="t1" :style="'color:' + colors">￥{{item.money}}</view>
+            <view class="t1" :style="'color:' + colors">￥{{order_list.productPrice}}</view>
             <view class="t3">
-              x{{item.number}}
+              x{{order_list.productNum}}
             </view>
           </view>
       </view>
     </view>
-    <view class="morelist" style="border-bottom:none">
+    <!-- <view class="morelist" style="border-bottom:none">
       <view class="title">
         <text class="quan" :style="'background:' + colors">券</text>
          <text>优惠券</text>
@@ -46,69 +45,19 @@
       <view class="right_title" :style="'color:' + colors + ';font-size:24upx'">
         减20
       </view>
-    </view>
+    </view> -->
 	<!-- 单商品操作按钮 在订单状态为待评价时才会显示-->
-	<view class="goods_btns" v-if="status == 3">
+	<!-- <view class="goods_btns" v-if="status == 3">
 		<view class="btns" style="margin-right: 40upx;" @click="onafterSale(item)">
 			申请售后
 		</view>
 		<view class="btns" @click="onevaluate(item)" :style="{borderColor:colors,color:colors}">
 			去评价
 		</view>
-	</view>
+	</view> -->
   </view>
-  <!-- 核销码 -->
-  <view class="order_ewm">
-    <view class="ewm_title">我的核销码</view>
-    <view class="center_ewm">
-      <image src="/static/images/ewm.png"></image>
-    </view>
-  </view>
-  <!-- 订单详情 -->
-  <view class="order_more">
-    <view class="morelist">
-      <text class="title">商品总价</text>
-      <view class="right_title">
-        ￥{{orderList.sumprice}}
-      </view>
-    </view>
-    <view class="morelist">
-      <view class="title">
-        <text class="quan" :style="'background:' + colors">运</text>
-         <text>运费</text>
-      </view>
-      <view class="right_title">
-        ￥0
-      </view>
-    </view>
-    <view class="morelist">
-      <text class="title">实付款</text>
-      <view class="right_title" :style="'color:' + colors + ';'">
-        ￥{{orderList.sumprice}}
-      </view>
-    </view>
-    <view class="morelist">
-      <text class="title">订单编号</text>
-      <view class="right_title">
-        {{orderList.order_No}}
-		<text class="copy" @click="onCopy(orderList.order_No)">复制</text>
-      </view>
-    </view>
-    <view class="morelist">
-      <text class="title">创建时间</text>
-      <view class="right_title">
-        2020-08-02 21:09:26
-      </view>
-    </view>
-    <view class="tips">
-      <view class="tips_name">备注信息</view>
-      <view class="textarea_box">
-        <textarea placeholder="请输入备注信息" disabled="true" placeholder-class="font-size: 24upx" maxlength="-1" v-model="orderList.tips"></textarea>
-      </view>
-    </view>
-    </view>
     <view class="bottom_btn" >
-		<block v-if="status == 0">
+		<block v-if="order_list.isPayment==1">
 			<view class="moneys">
 			合计: <text :style="'color:' + colors + ';'">￥{{orderList.sumprice}}</text>
 			</view>
@@ -116,28 +65,27 @@
 			    取消订单
 			  </view>
 			  <view class="btns" :style="'background:' + colors + ';'">
-			  继续支付
+			  去付款
 			  </view>
 		</block>
-		<block v-if="status == 1">
+		<block v-else-if="order_list.isDelivery==4">
 			   <view class="btns" :style="'color:' + colors + ';border:1upx solid ' + colors + ';margin-right:20upx'" @tap="onRefund">
-			    申请退款
-			  </view>
-		</block>
-		<block v-if="status == 2">
-			   <view class="btns" :style="'color:' + colors + ';border:1upx solid ' + colors + ';margin-right:20upx'" @tap="onRefund">
-			    申请退款
+			    确认提货
 			  </view>
 			  <view class="btns" :style="'background:' + colors + ';'">
-			  确认收货
+			  申请退货
 			  </view>
 		</block>
-		<block v-if="status == 3">
-			   <view class="btns shouhou" @click="jumpSale">退款/售后</view>
-			   <view class="btns" :style="'background:' + colors + ';margin-left:20upx;'">再次购买</view>
+		<block v-else-if="order_list.isDelivery==3">
+			   <view class="btns" :style="'color:' + colors + ';border:1upx solid ' + colors + ';margin-right:20upx'" @tap="onRefund">
+			    申请退货
+			  </view>
+			  <view class="btns" :style="'background:' + colors + ';'">
+				再次购买
+			  </view>
 		</block>
-		<block v-if="status == 4">
-			   <view class="btns shouhou">删除订单</view>
+		<block v-else>
+			   <view class="btns shouhou">查看详情</view>
 		</block>
 	</view>
 </view>
@@ -153,36 +101,17 @@ export default {
     return {
       colors: '',
       status: 0,
+	  userMsg:null,
       //订单状态
       isShow: true,
-	  orderList: {
-	  		goods: [{
-	  				title: 'DUNKINDONUTS唐恩都乐美国甜甜圈6个礼盒装 随机搭配6款',
-	  				type: 1,
-	  				goods_id: 201,
-	  				number: 1,
-	  				goods_sku_text: '醇黑巧克力【20枚】',
-	  				img: 'http://img10.360buyimg.com/n1/jfs/t1/86401/35/12206/357766/5e43b59cE5a7aa4dd/0753be765166c195.jpg',
-	  				money: '175.78',
-	  			},
-	  			{
-	  				title: '农谣人 原味火山石烤肠1000g/约16根台式原味肠地道肠纯肉肠热狗肠台湾烤肠香肠烧烤肠半熟食火腿肠 台式原味地道肠1kg',
-	  				type: 1,
-	  				goods_id: 204,
-	  				number: 1,
-	  				goods_sku_text: '台式原味地道肠1kg',
-	  				img: 'http://img10.360buyimg.com/n1/jfs/t1/118993/11/329/175715/5e8ac0afE94234346/3ceb1344cf34d655.jpg',
-	  				money: '52.00 '
-	  			},
-	  		],
-	  		type: 1,
-	  		status: 0,
-	  		order_No: 'AQWEAD45648974974456',
-	  		shopp_Address: '北京市海淀区苏家坨乡前沙涧村',
-			sumprice:'227.78',
-			tips:"尽快发货"
-	  	},
-    };
+	  order_list:[],
+	  type: 1,
+	  status: 0,
+	  order_No: 'AQWEAD45648974974456',
+	  shopp_Address: '北京市海淀区苏家坨乡前沙涧村',
+	  sumprice:'227.78',
+	  tips:"尽快发货"
+	  	}
   },
 
   components: {
@@ -193,15 +122,20 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
+	  console.log(options)
     let status = 0;
     if (options.status) {
       status = options.status;
     }
+	this.order_list=JSON.parse(decodeURIComponent(options.item))
     this.setData({
       colors: app.globalData.newColor,
       status: status
     });
+	let userMsg=JSON.parse(uni.getStorageSync('userinfo')) 
+	console.log(userMsg,'用户信息')
+	this.userMsg=userMsg
     setTimeout(() => {
       this.setData({
         isShow: false
@@ -332,7 +266,7 @@ page {
   display: block;
 }
 .order_address {
-  height: 150upx;
+  height: 100upx;
   width: 100%;
   background-color: #fff;
   border-radius: 10upx;
@@ -345,9 +279,6 @@ page {
   width: 100%;
   height: 100%;
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
   z-index: 10;
 }
 
@@ -364,10 +295,15 @@ page {
   display: flex;
   align-items: center;
 }
-
-.weizhi_icon text {
-  font-size: 40upx;
-  margin-left: 10upx;
+.weizhi_icon{
+	width: 60upx;
+	height: 60upx;
+	margin: 20upx 20upx;
+	  float: left;
+}
+.weizhi_icon image {
+  width: 60upx;
+  height: 60upx;
 }
 
 .address_box .center {
@@ -381,15 +317,17 @@ page {
 
 .address_box .center .name .text1 {
   font-size: 26upx;
-  font-weight: bold;
-  color: #333;
+  color: #000000;
   display: inline-block;
+  width: 180upx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-right: 20upx;
 }
 
 .phones {
   font-size: 24upx;
-  color: #999;
+  color: #000000;
   z-index: 0;
 }
 
@@ -504,6 +442,7 @@ page {
   font-weight: bold;
   display: flex;
   align-items: center;
+  background: #fff;
 }
 .morelist .title .quan{
   font-size: 20upx;

@@ -1,20 +1,30 @@
 <template>
 	<view class="cart">
+		<view class="header-cart">
+			<view class="header-content">
+				<view v-if="cartList.length !== 0">
+				<text v-if="guanli" @click="adminCart">管理</text>
+				<text v-else @click="adminCart">完成</text>
+				</view>
+				购物车
+				
+			</view>
+		</view>
 		<block v-if="cartList.length !== 0">
 			<!-- <view class="clearCart" :style="'color:' + colors" @click="clearInvalid">清空失效商品</view> -->
 			<view class="cart_box">
 				<view v-for="(item, index) in cartList" :key="index" class="cart_list" @longpress.stop="onshowDel(item,index)"
-				 @touchend="ontouchend">
+				 @touchend="ontouchend(item)">
 					<view class="checkbox-box" @tap="setCurrent(item,index)">
-						<view class="checkbox" :style="'border-color:' + colors" v-if="item.status !== 1 ">
-							<view :class="item.current == true ? 'on':''" :style="'background-color:' + colors"></view>
+						<view class="checkbox" style="border-color:#dcdcdc" v-if="item.status !== 1 ">
+							<view :class="item.current == true ? 'on':''"></view>
 						</view>
 						<view class="checkbox" style="border-color:#ccc" v-else>
 							<view></view>
 						</view>
 					</view>
 					<view class="cover" @tap="jumpDetails(item,index)">
-						<image :src="'https://jlzcpt.cn/file/gxs'+item.productPicture" mode="aspectFill"></image>
+						<image :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+item.productPicture" mode="aspectFill"></image>
 						<text class="masks"></text>
 					</view>
 					<view class="right">
@@ -30,18 +40,19 @@
 							</block>
 						</view> -->
 						<view class="numbers">
-							<text class="price" v-if="item.selectSku">
-								￥{{(Number(item.productPrice) * item.productNum).toFixed(2)}}
-							</text>
-							<text class="price" v-else>
-								￥{{(Number(item.productPrice) * item.productNum).toFixed(2)}}
+							<text class="price">
+								￥{{Number(item.productPrice)}}
 							</text>
 							<view class="right_btn">
-								<view class="sub" @tap="onsub(item,index)" :style="'color:' + (item.num == 1?'#ccc':'')">-</view>
+								<view class="sub" @tap="onsub(item,index)" :style="'color:' + (item.num == 1?'#ccc':'')">
+									<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/system/des.png" mode="" style="width: 20px;height: 20px;"></image>
+								</view>
 								<view class="input">
 									<input :value="item.productNum" maxlength="2" disabled></input>
 								</view>
-								<view class="add" @tap="onadd(item,index)">+</view>
+								<view class="add" @tap="onadd(item,index)">
+									<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/system/add2.png" style="width: 20px;height: 20px;color: #ccc;"></image>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -60,16 +71,17 @@
 			<view class="bottom_all" :style="{marginBottom: bottomShow}">
 				<view class="left">
 					<view class="checkbox-box" @tap="setAllCurrent">
-						<view class="checkbox" :style="'border-color:' + colors">
-							<view :class="allCurrent == true ? 'on':''" :style="'background-color:' + colors"></view>
+						<view class="checkbox" style="color: #dcdcdc;">
+							<view :class="allCurrent == true ? 'on':''"></view>
 						</view>
 						<view class="text">全选</view>
 					</view>
-					<view class="delAll" @click="delectAll" :style="'border-color:' + colors + ';color:' + colors" v-if="allCurrent == true">删除</view>
+					<!-- <view class="delAll" @click="delectAll" :style="'border-color:' + colors + ';color:' + colors" v-if="allCurrent == true">删除</view> -->
 				</view>
-				<view class="rights">
-					<view class="jiesuan" :style="'background-color:' + colors" @click="settlement">结算({{sum}})</view>
-					<view class="sum">合计：<text style="font-size: 30upx;">￥{{sumPrice || 0}}</text></view>
+				<view class="rights" style="box-sizing: border-box;">
+					<view v-if="guanli" class="jiesuan" @click="settlement">结算({{sum}})</view>
+					<view v-else class="jiesuan" style="background: #fff;border: 2upx solid #e84a4a;color: #e84a4a;" @tap="delItem(item,index)">删除({{sum}})</view>
+					<view class="sum" v-show="guanli">合计：<text style="font-size: 30upx;">￥{{sumPrice || 0}}</text></view>
 				</view>
 			</view>
 		</block>
@@ -86,7 +98,8 @@
 	import {
 		getCart,
 		setGoodsData,
-		removeCart
+		removeCart,
+		getToken
 	} from '@/utils/auth.js'
 	export default {
 		data() {
@@ -96,9 +109,13 @@
 				current: 99999,
 				allCurrent: false,
 				sum: 0,
+				delSum:0,
 				sumPrice: 0,
 				lock: false,
-				bottomShow: ''
+				bottomShow: '',
+				sumIndex:null,
+				guanli:true,
+				delNum:0
 			};
 		},
 
@@ -109,14 +126,35 @@
 		 * 生命周期函数--监听页面加载
 		 */
 		onLoad: function(options) {
-			this.getCarList()
+			// this.getCarList()
 			// #ifdef MP
 			this.bottomShow = 0
 			// #endif
 			// #ifdef H5
 			this.bottomShow = '100upx'
 			// #endif
-			
+			let cart = uni.getStorageSync('cart');
+			console.log(cart)
+			this.cartList=cart;
+			if(cart && getToken()){
+				let numberLength=0
+				cart.reduce((a,b)=>{
+					return numberLength+=b.productNum
+				},0)
+				if(numberLength>0){
+					uni.setTabBarBadge({
+				  //给tabBar添加角标
+				  index: 2,
+				  text: String(numberLength)
+				});
+				}else{
+					uni.removeTabBarBadge({
+						//给tabBar添加角标
+						index: 2,
+						text: String(numberLength)
+					});
+				} 
+			}
 		},
 
 		/**
@@ -128,23 +166,63 @@
 		 * 生命周期函数--监听页面显示
 		 */
 		onShow: function() {
-			let cart = getCart() || []
-			this.setData({
-				colors: app.globalData.newColor,
-				current: '99999',
-				cartList: cart,
-				allCurrent: false,
-				sum: 0,
-				sumPrice: 0
-			});
-			this.getCarList()
+			// let cart = getCart() || []
+			// this.setData({
+			// 	colors: app.globalData.newColor,
+			// 	current: '99999',
+			// 	cartList: cart,
+			// 	allCurrent: false,
+			// 	sum: 0,
+			// 	sumPrice: 0
+			// });
+			// this.getCarList();
+			let carts = uni.getStorageSync('cart');
+			this.cartList=carts;
+			if(carts && getToken()){
+				let numberLength=0
+				carts.reduce((a,b)=>{
+					return numberLength+=b.productNum
+				},0)
+				if(numberLength>0){
+					uni.setTabBarBadge({
+				  //给tabBar添加角标
+				  index: 2,
+				  text: String(numberLength)
+				});
+				}else{
+					uni.removeTabBarBadge({
+						//给tabBar添加角标
+						index: 2,
+						text: String(numberLength)
+					});
+				} 
+			}
 		},
 
 		/**
 		 * 生命周期函数--监听页面隐藏
 		 */
 		onHide: function() {
-			console.log('此页面数据卸载了')
+			let cart = uni.getStorageSync('cart')
+			if(cart && getToken()){
+				let numberLength=0
+				cart.reduce((a,b)=>{
+					return numberLength+=b.productNum
+				},0)
+				if(numberLength>0){
+					uni.setTabBarBadge({
+				  //给tabBar添加角标
+				  index: 2,
+				  text: String(numberLength)
+				});
+				}else{
+					uni.removeTabBarBadge({
+						//给tabBar添加角标
+						index: 2,
+						text: String(numberLength)
+					});
+				} 
+			}
 		},
 
 		/**
@@ -180,6 +258,9 @@
 				let count = [];
 				cartList.forEach(e => {
 					if (e.current == true) {
+						console.log(count,'count')
+						console.log(count.length)
+						this.delNum=count.length
 						count.push(e);
 					}
 				});
@@ -192,7 +273,6 @@
 				});
 				this.getSumprice()
 			},
-
 			onshowDel(item, index) {
 				//显示删除
 				this.setData({
@@ -204,16 +284,38 @@
 
 			delItem(item, index) {
 				//点击删除 模拟删除本地数据
-				this.cartList.splice(index, 1)
-				this.setData({
-					current: '9999',
-					lock: false
+				let newCarList=this.cartList.filter(item=>{
+					return item["current"]!==true
 				})
-				uni.showToast({
-					title: '删除成功',
-					icon: 'none'
+				let newLength=this.cartList.filter(item=>{
+					return item["current"]==true
 				})
-				this.setTabBarBadge()
+				let that=this
+				uni.showModal({
+				    title: '确认删除',
+				    content: '确定删除该商品吗?',
+				    success(res) {
+				        if (res.confirm) {
+							that.delNum=newLength.length
+							that.setData({
+								current: '9999',
+								lock: false
+							})
+							uni.setStorageSync('cart',newCarList)
+							that.cartList=newCarList;
+							if(newCarList.length==0){
+								that.guanli=true
+							}
+							that.setTabBarBadge();
+				            uni.showToast({
+				            	title: '删除成功',
+				            	icon: 'none'
+				            })
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				});
 			},
 
 			oncencal() {
@@ -224,11 +326,34 @@
 			},
 
 			onsub(item, index) {
-				//减少 //已失效商品不做操作
 				if (item.productNum <= 1) {
 					return
 				}
 				let number = item.productNum - 1
+				let storeNumber=0
+				this.cartList.map(ite=>{
+					if(ite.productId==item.productId){
+						ite.productNum=number 
+					}
+				})
+				uni.setStorageSync('cart',this.cartList)
+				this.cartList.reduce((a,b)=>{
+					return toString(storeNumber+=b.productNum)
+				},0)
+				if(storeNumber>0){
+					uni.setTabBarBadge({
+					  //给tabBar添加角标
+					  index: 2,
+					  text: String(storeNumber)
+					});
+				}else{
+					uni.removeTabBarBadge({
+						//给tabBar添加角标
+						index: 2,
+						text: String(storeNumber)
+					});
+				}
+				
 				this.$set(item, 'productNum', number)
 				this.getSumprice() //计算总价
 			},
@@ -236,6 +361,28 @@
 			onadd(item, index) {
 				//增加
 				let num = item.productNum + 1;
+				let storeNumber=0
+				this.cartList.map(ite=>{
+					if(ite.productId==item.productId){
+						ite.productNum=num
+					}
+				})
+				uni.setStorageSync('cart',this.cartList)
+				this.cartList.reduce((a,b)=>{
+					return toString(storeNumber+=b.productNum)
+				},0)
+				if(storeNumber>0){
+					uni.setTabBarBadge({
+					  //给tabBar添加角标
+					  index: 2,
+					  text: String(storeNumber)
+					});
+				}else{
+					uni.removeTabBarBadge({
+						index: 2,
+						text: String(storeNumber)
+					})
+				}
 				this.$set(item, 'productNum', num)
 				this.getSumprice() //计算总价
 			},
@@ -291,7 +438,11 @@
 				that.sum = length
 				that.sumPrice = sumPrice
 			},
-			ontouchend() { //隐藏删除弹窗
+			adminCart(){
+				this.guanli=!this.guanli
+			},
+			ontouchend(item) { //隐藏删除弹窗
+			console.log(item,'touch')
 				console.log('触发了touch');
 				if (this.lock) {
 					setTimeout(() => {
@@ -303,6 +454,7 @@
 			},
 			clearInvalid() { //模拟清空失效商品  根据商品的status值来判断商品状态
 				this.cartList.forEach((e, index) => {
+					
 					if (e.status == 1) {
 						this.cartList.splice(index, 1)
 					}
@@ -341,20 +493,41 @@
 					url: '/pages/views/goods/goodsDetails'
 				});
 			},
+			commitStore(arr) {
+				let userId=uni.getStorageSync('userId');
+				let data = {
+					userId:userId,
+					productOrderReq:arr
+				}
+				uni.showLoading({
+					mask: true
+				})
+				let res = this.$request('/productOrder/save', data,'POST').then(res=>{
+					uni.hideLoading()
+					if (res.code == 1) {
+						console.log(res)
+						this.cartList=res.obj.list
+					} else {
+						uni.showToast({
+							title: res.msg,
+							icon: 'none'
+						})
+					}
+				})
+			},
 			settlement() { //结算
 				if (this.sum == 0) {
 					return
 				}
-				// 计算出被选中的数据
-				uni.showLoading({
-					title: '提交中...'
-				})
 				let arr = []
 				this.cartList.forEach(e => {
 					if (e.current == true) {
+						console.log(e)
 						arr.push(e)
 					}
 				})
+				let data=JSON.stringify(arr)
+				this.commitStore(data)
 				setGoodsData(arr)  //存储商品信息去支付
 				setTimeout(() => {
 					uni.hideLoading()
@@ -368,41 +541,66 @@
 					url: '/pages/views/tabBar/category'
 				});
 			},
-			getCarList() {
-				let userId=uni.getStorageSync('userId');
-				console.log(userId,'这是用户的id')
-				let data = {
-					userId:userId,
-					productId:'',
-					productName:'',
-					isSelected:'',
-					productPrice:'',
-					type:''
-				}
-				uni.showLoading({
-					mask: true
-				})
-				let res = this.$request('/shoppingCart/page', data,'POST').then(res=>{
-					uni.hideLoading()
-					if (res.code == 1) {
-						this.cartList=res.obj.list
-					} else {
-						uni.showToast({
-							title: res.msg,
-							icon: 'none'
-						})
-					}
-				})
-			},
+			// getCarList() {
+			// 	let userId=uni.getStorageSync('userId');
+			// 	let data = {
+			// 		userId:userId,
+			// 		productId:'',
+			// 		productName:'',
+			// 		isSelected:'',
+			// 		productPrice:'',
+			// 		type:''
+			// 	}
+			// 	uni.showLoading({
+			// 		mask: true
+			// 	})
+			// 	let res = this.$request('/shoppingCart/page', data,'POST').then(res=>{
+			// 		uni.hideLoading()
+			// 		if (res.code == 1) {
+			// 			this.cartList=res.obj.list
+			// 		} else {
+			// 			uni.showToast({
+			// 				title: res.msg,
+			// 				icon: 'none'
+			// 			})
+			// 		}
+			// 	})
+			// },
 
 		}
 	};
 </script>
 <style lang="scss" scoped>
-	.cart {
-		padding: 10rpx 4%;
+	page{
+		width: 100%;
+		height: 100%;
 	}
-
+	.cart {
+		padding: 10rpx 0;
+		width: 100%;
+		height: 100%;
+		background: #f8f8f8;
+	}
+    .header-cart{
+		position: fixed;
+		height: 115upx;
+		background: #FFF;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+	.header-content{
+		width: 100%;
+		height: 100%;
+		line-height: 160upx;
+		font-size: 26upx;
+		text-align: center;
+	}
+	.header-content text{
+		position: absolute;
+		left: 50upx;
+		top: 0upx;
+	}
 	.clearCart {
 		height: 80rpx;
 		font-size: 26rpx;
@@ -412,21 +610,23 @@
 		top: 0;
 		left: 0;
 		width: 100vw;
-		padding: 0 4%;
 		background-color: #FFFFFF;
 		z-index: 100;
 	}
 
 	.cart_box {
-		margin-top: 80rpx;
+		padding: 10rpx 4%;
+		margin-top: 110rpx;
 		padding-bottom: 100rpx;
+		height: 100%;
 	}
 
 	.cart_list {
 		width: 92vw;
 		height: calc(22vw + 34rpx);
-		border-radius: 12rpx;
-		box-shadow: 0px 4rpx 16rpx rgba(0, 0, 0, .1);
+		border-radius: 20upx;
+		background: #fff;
+		margin: 10upx 0;
 		overflow: hidden;
 		border: 0;
 		display: flex;
@@ -460,10 +660,12 @@
 	}
 
 	.cart_list .checkbox-box .checkbox .on {
-		width: 20rpx;
-		height: 20rpx;
+		width: 100%;
+		height: 100%;
 		border-radius: 100%;
 		align-items: center;
+		background: url(../../../static/images/system/select-cart.png) no-repeat center center;
+		background-size: cover;
 	}
 
 	.cart_list .cover {
@@ -573,7 +775,6 @@
 		width: 40rpx;
 		height: 40rpx;
 		font-size: 40rpx;
-		background-color: #f3f3f3;
 		border-radius: 4rpx;
 		text-align: center;
 		line-height: 40rpx;
@@ -587,7 +788,6 @@
 		width: 40rpx;
 		height: 40rpx;
 		margin: 0 8rpx;
-		background-color: #f3f3f3;
 	}
 
 	.right_btn .input input {
@@ -598,14 +798,12 @@
 		text-align: center;
 		align-items: center;
 		justify-content: center;
-		color: $mycolor;
 	}
 
 	.right_btn .add {
 		width: 40rpx;
 		height: 40rpx;
 		font-size: 40rpx;
-		background-color: #f3f3f3;
 		border-radius: 4rpx;
 		text-align: center;
 		line-height: 40rpx;
@@ -728,10 +926,12 @@
 	}
 
 	.bottom_all .checkbox-box .checkbox .on {
-		width: 20rpx;
-		height: 20rpx;
+		width: 100%;
+		height: 100%;
 		border-radius: 100%;
 		align-items: center;
+		background: url(../../../static/images/system/select-cart.png) no-repeat center center;
+		background-size: cover;
 	}
 
 	.bottom_all .rights {
@@ -752,15 +952,18 @@
 	}
 
 	.bottom_all .rights .jiesuan {
-		padding: 0 22rpx;
-		border-radius: 24rpx;
-		background-color: pink;
-		height: 50rpx;
-		line-height: 50rpx;
-		color: #ffffff;
 		font-size: 24rpx;
-		margin-top: 28rpx;
 		margin-left: 40rpx;
+		font-size: 28rpx;
+		color: #fff;
+		height: 70rpx;
+		line-height: 70rpx;
+		padding: 0 35rpx;
+		text-align: center;
+		font-weight: normal;
+		border-radius: 40rpx;
+		margin-top: 14rpx;
+		background: #E84A4A;
 
 	}
 

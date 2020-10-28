@@ -46,19 +46,19 @@ export default {
       colors: '',
       dataList: [{
       	name: '钟薛高 钟意你系列 特牛乳*4片 丝绒可可*4片 半巧主义*2 冰淇淋生鲜雪糕 10片装',
-      	img: "https://jlzcpt.cn/file/gxs/goods/hj.png",
+      	img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/hj.png",
       	money: '152.00',
       }, {
       	name: '巧妈妈 鸡蛋布甸 下午茶休闲零食儿童果冻布丁125g双层果酱味smzdm 4杯鸡蛋布甸（双层）',
-      	img: "https://jlzcpt.cn/file/gxs/goods/ty.png",
+      	img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/ty.png",
       	money: '25.80',
       }, {
       	name: '草莓云南夏季草莓新鲜水果3斤礼盒装 露天种植现摘现发 3斤精品装（4盒顺丰空运）',
-      	img: "https://jlzcpt.cn/file/gxs/goods/one.jpg",
+      	img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/one.jpg",
       	money: '59.90'
       }, {
       	name: 'DUNKINDONUTS唐恩都乐美国甜甜圈6个礼盒装 随机搭配6款',
-      	img: "https://jlzcpt.cn/file/gxs/goods/mf.png",
+      	img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/mf.png",
       	money: '35.90',
       }],
       current: '99999',

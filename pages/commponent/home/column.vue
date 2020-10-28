@@ -68,7 +68,7 @@
 		color: #133423;
 		font-weight: 800;
 		margin: 2% 3%;
-
+		width: 70%;
 		text {
 			font-size: 24upx;
 			color: #E84A4A;

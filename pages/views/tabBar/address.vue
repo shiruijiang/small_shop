@@ -3,14 +3,14 @@
 		<view class="address-ion">当前定位：</view>
 		<view class="address-flex">
 			<view class="address-with">{{addressMsg}}</view>
-			<view class="address-with-other">其他地址<image src="https://jlzcpt.cn/file/gxs/home/to-right.png"></image></view>
+			<view class="address-with-other">其他地址<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/to-right.png"></image></view>
 		</view>
 		
 		<view class="address-item">
 			<view class="nearby">附近门店：</view>
 			<view class="address-content" v-for="(item,index) in storeNameList" :key='index'>
 				<view class="address-img">
-					<image src="https://jlzcpt.cn/file/gxs/class/icon-banner-1.png" mode=""></image>
+					<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/class/icon-banner-1.png" mode=""></image>
 				</view>
 				<view class="address-cont">
 					<view class="address-life">{{item.storeName}}</view>

@@ -1,7 +1,7 @@
 <template>
  <view class="category-list">
 		<view v-for="(nav, index) in categoryList" :key="index" class="category" @tap="jumpList(nav)">
-			<view class="class_img"><image :src="'https://jlzcpt.cn/file/gxs'+nav.productTypeIcon" class="imgs"></image></view>
+			<view class="class_img"><image :src="'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs'+nav.productTypeIcon" class="imgs"></image></view>
 			<view class="text">{{ nav.productTypeName}}</view>
 		</view>
 </view>

@@ -43,7 +43,7 @@ page.data-v-91b993e2 {
   display: block;
 }
 .order_address.data-v-91b993e2 {
-  height: 150rpx;
+  height: 100rpx;
   width: 100%;
   background-color: #fff;
   border-radius: 10rpx;
@@ -55,9 +55,6 @@ page.data-v-91b993e2 {
   width: 100%;
   height: 100%;
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
   z-index: 10;
 }
 .address_box.data-v-91b993e2 {
@@ -77,9 +74,15 @@ page.data-v-91b993e2 {
   -webkit-align-items: center;
           align-items: center;
 }
-.weizhi_icon text.data-v-91b993e2 {
-  font-size: 40rpx;
-  margin-left: 10rpx;
+.weizhi_icon.data-v-91b993e2 {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 20rpx 20rpx;
+  float: left;
+}
+.weizhi_icon image.data-v-91b993e2 {
+  width: 60rpx;
+  height: 60rpx;
 }
 .address_box .center.data-v-91b993e2 {
   margin-left: 20rpx;
@@ -90,14 +93,16 @@ page.data-v-91b993e2 {
 }
 .address_box .center .name .text1.data-v-91b993e2 {
   font-size: 26rpx;
-  font-weight: bold;
-  color: #333;
+  color: #000000;
   display: inline-block;
+  width: 180rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-right: 20rpx;
 }
 .phones.data-v-91b993e2 {
   font-size: 24rpx;
-  color: #999;
+  color: #000000;
   z-index: 0;
 }
 .address_box .address_name.data-v-91b993e2 {
@@ -225,6 +230,7 @@ page.data-v-91b993e2 {
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+  background: #fff;
 }
 .morelist .title .quan.data-v-91b993e2 {
   font-size: 20rpx;

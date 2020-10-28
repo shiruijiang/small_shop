@@ -10,7 +10,7 @@
 /* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ 4);var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 
-var _request = _interopRequireDefault(__webpack_require__(/*! utils/request.js */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var nodata = function nodata() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/nodata */ "pages/commponent/public/nodata").then((function () {return resolve(__webpack_require__(/*! ./pages/commponent/public/nodata */ 277));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);}; //引入异步请求函数
+var _request = _interopRequireDefault(__webpack_require__(/*! utils/request.js */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var nodata = function nodata() {__webpack_require__.e(/*! require.ensure | pages/commponent/public/nodata */ "pages/commponent/public/nodata").then((function () {return resolve(__webpack_require__(/*! ./pages/commponent/public/nodata */ 284));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);}; //引入异步请求函数
 _vue.default.prototype.$request = _request.default.request; //挂载到全局
 _vue.default.component("nodata", nodata);
 _vue.default.config.productionTip = false;
@@ -214,14 +214,24 @@ var _default = {
     /**
        * 模拟获取购物车的数量 getCart
        */
-    var cart = (0, _auth.getCart)();
-    var length = '';
+    var cart = uni.getStorageSync('cart');
     if (cart && (0, _auth.getToken)()) {
-      length = cart.length;
-      uni.setTabBarBadge({
-        //给tabBar添加角标
-        index: 2,
-        text: String(length) });
+      var numberLength = 0;
+      cart.reduce(function (a, b) {
+        return numberLength += b.productNum;
+      }, 0);
+      if (numberLength > 0) {
+        uni.setTabBarBadge({
+          //给tabBar添加角标
+          index: 2,
+          text: String(numberLength) });
+
+      } else {
+        uni.removeTabBarBadge({
+          index: 2,
+          text: String(numberLength) });
+
+      }
 
     }
   },

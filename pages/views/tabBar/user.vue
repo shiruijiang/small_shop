@@ -2,14 +2,14 @@
 <view class="userbox">
 <!-- 头部个人信息 不变-->
 <view class="userHeader">
-  <image src="https://jlzcpt.cn/file/gxs/user/user-bg.png" class="user_bg"></image>
-  <image src="https://jlzcpt.cn/file/gxs/user/user-bg.png" class="user_bg1"></image>
+  <image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/user-bg.png" class="user_bg"></image>
+  <image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/user-bg.png" class="user_bg1"></image>
   <view class="nav">
       <view class="user" @click="onLogin">
         <image :src="userdata.avatarUrl" v-if="userdata.avatarUrl"></image>
 		<image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602847085376&di=a75f273c137b2cfe00b8d399563fb538&imgtype=0&src=http%3A%2F%2Fimages.669pic.com%2Felement_pic%2F3%2F88%2F77%2F52%2F63160fa6edcfde1b73bafadf9be77e8d.jpg" v-else></image>
         <text>{{userdata.nickName || '点击登录'}}</text></view>
-		<view class="shezhi" @tap='gotoShezhi'><image src="https://jlzcpt.cn/file/gxs/user/mine-shezhi.png" mode=""></image></view>
+		<view class="shezhi" @tap='gotoShezhi'><image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-shezhi.png" mode=""></image></view>
   </view>
   	  
 </view>
@@ -22,7 +22,7 @@
   <!-- 全部订单 -->
   <my-order :orderText="orderText" :colors="colors"></my-order>
   <!-- 我的账户 -->
-  <my-account :storeContent="storeContent"></my-account>
+  <my-account :storeContent="storeContent" :isShow="true"></my-account>
   <!-- 我的足迹 -->
   <!-- <my-footprint :logList="logList" :colors="colors"></my-footprint> -->
   <!-- 我的服务 -->
@@ -71,45 +71,45 @@ export default {
 	  storeContent:{},
       //动画效果
       orderText: [{
-              name: '全部订单',
-              url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon1.png',
+              name: '待付款',
+              url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon2.png',
               id: 0
             }, {
-              name: '待付款',
-              url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon2.png',
+              name: '待提货',
+              url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon3.png',
               id: 1
             }, {
-              name: '待提货',
-              url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon3.png',
+              name: '已提货',
+              url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon4.png',
               id: 2
             },
            {
-           name: '已提货',
-           url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon4.png',
+           name: '退货',
+           url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon1.png',
            id: 3
          }],
       logList: [{ //足迹的数据应该由后台进行存储
         name: '真巧 巧克力涂层甜甜圈 早餐蛋糕手撕面包休闲小零食办公室小吃零嘴下午茶点心 500g甜甜圈（拉花款）',
-        img: "https://jlzcpt.cn/file/gxs/goods/one.jpg"
+        img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/one.jpg"
       }, {
         name: '巧妈妈 鸡蛋布甸 下午茶休闲零食儿童果冻布丁125g双层果酱味smzdm 4杯鸡蛋布甸（双层）',
-        img: "https://jlzcpt.cn/file/gxs/goods/four.jpg"
+        img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/four.jpg"
       }],
       serverList: [{
         name: '我的收藏',
-        icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive1.png',
+        icon: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-serive1.png',
         url: '/pages/views/user/mycollection',
         id: 1,
         elseUrl: ''
       }, {
         name: '分享小程序',
-        icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive2.png',
+        icon: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-serive2.png',
         url: '/pages/views/user/extension',
         id: 7,
         elseUrl: ''
       }, {
         name: '联系我们',
-        icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive3.png',
+        icon: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-serive3.png',
         url: '/pages/views/user/mydistribution',
         id: 8,
         elseUrl: ''
@@ -211,7 +211,6 @@ export default {
 	  if(StoreNumber){
 		  this.storeContent=StoreNumber
 	  }
-	  console.log(StoreNumber,'5616516161844')
 	},
     coverTouchStart(e) {
       //滑动开始 记录目标原始坐标
@@ -256,13 +255,6 @@ export default {
       }
     },
 	//判断用户有没有登录
-	handleClick () {
-		checkLogin(() => {
-			uni.navigateTo({
-				url: 'xxx/xxx'
-			})
-		})
-	},
     coverTouchEnd(e) {
       //滑动结束 回到原始位置
       if (this.moving == false) {

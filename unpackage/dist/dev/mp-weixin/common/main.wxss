@@ -4566,6 +4566,8 @@ scroll-view.cu-steps .cu-item {
 }
 page {
   background-color: #fff;
+  height: 100%;
+  background: #f8f8f8;
 }
 .container {
   height: 100%;
@@ -4608,6 +4610,7 @@ page {
 }
 .icon-shoucang1:before {
   content: "\e620";
+  color: #e84a4a;
 }
 .icon-fanhui:before {
   content: "\e66d";

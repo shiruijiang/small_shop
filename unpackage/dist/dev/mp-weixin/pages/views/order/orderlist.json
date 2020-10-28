@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "我的订单",
-  "navigationStyle": "custom",
+  "navigationBarTitleText": "订单列表",
   "usingComponents": {
     "tabs": "/pages/commponent/public/tabs",
     "loading": "/pages/commponent/public/loading",

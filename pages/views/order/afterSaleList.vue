@@ -62,7 +62,7 @@
 								<view class="success">
 									<text class="success_type">完成</text>
 									<text class="success_t2">服务已完成，感谢您的支持</text>
-									<image class="right_img" src="https://jlzcpt.cn/file/gxs/home/right.png" mode=""></image>
+									<image class="right_img" src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/home/right.png" mode=""></image>
 								</view>
 							</view>
 						</view>

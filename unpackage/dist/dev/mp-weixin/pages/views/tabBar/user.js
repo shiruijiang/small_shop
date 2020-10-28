@@ -230,18 +230,18 @@ var _auth = __webpack_require__(/*! @/utils/auth */ 8); //
 //
 //
 //
-var app = getApp();var myAccount = function myAccount() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-account */ "pages/commponent/user/my-account").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-account */ 349));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var listCell = function listCell() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/list-cell */ "pages/commponent/user/list-cell").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/list-cell */ 356));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myOrder = function myOrder() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-order */ "pages/commponent/user/my-order").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-order */ 363));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myFootprint = function myFootprint() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-footprint */ "pages/commponent/user/my-footprint").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-footprint */ 370));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myServer = function myServer() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-server */ "pages/commponent/user/my-server").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-server */ 377));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { colors: '', startY: 0, //原始坐标
+var app = getApp();var myAccount = function myAccount() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-account */ "pages/commponent/user/my-account").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-account */ 115));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var listCell = function listCell() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/list-cell */ "pages/commponent/user/list-cell").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/list-cell */ 356));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myOrder = function myOrder() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-order */ "pages/commponent/user/my-order").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-order */ 363));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myFootprint = function myFootprint() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-footprint */ "pages/commponent/user/my-footprint").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-footprint */ 370));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myServer = function myServer() {__webpack_require__.e(/*! require.ensure | pages/commponent/user/my-server */ "pages/commponent/user/my-server").then((function () {return resolve(__webpack_require__(/*! ../../commponent/user/my-server */ 377));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { colors: '', startY: 0, //原始坐标
       moving: false, //当前元素的状态（是否移动）
       coverTransform: 'translateY(0px)', //元素的移动
       coverTransition: '0s', storeContent: {}, //动画效果
-      orderText: [{ name: '全部订单', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon1.png', id: 0 }, { name: '待付款', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon2.png', id: 1 }, { name: '待提货', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon3.png', id: 2 }, { name: '已提货', url: 'https://jlzcpt.cn/file/gxs/user/mine-order-icon4.png', id: 3 }], logList: [{ //足迹的数据应该由后台进行存储
-        name: '真巧 巧克力涂层甜甜圈 早餐蛋糕手撕面包休闲小零食办公室小吃零嘴下午茶点心 500g甜甜圈（拉花款）', img: "https://jlzcpt.cn/file/gxs/goods/one.jpg" }, { name: '巧妈妈 鸡蛋布甸 下午茶休闲零食儿童果冻布丁125g双层果酱味smzdm 4杯鸡蛋布甸（双层）', img: "https://jlzcpt.cn/file/gxs/goods/four.jpg" }], serverList: [{ name: '我的收藏', icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive1.png', url: '/pages/views/user/mycollection', id: 1, elseUrl: '' }, { name: '分享小程序', icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive2.png',
+      orderText: [{ name: '待付款', url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon2.png', id: 0 }, { name: '待提货', url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon3.png', id: 1 }, { name: '已提货', url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon4.png', id: 2 }, { name: '退货', url: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-order-icon1.png', id: 3 }], logList: [{ //足迹的数据应该由后台进行存储
+        name: '真巧 巧克力涂层甜甜圈 早餐蛋糕手撕面包休闲小零食办公室小吃零嘴下午茶点心 500g甜甜圈（拉花款）', img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/one.jpg" }, { name: '巧妈妈 鸡蛋布甸 下午茶休闲零食儿童果冻布丁125g双层果酱味smzdm 4杯鸡蛋布甸（双层）', img: "https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/goods/four.jpg" }], serverList: [{ name: '我的收藏', icon: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-serive1.png', url: '/pages/views/user/mycollection', id: 1, elseUrl: '' }, { name: '分享小程序', icon: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-serive2.png',
         url: '/pages/views/user/extension',
         id: 7,
         elseUrl: '' },
       {
         name: '联系我们',
-        icon: 'https://jlzcpt.cn/file/gxs/user/mine-serive3.png',
+        icon: 'https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/user/mine-serive3.png',
         url: '/pages/views/user/mydistribution',
         id: 8,
         elseUrl: '' }],
@@ -343,7 +343,6 @@ var app = getApp();var myAccount = function myAccount() {__webpack_require__.e(/
       if (StoreNumber) {
         this.storeContent = StoreNumber;
       }
-      console.log(StoreNumber, '5616516161844');
     },
     coverTouchStart: function coverTouchStart(e) {
       //滑动开始 记录目标原始坐标
@@ -388,13 +387,6 @@ var app = getApp();var myAccount = function myAccount() {__webpack_require__.e(/
       }
     },
     //判断用户有没有登录
-    handleClick: function handleClick() {
-      (0, _auth.checkLogin)(function () {
-        uni.navigateTo({
-          url: 'xxx/xxx' });
-
-      });
-    },
     coverTouchEnd: function coverTouchEnd(e) {
       //滑动结束 回到原始位置
       if (this.moving == false) {

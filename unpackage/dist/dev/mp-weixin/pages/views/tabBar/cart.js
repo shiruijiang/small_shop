@@ -102,16 +102,10 @@ var render = function() {
       ? _vm.__map(_vm.cartList, function(item, index) {
           var $orig = _vm.__get_orig(item)
 
-          var g0 = item.selectSku
-            ? (Number(item.productPrice) * item.productNum).toFixed(2)
-            : null
-          var g1 = !item.selectSku
-            ? (Number(item.productPrice) * item.productNum).toFixed(2)
-            : null
+          var m0 = Number(item.productPrice)
           return {
             $orig: $orig,
-            g0: g0,
-            g1: g1
+            m0: m0
           }
         })
       : null
@@ -157,6 +151,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -324,33 +330,101 @@ var _auth = __webpack_require__(/*! @/utils/auth.js */ 8);function _defineProper
 //
 //
 //
-var app = getApp();var _default = { data: function data() {return { colors: '#009944', cartList: [], current: 99999, allCurrent: false, sum: 0, sumPrice: 0, lock: false, bottomShow: '' };}, components: {}, props: {}, /**
-                                                                                                                                                                                                                          * 生命周期函数--监听页面加载
-                                                                                                                                                                                                                          */onLoad: function onLoad(options) {this.getCarList();this.bottomShow = 0;}, /**
-                                                                                                                                                                                                                                                                                                        * 生命周期函数--监听页面初次渲染完成
-                                                                                                                                                                                                                                                                                                        */onReady: function onReady() {}, /**
-                                                                                                                                                                                                                                                                                                                                           * 生命周期函数--监听页面显示
-                                                                                                                                                                                                                                                                                                                                           */onShow: function onShow() {var cart = (0, _auth.getCart)() || [];this.setData({ colors: app.globalData.newColor, current: '99999', cartList: cart, allCurrent: false, sum: 0, sumPrice: 0 });this.getCarList();}, /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 生命周期函数--监听页面隐藏
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */onHide: function onHide() {console.log('此页面数据卸载了');}, /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         * 生命周期函数--监听页面卸载
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         */onUnload: function onUnload() {}, /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 页面相关事件处理函数--监听用户下拉动作
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */onPullDownRefresh: function onPullDownRefresh() {}, /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * 页面上拉触底事件的处理函数
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     */onReachBottom: function onReachBottom() {}, /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    * 用户点击右上角分享
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */onShareAppMessage: function onShareAppMessage() {}, methods: { setCurrent: function setCurrent(item, index) {var _this$setData;if (item.status == 1) {//如果商品的status 状态为1 说明已经失效
-        return;} //单选
-      var cartList = this.cartList;var dataList = this.cartList[index];dataList.current = !dataList.current;var datas = 'cartList[' + index + ']';var currentAll = false;var count = [];cartList.forEach(function (e) {if (e.current == true) {count.push(e);}});if (count.length == cartList.length) {//判断是否全选
-        currentAll = true;}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var app = getApp();var _default = { data: function data() {return { colors: '#009944', cartList: [], current: 99999, allCurrent: false, sum: 0, delSum: 0, sumPrice: 0, lock: false, bottomShow: '', sumIndex: null, guanli: true, delNum: 0 };}, components: {}, props: {}, /**
+                                                                                                                                                                                                                                                                              * 生命周期函数--监听页面加载
+                                                                                                                                                                                                                                                                              */onLoad: function onLoad(options) {// this.getCarList()
+    this.bottomShow = 0;var cart = uni.getStorageSync('cart');console.log(cart);this.cartList = cart;if (cart && (0, _auth.getToken)()) {var numberLength = 0;cart.reduce(function (a, b) {return numberLength += b.productNum;}, 0);if (numberLength > 0) {uni.setTabBarBadge({ //给tabBar添加角标
+          index: 2, text: String(numberLength) });} else {uni.removeTabBarBadge({ //给tabBar添加角标
+          index: 2, text: String(numberLength) });}}}, /**
+                                                        * 生命周期函数--监听页面初次渲染完成
+                                                        */onReady: function onReady() {}, /**
+                                                                                           * 生命周期函数--监听页面显示
+                                                                                           */onShow: function onShow() {// let cart = getCart() || []
+    // this.setData({
+    // 	colors: app.globalData.newColor,
+    // 	current: '99999',
+    // 	cartList: cart,
+    // 	allCurrent: false,
+    // 	sum: 0,
+    // 	sumPrice: 0
+    // });
+    // this.getCarList();
+    var carts = uni.getStorageSync('cart');this.cartList = carts;if (carts && (0, _auth.getToken)()) {var numberLength = 0;carts.reduce(function (a, b) {return numberLength += b.productNum;}, 0);if (numberLength > 0) {uni.setTabBarBadge({ //给tabBar添加角标
+          index: 2, text: String(numberLength) });} else {uni.removeTabBarBadge({ //给tabBar添加角标
+          index: 2, text: String(numberLength) });}}}, /**
+                                                        * 生命周期函数--监听页面隐藏
+                                                        */onHide: function onHide() {var cart = uni.getStorageSync('cart');if (cart && (0, _auth.getToken)()) {var numberLength = 0;cart.reduce(function (a, b) {return numberLength += b.productNum;}, 0);if (numberLength > 0) {uni.setTabBarBadge({ //给tabBar添加角标
+          index: 2, text: String(numberLength) });
+      } else {
+        uni.removeTabBarBadge({
+          //给tabBar添加角标
+          index: 2,
+          text: String(numberLength) });
+
+      }
+    }
+  },
+
+  /**
+      * 生命周期函数--监听页面卸载
+      */
+  onUnload: function onUnload() {},
+
+  /**
+                                     * 页面相关事件处理函数--监听用户下拉动作
+                                     */
+  onPullDownRefresh: function onPullDownRefresh() {},
+
+  /**
+                                                       * 页面上拉触底事件的处理函数
+                                                       */
+  onReachBottom: function onReachBottom() {},
+
+  /**
+                                               * 用户点击右上角分享
+                                               */
+  onShareAppMessage: function onShareAppMessage() {},
+  methods: {
+    setCurrent: function setCurrent(item, index) {var _this = this,_this$setData;
+      if (item.status == 1) {//如果商品的status 状态为1 说明已经失效
+        return;
+      }
+      //单选
+      var cartList = this.cartList;
+      var dataList = this.cartList[index];
+      dataList.current = !dataList.current;
+      var datas = 'cartList[' + index + ']';
+      var currentAll = false;
+      var count = [];
+      cartList.forEach(function (e) {
+        if (e.current == true) {
+          console.log(count, 'count');
+          console.log(count.length);
+          _this.delNum = count.length;
+          count.push(e);
+        }
+      });
+      if (count.length == cartList.length) {//判断是否全选
+        currentAll = true;
+      }
       this.setData((_this$setData = {}, _defineProperty(_this$setData,
       datas, dataList), _defineProperty(_this$setData, "allCurrent",
       currentAll), _this$setData));
 
       this.getSumprice();
     },
-
     onshowDel: function onshowDel(item, index) {
       //显示删除
       this.setData({
@@ -362,16 +436,38 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
 
     delItem: function delItem(item, index) {
       //点击删除 模拟删除本地数据
-      this.cartList.splice(index, 1);
-      this.setData({
-        current: '9999',
-        lock: false });
+      var newCarList = this.cartList.filter(function (item) {
+        return item["current"] !== true;
+      });
+      var newLength = this.cartList.filter(function (item) {
+        return item["current"] == true;
+      });
+      var that = this;
+      uni.showModal({
+        title: '确认删除',
+        content: '确定删除该商品吗?',
+        success: function success(res) {
+          if (res.confirm) {
+            that.delNum = newLength.length;
+            that.setData({
+              current: '9999',
+              lock: false });
 
-      uni.showToast({
-        title: '删除成功',
-        icon: 'none' });
+            uni.setStorageSync('cart', newCarList);
+            that.cartList = newCarList;
+            if (newCarList.length == 0) {
+              that.guanli = true;
+            }
+            that.setTabBarBadge();
+            uni.showToast({
+              title: '删除成功',
+              icon: 'none' });
 
-      this.setTabBarBadge();
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
     },
 
     oncencal: function oncencal() {
@@ -382,11 +478,34 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
     },
 
     onsub: function onsub(item, index) {
-      //减少 //已失效商品不做操作
       if (item.productNum <= 1) {
         return;
       }
       var number = item.productNum - 1;
+      var storeNumber = 0;
+      this.cartList.map(function (ite) {
+        if (ite.productId == item.productId) {
+          ite.productNum = number;
+        }
+      });
+      uni.setStorageSync('cart', this.cartList);
+      this.cartList.reduce(function (a, b) {
+        return toString(storeNumber += b.productNum);
+      }, 0);
+      if (storeNumber > 0) {
+        uni.setTabBarBadge({
+          //给tabBar添加角标
+          index: 2,
+          text: String(storeNumber) });
+
+      } else {
+        uni.removeTabBarBadge({
+          //给tabBar添加角标
+          index: 2,
+          text: String(storeNumber) });
+
+      }
+
       this.$set(item, 'productNum', number);
       this.getSumprice(); //计算总价
     },
@@ -394,6 +513,28 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
     onadd: function onadd(item, index) {
       //增加
       var num = item.productNum + 1;
+      var storeNumber = 0;
+      this.cartList.map(function (ite) {
+        if (ite.productId == item.productId) {
+          ite.productNum = num;
+        }
+      });
+      uni.setStorageSync('cart', this.cartList);
+      this.cartList.reduce(function (a, b) {
+        return toString(storeNumber += b.productNum);
+      }, 0);
+      if (storeNumber > 0) {
+        uni.setTabBarBadge({
+          //给tabBar添加角标
+          index: 2,
+          text: String(storeNumber) });
+
+      } else {
+        uni.removeTabBarBadge({
+          index: 2,
+          text: String(storeNumber) });
+
+      }
       this.$set(item, 'productNum', num);
       this.getSumprice(); //计算总价
     },
@@ -449,20 +590,25 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
       that.sum = length;
       that.sumPrice = sumPrice;
     },
-    ontouchend: function ontouchend() {var _this = this; //隐藏删除弹窗
+    adminCart: function adminCart() {
+      this.guanli = !this.guanli;
+    },
+    ontouchend: function ontouchend(item) {var _this2 = this; //隐藏删除弹窗
+      console.log(item, 'touch');
       console.log('触发了touch');
       if (this.lock) {
         setTimeout(function () {
-          _this.setData({
+          _this2.setData({
             lock: false });
 
         }, 100);
       }
     },
-    clearInvalid: function clearInvalid() {var _this2 = this; //模拟清空失效商品  根据商品的status值来判断商品状态
+    clearInvalid: function clearInvalid() {var _this3 = this; //模拟清空失效商品  根据商品的status值来判断商品状态
       this.cartList.forEach(function (e, index) {
+
         if (e.status == 1) {
-          _this2.cartList.splice(index, 1);
+          _this3.cartList.splice(index, 1);
         }
         e.current = false;
       });
@@ -499,20 +645,41 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
         url: '/pages/views/goods/goodsDetails' });
 
     },
+    commitStore: function commitStore(arr) {var _this4 = this;
+      var userId = uni.getStorageSync('userId');
+      var data = {
+        userId: userId,
+        productOrderReq: arr };
+
+      uni.showLoading({
+        mask: true });
+
+      var res = this.$request('/productOrder/save', data, 'POST').then(function (res) {
+        uni.hideLoading();
+        if (res.code == 1) {
+          console.log(res);
+          _this4.cartList = res.obj.list;
+        } else {
+          uni.showToast({
+            title: res.msg,
+            icon: 'none' });
+
+        }
+      });
+    },
     settlement: function settlement() {//结算
       if (this.sum == 0) {
         return;
       }
-      // 计算出被选中的数据
-      uni.showLoading({
-        title: '提交中...' });
-
       var arr = [];
       this.cartList.forEach(function (e) {
         if (e.current == true) {
+          console.log(e);
           arr.push(e);
         }
       });
+      var data = JSON.stringify(arr);
+      this.commitStore(data);
       (0, _auth.setGoodsData)(arr); //存储商品信息去支付
       setTimeout(function () {
         uni.hideLoading();
@@ -525,33 +692,33 @@ var app = getApp();var _default = { data: function data() {return { colors: '#00
       uni.switchTab({
         url: '/pages/views/tabBar/category' });
 
-    },
-    getCarList: function getCarList() {var _this3 = this;
-      var userId = uni.getStorageSync('userId');
-      console.log(userId, '这是用户的id');
-      var data = {
-        userId: userId,
-        productId: '',
-        productName: '',
-        isSelected: '',
-        productPrice: '',
-        type: '' };
-
-      uni.showLoading({
-        mask: true });
-
-      var res = this.$request('/shoppingCart/page', data, 'POST').then(function (res) {
-        uni.hideLoading();
-        if (res.code == 1) {
-          _this3.cartList = res.obj.list;
-        } else {
-          uni.showToast({
-            title: res.msg,
-            icon: 'none' });
-
-        }
-      });
-    } } };exports.default = _default;
+    }
+    // getCarList() {
+    // 	let userId=uni.getStorageSync('userId');
+    // 	let data = {
+    // 		userId:userId,
+    // 		productId:'',
+    // 		productName:'',
+    // 		isSelected:'',
+    // 		productPrice:'',
+    // 		type:''
+    // 	}
+    // 	uni.showLoading({
+    // 		mask: true
+    // 	})
+    // 	let res = this.$request('/shoppingCart/page', data,'POST').then(res=>{
+    // 		uni.hideLoading()
+    // 		if (res.code == 1) {
+    // 			this.cartList=res.obj.list
+    // 		} else {
+    // 			uni.showToast({
+    // 				title: res.msg,
+    // 				icon: 'none'
+    // 			})
+    // 		}
+    // 	})
+    // },
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -4,7 +4,7 @@
 <!-- <view class="distribution">
   <view class="userinfo" :style="'background:' + colors">
     <image :src="userinfo.avatarUrl" v-if="userinfo.avatarUrl"></image>
-	<image src="https://jlzcpt.cn/file/gxs/face.jpg" v-else></image>
+	<image src="https://jlzcpt.oss-cn-beijing.aliyuncs.com/static/gxs/face.jpg" v-else></image>
     <view class="user_name">
       <view class="p1">{{userinfo.nickName || '张三'}}</view>
       <view class="p2">推荐人：李四</view>

@@ -6,7 +6,7 @@
     <item-cell cellname="意见反馈" ></item-cell>
    </view>
    <!-- 选择主题 -->
-   <view class="cu-list menu sm-border card-menu">
+   <!-- <view class="cu-list menu sm-border card-menu">
 			<view class="cu-item">
 				<view class="content flex align-center">
 					<text :class="'cuIcon-colorlens text-' + themeColor.name"></text>
@@ -19,7 +19,7 @@
 					</button>
 				</view>
 			</view>
-		</view>
+		</view> -->
     <!-- 选择颜色模态框 -->
     <view :class="'cu-modal ' + (colorModal == true?'show':'')">
 			<view class="cu-dialog">
@@ -137,6 +137,14 @@ export default {
         success: function (res) {
           if (res.confirm) {
             removeToken();
+			uni.removeStorageSync('userId');
+			uni.removeStorageSync('userinfo');
+			uni.openSetting({
+				success(res) {
+					console.log(res,'121212')
+				}
+			})
+			// UMWXHandler.setRefreshTokenAvailable(false);
             uni.showToast({
               title: '退出成功',
               icon: 'none'
@@ -145,7 +153,7 @@ export default {
               uni.switchTab({
                 url: '../tabBar/home'
               });
-            }, 1500);
+            }, 1000);
           }
         }
       });

@@ -1,13 +1,13 @@
 .carousel {
-	height: 100vw;
+	height: 50vw;
 	width: 100vw;
-	position: absolute;
 	top: 0upx;
 	left: 0;
-	overflow: hidden;
 	z-index: 10;
 }
-
+.goodsDetails{
+	height: auto;
+}
 .carousel swiper {
 	height: 100%;
 }
@@ -15,15 +15,13 @@
 .image-wrapper {
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 }
 
 .swiper-item {
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	height: 100vw;
-	overflow: hidden;
+	height: 50vw;
 	border-bottom: 1upx solid rgba(0, 0, 0, 0.01);
 	position: relative;
 }
@@ -34,11 +32,10 @@
 }
 
 .place {
-	height: 100vw;
+	height: 50vw;
 	position: relative;
 	top: 0;
 	left: 0;
-	overflow: hidden;
 }
 
 .goods_info {
@@ -53,33 +50,41 @@
 	font-weight: bold;
 	color: #333;
 	width: 100%;
-	overflow: hidden;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
 
 .goods_info .goods_price {
-	height: 80upx;
-	line-height: 80upx;
 	display: flex;
 	align-items: center;
 }
-
+.goods_price{
+	width: 100%;
+	height: 103upx;
+	background: linear-gradient(129deg, #E74949 42%, #F5EB69 100%);
+}
+.goods_price view{
+	display: inline-block;
+	margin-left: 54%;
+	font-size: 20upx;
+	color: #fff;
+}
 .goods_price .money {
-	font-size: 36upx;
-	font-weight: bold;
-	color: $mycolor;
+	display: inline-block;
+	color: #fff;
+	font-size: 30upx;
+	padding: 32upx 20upx 32upx 34upx;
 }
 
 .goods_price .h_money {
-	font-size: 28upx;
-	margin-left: 20upx;
+	display: inline-block;
 	text-decoration: line-through;
-	color: #999;
+	color: #fff;
+	font-size: 20upx;
 }
 .other{
-	padding: 0 4%;
+	padding: 3% 4%;
 	height: 60upx;
 	line-height: 60upx;
 	display: flex;
@@ -106,7 +111,7 @@
 
 .shoucang,
 .go_btn {
-	width: 80upx;
+	width: 60upx;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -122,13 +127,13 @@
 }
 
 .shoucang .sc_icons text {
-	font-size: 45upx;
+	font-size: 36upx;
 	color: #999;
 }
 
 .shoucang .sc_text {
 	font-size: 22upx;
-	color: #333;
+	color: #999;
 	font-weight: 500;
 }
 
@@ -172,13 +177,11 @@
 	width: 140upx;
 	height: 120upx;
 	display: block;
-	overflow: hidden;
 	box-sizing: border-box;
 	border-radius: 8upx;
 }
 
 .shop_center {
-	overflow: hidden;
 	margin-left: 20upx;
 }
 
@@ -228,7 +231,8 @@
 }
 
 .details {
-	padding: 20upx 4%;
+	height: 182vh;
+	padding: 20upx 0;
 	margin-top: 20upx;
 	border-top: 10upx solid #ddd;
 }
@@ -240,6 +244,8 @@
 
 .details_content {
 	margin-top: 30upx;
+	width: 100%;
+	height: 100%;
 }
 
 .operation {
@@ -255,23 +261,34 @@
 	bottom: 0;
 	left: 0;
 	padding: 0 20upx;
+	padding-left: 30upx;
 	z-index: 90;
 }
 
 .operation .home,
 .cart {
-	width: 80upx;
-	height: 80upx;
-	line-height: 80upx;
+	width: 100upx;
+	height: 100upx;
+	line-height: 100upx;
 	text-align: center;
-	margin-right: 20upx;
+	display: flex;
+	flex-direction: column;
+	margin-top: 10upx;
 }
-
-.operation .home text,
-.cart text {
-	font-size: 40upx;
-	font-weight: bold;
-	color: #666;
+.operation .home text,.cart text{
+	height: 20upx;
+	display: block;
+	font-size: 24upx;
+	width: 100upx;
+	margin: 0;
+	margin-top: -40upx;
+	color: #009944;
+}
+.operation .home image,
+.cart image {
+	width: 45upx;
+	height: 45upx;
+	margin-top: 20upx;
 }
 
 .operation .btns {
@@ -281,28 +298,23 @@
 }
 
 .operation .btns .addcart {
-	height: 70upx;
-	line-height: 70upx;
+	height: 80upx;
+	line-height: 80upx;
 	text-align: center;
-	border: 2upx solid #A160F0;
 	padding: 0 40upx;
 	border-radius: 40upx 0 0 40upx;
 	font-size: 24upx;
-	color: #A160F0;
-	font-weight: bold;
 }
 
 .operation .btns .dingjin {
-	height: 70upx;
-	line-height: 70upx;
+	height: 80upx;
+	line-height: 80upx;
 	text-align: center;
 	padding: 0 40upx;
 	border-radius: 0 40upx 40upx 0;
 	border-left: none;
 	font-size: 24upx;
 	color: #fff;
-	background-color: #A160F0;
-	font-weight: bold;
 }
 
 /* 优惠券 */
@@ -316,16 +328,16 @@
 	transition: all 0.3s;
 }
 
-.mask {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background: #000;
-	z-index: 900;
-	opacity: 0.7;
-}
+// .mask {
+// 	width: 100%;
+// 	height: 100%;
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	background: #000;
+// 	z-index: 900;
+// 	opacity: 0.7;
+// }
 
 .scrolls {
 	width: 100vw;
@@ -335,73 +347,12 @@
 }
 
 /* 播放视频的轮播图样式 */
-.place_tow {
-	width: 100vw;
-	height: 100vw;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
 
-.place_tow .videocover {
-	width: 100%;
-	height: 100%;
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 5;
-}
-
-.playbtn {
-	width: 100upx!important;
-	height: 100upx!important;
-	display: block;
-	background-color: rgba(0, 0, 0, 0.2);
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 50%;
-	z-index: 999;
-	overflow: hidden;
-	image{
-		width: 100%;
-		height: 100%;
-		display: block;
-	}
-}
 
 /* 静音按钮 */
-.shengyin {
-	position: absolute;
-	bottom: 40upx;
-	right: 40upx;
-	z-index: 10;
-	width: 50upx;
-	height: 50upx;
-}
 
-.shengyin image {
-	width: 50upx;
-	height: 50upx;
-	display: block;
-	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.2);
-}
 
 /* 预览视频弹窗 */
-.previewvideo {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: #000;
-	z-index: -10;
-	opacity: 0;
-}
 
 .onshowvideo {
 	opacity: 1;
@@ -409,43 +360,9 @@
 	z-index: 900;
 }
 
-.previewvideo .close {
-	width: 100vw;
-	height: 10vh;
-	line-height: 10vh;
-	display: flex;
-	align-content: center;
-	align-items: flex-end;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 20;
-}
 
-.previewvideo .close image {
-	width: 50upx;
-	height: 50upx;
-	display: block;
-	justify-content: center;
-	margin-left: 30upx;
-	margin-bottom: 20upx;
-	border-radius: 50%;
-	padding: 10upx;
-	background-color: rgba(0, 0, 0, 0.2);
-}
 
-.videos {
-	height: 100vh;
-	width: 100vw;
-	z-index: 10;
-	position: relative;
-}
 
-.nowvideos {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-}
 .evaluate{
 	padding: 0 4%;
 	border-top: 10upx solid #ddd;
@@ -472,12 +389,9 @@
 	.evaluate_box{
 		.pingjia {
 			background-color: #ffffff;
-			overflow: hidden;
 			.pingjia_box {
-				overflow: hidden;
 				margin-top: 20upx;
 				padding-bottom: 20upx;
-				overflow: hidden;
 				border-bottom: 1upx solid #f2f2f2;
 				&:last-child {
 					border-bottom: none;
@@ -530,7 +444,6 @@
 				}
 				.tag_box {
 					margin-top: 20upx;
-					overflow: hidden;
 					.tags {
 						font-size: 22upx;
 						font-family: Source Han Sans CN;
@@ -610,6 +523,5 @@
 		display: block;
 		margin: 0 auto;
 		padding-top: 15upx;
-		overflow: hidden;
 	}
 }

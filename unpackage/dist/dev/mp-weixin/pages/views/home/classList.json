@@ -1,9 +1,9 @@
 {
-  "navigationBarTitleText": "商品列表",
-  "navigationStyle": "custom",
+  "navigationBarTitleText": "商品详情",
   "usingComponents": {
-    "search": "/pages/commponent/public/search",
-    "recommend": "/pages/commponent/home/recommend",
-    "loading": "/pages/commponent/public/loading"
+    "nav-bar": "/pages/commponent/public/navBar",
+    "sku": "/pages/commponent/public/sku",
+    "coupon": "/pages/commponent/public/coupon",
+    "poster": "/pages/commponent/goods/poster"
   }
 }

@@ -147,6 +147,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
   methods: {
+    gotoOrderList: function gotoOrderList() {
+      uni.navigateTo({
+        url: "/pages/views/order/orderlist" });
+
+    },
     jumpOrder: function jumpOrder(item, index) {
       uni.navigateTo({
         url: '/pages/views/order/orderlist?tabIndex=' + item.id });
